@@ -6,7 +6,6 @@
  */
 
 #include "SpriteObject.h"
-#include "D3D9RenderObject.h" // FIXME dont include
 
 SpriteObject* SpriteObject::Open( long spriteID )
 {
@@ -136,7 +135,7 @@ int SpriteObject::Unserialize( char const* buffer, int size )
 
 void SpriteObject::CreateTexture()
 {
-    myRender = new D3D9RenderObject(); // FIXME use factory to create depending on mode
+    myRender = GetFactory()->CreateRenderObject();
     if ( myType == TYPE_INTERNAL && mySpriteID >= 0 )
     {
         // Get sprite from AGS

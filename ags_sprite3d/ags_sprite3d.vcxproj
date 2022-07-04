@@ -97,15 +97,16 @@
     <ClCompile Include="ags_sprite3d.cpp" />
     <ClCompile Include="Common.cpp" />
     <ClCompile Include="BaseObject.cpp" />
-    <ClCompile Include="D3D9Global.cpp" />
+    <ClCompile Include="D3D9Factory.cpp" />
     <ClCompile Include="D3D9RenderObject.cpp" />
     <ClCompile Include="D3DHelper.cpp" />
     <ClCompile Include="SpriteObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="agsplugin.h" />
-    <ClInclude Include="D3D9Global.h" />
+    <ClInclude Include="D3D9Factory.h" />
     <ClInclude Include="D3D9RenderObject.h" />
+    <ClInclude Include="RenderFactory.h" />
     <ClInclude Include="RenderObject.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="BaseObject.h" />

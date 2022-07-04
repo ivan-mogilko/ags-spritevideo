@@ -6,8 +6,6 @@
  */
 
 #include "BaseObject.h"
-//#include <d3dx9.h>
-//#include "SpriteObject.h"
 
 std::list< BaseObject* > BaseObject::ourObjects;
 std::list< BaseObject* > BaseObject::ourStartQueue;

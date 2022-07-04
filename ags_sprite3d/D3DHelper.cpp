@@ -2,7 +2,7 @@
 #include <d3dx9.h>
 #include <cmath>
 #include "Common.h"
-#include "D3D9Global.h"
+#include "D3D9Factory.h"
 
 void SetMatrix(D3DMATRIX* matrix, float tx, float ty, float sx, float sy)
 {

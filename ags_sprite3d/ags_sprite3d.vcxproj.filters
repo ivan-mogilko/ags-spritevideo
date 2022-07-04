@@ -30,10 +30,10 @@
     <ClCompile Include="D3D9RenderObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D3D9Global.cpp">
+    <ClCompile Include="D3DHelper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D3DHelper.cpp">
+    <ClCompile Include="D3D9Factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,7 +65,10 @@
     <ClInclude Include="D3D9RenderObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="D3D9Global.h">
+    <ClInclude Include="RenderFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D3D9Factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

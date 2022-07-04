@@ -1,9 +1,9 @@
 #include "D3D9RenderObject.h"
 #include <d3dx9.h>
 #include "Common.h"
-#include "D3D9Global.h"
-#include "D3DHelper.h"
 #include "BaseObject.h" // FIXME
+#include "D3DHelper.h"
+#include "D3D9Factory.h"
 
 
 D3D9RenderObject::~D3D9RenderObject()
@@ -121,8 +121,8 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
 
     device->SetTextureStageState(1, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_COUNT2);
 
-    float screenScaleX = 1.0;//static_cast<float>(screen->backBufferWidth) / screen->width;
-    float screenScaleY = 1.0;//static_cast<float>(screen->backBufferHeight) / screen->height;
+    float screenScaleX = 1.0;
+    float screenScaleY = 1.0;
     if (screen->matrixValid)
     {
         float orthoSizeX = 2.f / screen->globalProj._11;

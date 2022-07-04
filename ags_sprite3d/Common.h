@@ -72,9 +72,12 @@ float const RADS_PER_DEGREE = 3.14159265f / 180.f;
     }
 
 #include "Structures.h"
+#include "RenderFactory.h"
 
 // *** Global functions ***
 IAGSEngine* GetAGS();
 Screen const* GetScreen();
+RenderFactory* CreateFactory(const char* driverid);
+RenderFactory* GetFactory();
 
 #endif // SPRITE3D_COMMON_H

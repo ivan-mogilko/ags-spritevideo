@@ -5,8 +5,6 @@
 #include "BaseObject.h"
 #include "SpriteObject.h"
 
-#include "D3D9Global.h"
-
 // TODO: Capsien tarkastus täsmällisten virheilmoitusten saamiseksi
 // TODO: "Destroy on room change", "reload on room load"
 // TODO: Kahden potenssit tekstuurit!
@@ -202,11 +200,29 @@ void AGS_EditorLoadGame( char *buffer, int bufsize )
 
 // ****** RUN TIME ********
 
+#include "D3D9Factory.h"
+
 Screen screen;
+RenderFactory* factory = nullptr;
 
 Screen const* GetScreen()
 {
     return &screen;
+}
+
+RenderFactory* CreateFactory(const char* driverid)
+{
+    if (stricmp(driverid, "d3d9") == 0)
+    {
+        factory = new D3D9Factory();
+        return factory;
+    }
+    return nullptr;
+}
+
+RenderFactory* GetFactory()
+{
+    return factory;
 }
 
 std::list< BaseObject* > manualRenderBatch;
@@ -502,21 +518,25 @@ void AGS_EngineStartup( IAGSEngine *lpEngine )
 
 void AGS_EngineInitGfx( char const* driverID, void* data )
 {
-    if ( strcmp( driverID, "D3D9" ) )
+    if (!CreateFactory(driverID))
     {
-        engine->AbortGame( "Game needs to be run in Direct3D mode." );
+        std::string msg = "Unable to initialize plugin: graphics renderer not supported (";
+        msg += driverID; msg += ").";
+        engine->AbortGame(msg.c_str());
+        return;
     }
 
-    InitD3DGfx(data, &screen);
-
-    DBG( "Running at %dx%dx%d", screen.backBufferWidth, screen.backBufferHeight, screen.bpp );
+    GetFactory()->InitGfxMode(&screen, data);
+    //DBG( "Running at %dx%dx%d", screen.backBufferWidth, screen.backBufferHeight, screen.bpp );
 }
 
 void AGS_EngineShutdown()
 {
-    // no work to do here - but if we had created any dynamic sprites,
-    // we should delete them here
+    // Dispose any resources and objects
     DBG( "Shutting down" );
+
+    delete factory;
+    factory = nullptr;
 
     CLOSE_DBG();
 }
@@ -549,11 +569,11 @@ void Render( BaseObject::RenderStage stage )
         AGSRenderStageDesc desc = {0};
         desc.Version = 25;
         engine->GetRenderStageDesc(&desc);
-        SetScreenMatrixes(&screen, &desc.Matrixes.WorldMatrix, &desc.Matrixes.ViewMatrix, &desc.Matrixes.ProjMatrix);
+        GetFactory()->SetScreenMatrixes(&screen, &desc.Matrixes.WorldMatrix, &desc.Matrixes.ViewMatrix, &desc.Matrixes.ProjMatrix);
     }
     else
     {
-        SetScreenMatrixes(&screen, nullptr, nullptr, nullptr);
+        GetFactory()->SetScreenMatrixes(&screen, nullptr, nullptr, nullptr);
     }
 	
     BaseObject::RenderAll( stage );
@@ -596,7 +616,7 @@ int AGS_EngineOnEvent( int ev, int data )
         }
 
         // FIXME: won't work on 64-bit systems!!! use extended engine API?
-        InitGfxDevice(reinterpret_cast<void*>(data));
+        GetFactory()->InitGfxDevice(reinterpret_cast<void*>(data));
 
         Render( BaseObject::STAGE_BACKGROUND );
     }

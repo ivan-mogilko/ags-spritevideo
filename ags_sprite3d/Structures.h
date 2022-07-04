@@ -61,8 +61,6 @@ struct Screen
     Point viewport;
     int gameSpeed;
     float frameDelay;
-	int backBufferWidth;
-	int backBufferHeight;
 
     // Render stage transform matrixes
     bool matrixValid;
@@ -76,9 +74,7 @@ struct Screen
         bpp( 0 ),
         viewport( 0, 0 ),
         gameSpeed( 40 ),
-        frameDelay( 1.f / 40 ),
-		backBufferWidth( 0 ),
-		backBufferHeight( 0 )
+        frameDelay( 1.f / 40 )
     {
         matrixValid = false;
         memset(&globalWorld, 0, sizeof(float[16]));
