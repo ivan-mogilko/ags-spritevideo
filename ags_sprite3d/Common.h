@@ -5,8 +5,8 @@
  * @brief Common stuff. Includes, debug, etc.
  */
 
-#ifndef D3D_COMMON_H
-#define D3D_COMMON_H
+#ifndef SPRITE3D_COMMON_H
+#define SPRITE3D_COMMON_H
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -14,12 +14,12 @@
 // Plugin API
 #include "agsplugin.h"
 
-// Direct3D 9.0
-#include <d3d9.h>
-
 // Disabled warnings
 #pragma warning(disable : 4251) // dll string warnings
 #pragma warning(disable : 4996) // sprintf_s etc.
+
+// Constants and math
+float const RADS_PER_DEGREE = 3.14159265f / 180.f;
 
 // Debug printing
 #define DEBUG
@@ -76,22 +76,5 @@
 // *** Global functions ***
 IAGSEngine* GetAGS();
 Screen const* GetScreen();
-IDirect3DDevice9* GetD3D();
-IDirect3DPixelShader9* GetPixelShader();
 
-struct ID3DXEffect;
-ID3DXEffect* GetFX();
-
-// Matrix functions
-void SetMatrix( D3DMATRIX* matrix, float tx, float ty, float sx, float sy );
-void SetMatrixIdentity( D3DMATRIX* matrix );
-void SetMatrixRotation( D3DMATRIX* matrix, float radians );
-void MatrixMultiply( D3DMATRIX* result, const D3DMATRIX* a, const D3DMATRIX* b );
-
-// Texture creation
-IDirect3DTexture9* CreateTexture( unsigned char const* data, int width, int height, bool alpha = false );
-bool SetTextureData( IDirect3DTexture9* texture, unsigned char const* data, int width, int height );
-IDirect3DTexture9* CreateTexture( unsigned char const* const* data, int width, int height, bool alpha = false );
-bool SetTextureData( IDirect3DTexture9* texture, unsigned char const* const* data, int width, int height );
-
-#endif
+#endif // SPRITE3D_COMMON_H

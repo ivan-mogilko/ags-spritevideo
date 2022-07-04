@@ -1,20 +1,19 @@
 /**
- * @file D3DObject.cpp
+ * @file BaseObject.cpp
  * @author Ahonen
  *
  * @brief Base class for Direct3D objects.
  */
 
-#include "D3DObject.h"
-#include <d3dx9.h>
-#include "D3DSpriteObject.h"
+#include "BaseObject.h"
+//#include <d3dx9.h>
+//#include "SpriteObject.h"
 
-float const RADS_PER_DEGREE = 3.14159265f / 180.f;
-std::list< D3DObject* > D3DObject::ourObjects;
-std::list< D3DObject* > D3DObject::ourStartQueue;
+std::list< BaseObject* > BaseObject::ourObjects;
+std::list< BaseObject* > BaseObject::ourStartQueue;
 
 
-void D3DObject::UpdateAll()
+void BaseObject::UpdateAll()
 {
     for ( auto i = ourObjects.begin(); i != ourObjects.end(); ++i )
     {
@@ -28,7 +27,7 @@ void D3DObject::UpdateAll()
     }
 }
 
-void D3DObject::RenderAll( RenderStage stage )
+void BaseObject::RenderAll( RenderStage stage )
 {
     // Run start calls
     for ( auto i = ourStartQueue.begin(); i != ourStartQueue.end(); )
@@ -56,7 +55,7 @@ void D3DObject::RenderAll( RenderStage stage )
     }
 }
 
-D3DObject::D3DObject():
+BaseObject::BaseObject():
     myHasStarted( false ),
     myIsEnabled( true ),
     myIsVisible( true ),
@@ -76,14 +75,15 @@ D3DObject::D3DObject():
 	myAlpha( 1.f ),
 	myParent( NULL ),
 	myWidth( 0 ),
-	myHeight( 0 )
+	myHeight( 0 ),
+    myRender(nullptr)
 {
-    DBG( "D3DObject created" );
+    DBG( "BaseObject created" );
     ourObjects.push_back( this );
     ourStartQueue.push_back( this );
 }
 
-D3DObject::~D3DObject()
+BaseObject::~BaseObject()
 {
     for ( auto i = ourObjects.begin(); i != ourObjects.end(); ++i )
     {
@@ -103,192 +103,194 @@ D3DObject::~D3DObject()
         }
     }
 
-    DBG( "D3DObject destroyed" );
+    delete myRender;
+
+    DBG( "BaseObject destroyed" );
 }
 
-void D3DObject::SetEnabled( bool enabled )
+void BaseObject::SetEnabled( bool enabled )
 {
     myIsEnabled = enabled;
 }
 
-bool D3DObject::IsEnabled() const
+bool BaseObject::IsEnabled() const
 {
     return myIsEnabled;
 }
 
-void D3DObject::SetVisible( bool visible )
+void BaseObject::SetVisible( bool visible )
 {
     myIsVisible = visible;
 }
 
-bool D3DObject::IsVisible() const
+bool BaseObject::IsVisible() const
 {
     return myIsVisible;
 }
 
-void D3DObject::SetPosition( Point const& position )
+void BaseObject::SetPosition( Point const& position )
 {
     myPosition = position;
 }
 
-Point D3DObject::GetPosition() const
+Point BaseObject::GetPosition() const
 {
     return myPosition;
 }
 
-void D3DObject::SetAnchor( PointF const& anchor )
+void BaseObject::SetAnchor( PointF const& anchor )
 {
     myAnchor = anchor;
 }
 
-PointF D3DObject::GetAnchor() const
+PointF BaseObject::GetAnchor() const
 {
     return myAnchor;
 }
 
-void D3DObject::SetRotation( float degrees )
+void BaseObject::SetRotation( float degrees )
 {
     myRotation = degrees;
 }
 
-float D3DObject::GetRotation() const
+float BaseObject::GetRotation() const
 {
     return myRotation;
 }
 
-void D3DObject::SetScaling( PointF const& scaling )
+void BaseObject::SetScaling( PointF const& scaling )
 {
     myScaling = scaling;
 }
 
-void D3DObject::SetScaling( float scaling )
+void BaseObject::SetScaling( float scaling )
 {
     myScaling = PointF( scaling, scaling );
 }
 
-PointF D3DObject::GetScaling() const
+PointF BaseObject::GetScaling() const
 {
     return myScaling;
 }
 
-void D3DObject::SetTintR( float r )
+void BaseObject::SetTintR( float r )
 {
 	myTintR = r;
 }
 
-float D3DObject::GetTintR() const
+float BaseObject::GetTintR() const
 {
 	return myTintR;
 }
 
-void D3DObject::SetTintG( float g )
+void BaseObject::SetTintG( float g )
 {
 	myTintG = g;
 }
 
-float D3DObject::GetTintG() const
+float BaseObject::GetTintG() const
 {
 	return myTintG;
 }
 
-void D3DObject::SetTintB( float b )
+void BaseObject::SetTintB( float b )
 {
 	myTintB = b;
 }
 
-float D3DObject::GetTintB() const
+float BaseObject::GetTintB() const
 {
 	return myTintB;
 }
 
-void D3DObject::SetTint( float r, float g, float b )
+void BaseObject::SetTint( float r, float g, float b )
 {
 	myTintR = r;
 	myTintG = g;
 	myTintB = b;
 }
 
-void D3DObject::SetAlpha( float a )
+void BaseObject::SetAlpha( float a )
 {
 	myAlpha = a;
 }
 
-float D3DObject::GetAlpha() const
+float BaseObject::GetAlpha() const
 {
 	return myAlpha;
 }
 
-void D3DObject::SetParent( D3DObject* parent )
+void BaseObject::SetParent( BaseObject* parent )
 {
 	myParent = parent;
 }
 
-D3DObject* D3DObject::GetParent() const
+BaseObject* BaseObject::GetParent() const
 {
 	return myParent;
 }
 
-void D3DObject::SetAutoUpdated( bool autoUpdated )
+void BaseObject::SetAutoUpdated( bool autoUpdated )
 {
     myIsAutoUpdated = autoUpdated;
 }
 
-bool D3DObject::IsAutoUpdated() const
+bool BaseObject::IsAutoUpdated() const
 {
     return myIsAutoUpdated;
 }
 
-void D3DObject::SetAutoRendered( bool autoRendered )
+void BaseObject::SetAutoRendered( bool autoRendered )
 {
     myIsAutoRendered = autoRendered;
 }
 
-bool D3DObject::IsAutoRendered() const
+bool BaseObject::IsAutoRendered() const
 {
     return myIsAutoRendered;
 }
 
-void D3DObject::SetRenderStage( RenderStage stage )
+void BaseObject::SetRenderStage( RenderStage stage )
 {
     myRenderStage = stage;
 }
 
-D3DObject::RenderStage D3DObject::GetRenderStage() const
+BaseObject::RenderStage BaseObject::GetRenderStage() const
 {
     return myRenderStage;
 }
 
-void D3DObject::SetRelativeTo( RelativeTo relative )
+void BaseObject::SetRelativeTo( RelativeTo relative )
 {
     myRelativeTo = relative;
 }
 
-D3DObject::RelativeTo D3DObject::GetRelativeTo() const
+BaseObject::RelativeTo BaseObject::GetRelativeTo() const
 {
     return myRelativeTo;
 }
 
-void D3DObject::SetRoom( int room )
+void BaseObject::SetRoom( int room )
 {
     myRoom = room;
 }
 
-int D3DObject::GetRoom() const
+int BaseObject::GetRoom() const
 {
     return myRoom;
 }
 
-int D3DObject::GetWidth() const
+int BaseObject::GetWidth() const
 {
     return 0;
 }
 
-int D3DObject::GetHeight() const
+int BaseObject::GetHeight() const
 {
     return 0;
 }
 
-int D3DObject::Serialize( char* buffer, int bufsize )
+int BaseObject::Serialize( char* buffer, int bufsize )
 {
     char* bufStart = buffer;
 
@@ -322,7 +324,7 @@ int D3DObject::Serialize( char* buffer, int bufsize )
     return buffer - bufStart;
 }
 
-int D3DObject::Unserialize( char const* buffer, int size )
+int BaseObject::Unserialize( char const* buffer, int size )
 {
     char const* bufStart = buffer;
 
@@ -349,7 +351,7 @@ int D3DObject::Unserialize( char const* buffer, int size )
 
 	int parentKey;
 	UNSERIALIZE( parentKey );
-	myParent = (D3DObject*)GetAGS()->GetManagedObjectAddressByKey( parentKey );
+	myParent = (BaseObject*)GetAGS()->GetManagedObjectAddressByKey( parentKey );
 	
 	UNSERIALIZE( myWidth );
 	UNSERIALIZE( myHeight );
@@ -357,60 +359,28 @@ int D3DObject::Unserialize( char const* buffer, int size )
     return buffer - bufStart;
 }
 
-void D3DObject::Render( IDirect3DTexture9* texture, int texWidth, int texHeight )
+void BaseObject::RenderSelf()
 {
-    if ( !myIsVisible || !texture )
+    if ( !myIsVisible || !myRender )
     {
         return;
     }
-
-
-    IDirect3DDevice9* device = GetD3D();
 
     // Parenting
     Point pos( 0, 0 );
 	float rotation;
 	PointF scaling( 0, 0 );
 	PointF anchorPos( 0, 0 );
-	float r, g, b, a;
-	HandleParenting( &pos, &rotation, &scaling, &anchorPos, &r, &g, &b, &a );
-
-    device->SetTextureStageState( 0, D3DTSS_COLORARG1, D3DTA_TEXTURE );
-	device->SetTextureStageState( 0, D3DTSS_COLORARG2, D3DTA_DIFFUSE );
-	device->SetTextureStageState( 0, D3DTSS_COLOROP, D3DTOP_MODULATE );
-
-    device->SetTextureStageState( 0, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
-	device->SetTextureStageState( 0, D3DTSS_ALPHAARG2, D3DTA_DIFFUSE );
-	device->SetTextureStageState( 0, D3DTSS_ALPHAOP, D3DTOP_MODULATE );
-
-    device->SetTextureStageState( 1, D3DTSS_COLOROP, D3DTOP_SELECTARG2 );
-    device->SetTextureStageState( 1, D3DTSS_COLORARG1, D3DTA_TEXTURE );
-    device->SetTextureStageState( 1, D3DTSS_COLORARG2, D3DTA_CURRENT );
-
-    device->SetTextureStageState( 1, D3DTSS_ALPHAOP, D3DTOP_MODULATE );
-    device->SetTextureStageState( 1, D3DTSS_ALPHAARG1, D3DTA_TEXTURE );
-    device->SetTextureStageState( 1, D3DTSS_ALPHAARG2, D3DTA_CURRENT );
-
-    device->SetTextureStageState( 2, D3DTSS_COLOROP, D3DTOP_DISABLE );
-    device->SetTextureStageState( 2, D3DTSS_ALPHAOP, D3DTOP_DISABLE );
-
-    device->SetTextureStageState( 1, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_COUNT2 );
+	RGBA rgba;
+	HandleParenting( &pos, &rotation, &scaling, &anchorPos, &rgba.r, &rgba.g, &rgba.b, &rgba.a );
 
     auto screen = GetScreen();
-    float screenScaleX = 1.0;//static_cast<float>(screen->backBufferWidth) / screen->width;
-    float screenScaleY = 1.0;//static_cast<float>(screen->backBufferHeight) / screen->height;
 
     // Engine interface >= 25 provides transform matrixes
     if (screen->matrixValid)
     {
         // Relative to screen always, the rest is handled by matrixes
         pos = screen->FromScreen( pos );
-
-        float orthoSizeX = 2.f / screen->globalProj._11;
-        float orthoSizeY = 2.f / screen->globalProj._22;
-        screenScaleX = orthoSizeX / screen->width;
-        screenScaleY = orthoSizeY / screen->height;
-        //DBG("---ORTHO w = %f, h = %f", orthoSizeX, orthoSizeY);
     }
     // Engine interface < 25, manually calc position offset depending on render stage
     // (this does not cover all transformations, but this is as much as we can do)
@@ -428,96 +398,10 @@ void D3DObject::Render( IDirect3DTexture9* texture, int texWidth, int texHeight 
         }
     }
 
-    //DBG("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
-
-    // World matrix, set position, anchor, rotation and scaling
-    D3DMATRIX trans, scale, rot, anchor;
-    //DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * GetScreen()->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * GetScreen()->height / 2.f);
-    SetMatrix( &trans, pos.x - screenScaleX * GetScreen()->width / 2.f,
-                       pos.y - (1.f + 1.f - screenScaleY) * GetScreen()->height / 2.f,
-                       1, 1 );
-    //DBG("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
-    SetMatrix( &scale, 0, 0, screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y );
-        
-    SetMatrix( &anchor, -anchorPos.x, anchorPos.y, 1, 1 ); // Mirror Y
-    SetMatrixRotation( &rot, rotation * RADS_PER_DEGREE );
-    
-    D3DMATRIX world;
-    // Apply self-transform first
-    MatrixMultiply( &world, &anchor, &scale );
-    MatrixMultiply( &world, &world, &rot );
-    MatrixMultiply( &world, &world, &trans );
-    // Apply global world matrix too
-    MatrixMultiply(&world, &world, &screen->globalWorld);
-
-    // Set transforms
-    device->SetTransform( D3DTS_WORLD, &world );
-    device->SetTransform( D3DTS_VIEW, &screen->globalView );
-
-    // Scale texture coordinates
-    float scaleU = texWidth / static_cast<float>( myWidth );
-    float scaleV = texHeight / static_cast<float>( myHeight );
-
-    D3DMATRIX tex;
-    SetMatrix( &tex, .5f, -150, 1, .5f );
-    device->SetTransform( D3DTS_TEXTURE1, &tex );
-	
-
-    // Store old vertex format
-    DWORD oldFVF;
-    device->GetFVF( &oldFVF );
-
-    if ( myFiltering == FILTER_LINEAR )
-    {
-        // Linear texture filtering
-        device->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR );
-        device->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR );
-    }
-    else if ( myFiltering == FILTER_NEAREST )
-    {
-        // Nearest neighbor filtering
-        device->SetSamplerState( 0, D3DSAMP_MINFILTER, D3DTEXF_POINT );
-        device->SetSamplerState( 0, D3DSAMP_MAGFILTER, D3DTEXF_POINT );
-    }
-
-	// Use the texture
-    device->SetTexture( 0, texture );
-
-    /*if ( mask )
-    {
-		DBG( "HAS MASK" );
-        device->SetTexture( 1, mask->myTexture );
-    }
-	else
-	{
-		DBG( "NO MASK" );
-		device->SetTexture( 1, NULL );
-	}*/
-
-    // Set our vertex format
-    device->SetFVF( VERTEX_FVF );
-
-	// Copy of the default quad
-	Vertex quad[4];
-	memcpy( quad, DEFAULT_QUAD, sizeof( Vertex ) * 4 );
-
-	// Tint and alpha
-	D3DCOLOR color = D3DCOLOR_RGBA( static_cast<int>( r * 255 ),
-									static_cast<int>( g * 255 ),
-									static_cast<int>( b * 255 ),
-									static_cast<int>( a * 255 ) );
-	quad[0].color = quad[1].color = quad[2].color = quad[3].color = color;
-
-    if ( FAILED( device->DrawPrimitiveUP( D3DPT_TRIANGLEFAN, 2, (void*)quad, sizeof( Vertex ) ) ) )
-    {
-        DBG( "Draw failed" );
-    }
-	    
-    // Restore old vertex format
-    device->SetFVF( oldFVF );
+    myRender->Render(pos, scaling, rotation, anchorPos, rgba, myFiltering);
 }
 
-void D3DObject::HandleParenting( Point* outPosition, float* outRotation, PointF* outScaling, PointF* outAnchor,
+void BaseObject::HandleParenting( Point* outPosition, float* outRotation, PointF* outScaling, PointF* outAnchor,
 								  float* outTintR, float* outTintG, float* outTintB, float* outAlpha ) const
 {
 	if ( !myParent )

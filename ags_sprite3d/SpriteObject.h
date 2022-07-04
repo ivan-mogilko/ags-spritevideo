@@ -1,30 +1,30 @@
 /**
- * @file D3DSpriteObject.h
+ * @file SpriteObject.h
  * @author Ahonen
  *
  * @brief Sprite object.
  */
 
-#ifndef D3D_D3DSPRITEOBJECT_H
-#define D3D_D3DSPRITEOBJECT_H
+#ifndef SPRITE3D_SPRITEOBJECT_H
+#define SPRITE3D_SPRITEOBJECT_H
 
-#include "D3DObject.h"
+#include "BaseObject.h"
 
-class D3DSpriteObject : public D3DObject
+class SpriteObject : public BaseObject
 {
 public:
-    friend class D3DObject;
+    friend class BaseObject;
 
-    static D3DSpriteObject* Open( long spriteID );
+    static SpriteObject* Open( long spriteID );
 
-    static D3DSpriteObject* Open( char const* filename,
-    D3DObject::Filtering filtering = D3DObject::FILTER_LINEAR );
+    static SpriteObject* Open( char const* filename,
+    BaseObject::Filtering filtering = BaseObject::FILTER_LINEAR );
 
-	static D3DSpriteObject* OpenBackground( long frame );
+	static SpriteObject* OpenBackground( long frame );
 
-    static D3DSpriteObject* Restore( char const* buffer, int size );
+    static SpriteObject* Restore( char const* buffer, int size );
 
-    virtual ~D3DSpriteObject();
+    virtual ~SpriteObject();
 
     virtual int GetWidth() const;
 
@@ -50,26 +50,20 @@ private:
         TYPE_EXTERNAL    // Create texture with myData
     };
 
-    IDirect3DTexture9* myTexture;
-
     SpriteType myType;
     long mySpriteID;
     unsigned char* myData;
     char* myFile;
 
-    int myTexWidth;
-    int myTexHeight;
-    bool myHasAlpha;
-
     // Blocks
-    D3DSpriteObject();
-    D3DSpriteObject( D3DSpriteObject const& );
-    D3DSpriteObject& operator=( D3DSpriteObject const& );
+    SpriteObject();
+    SpriteObject( SpriteObject const& );
+    SpriteObject& operator=( SpriteObject const& );
 };
 
 
-class D3DSpriteObject_Manager : public IAGSScriptManagedObject,
-                                public IAGSManagedObjectReader
+class SpriteObject_Manager : public IAGSScriptManagedObject,
+                             public IAGSManagedObjectReader
 {
 public:
     virtual int Dispose( char const* address, bool force );
@@ -81,4 +75,4 @@ public:
     virtual void Unserialize( int key, char const* buffer, int size );
 };
 
-#endif
+#endif // SPRITE3D_SPRITEOBJECT_H

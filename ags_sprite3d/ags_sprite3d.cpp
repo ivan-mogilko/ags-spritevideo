@@ -1,10 +1,11 @@
 #define THIS_IS_THE_PLUGIN
+
+#include <list>
 #include "Common.h"
+#include "BaseObject.h"
+#include "SpriteObject.h"
 
-#include <d3d9.h>
-#include <d3dx9.h>
-
-#include "D3DSpriteObject.h"
+#include "D3D9Global.h"
 
 // TODO: Capsien tarkastus täsmällisten virheilmoitusten saamiseksi
 // TODO: "Destroy on room change", "reload on room load"
@@ -28,34 +29,10 @@
 
 
 IAGSEngine* engine = NULL;
-IDirect3DDevice9* d3dDevice = NULL;
 
 IAGSEngine* GetAGS()
 {
     return engine;
-}
-
-IDirect3DDevice9* GetD3D()
-{
-    return d3dDevice;
-}
-
-ID3DXEffect* fx;
-
-ID3DXEffect* GetFX()
-{
-    return fx;
-}
-
-IDirect3DPixelShader9* shader;
-
-IDirect3DPixelShader9* GetPixelShader()
-{
-    return shader;
-}
-
-void initGraphics()
-{
 }
 
 
@@ -156,7 +133,7 @@ const char *ourScriptHeader =
 
     IMPORT_D3DOBJECT_BASE
 
-        // D3DSpriteObject
+        // SpriteObject
     "};\r\n\r\n"
     
     // *** D3D ****
@@ -232,7 +209,7 @@ Screen const* GetScreen()
     return &screen;
 }
 
-std::list< D3DObject* > manualRenderBatch;
+std::list< BaseObject* > manualRenderBatch;
 
 // *** D3D ***
 void D3D_SetGameSpeed( long speed )
@@ -241,7 +218,7 @@ void D3D_SetGameSpeed( long speed )
     screen.frameDelay = 1.f / speed;
 }
 
-D3DSpriteObject_Manager spriteObjManager;
+SpriteObject_Manager spriteObjManager;
 
 struct D3DVideoObject; // dummy
 D3DVideoObject* D3D_OpenVideo( char const* filename )
@@ -249,9 +226,9 @@ D3DVideoObject* D3D_OpenVideo( char const* filename )
     return nullptr;
 }
 
-D3DSpriteObject* D3D_OpenSprite( long spriteID )
+SpriteObject* D3D_OpenSprite( long spriteID )
 {
-    D3DSpriteObject* obj = D3DSpriteObject::Open( spriteID );
+    SpriteObject* obj = SpriteObject::Open( spriteID );
 
     if ( obj )
     {
@@ -264,12 +241,12 @@ D3DSpriteObject* D3D_OpenSprite( long spriteID )
 int const FILTER_NEAREST = 0;
 int const FILTER_LINEAR = 1;
 
-D3DSpriteObject* D3D_OpenSpriteFile( char const* filename, long filtering )
+SpriteObject* D3D_OpenSpriteFile( char const* filename, long filtering )
 {
     char buffer[MAX_PATH];
     engine->GetPathToFileInCompiledFolder( filename, buffer );
 
-    D3DSpriteObject* obj = D3DSpriteObject::Open( buffer, (D3DObject::Filtering)filtering );
+    SpriteObject* obj = SpriteObject::Open( buffer, (BaseObject::Filtering)filtering );
 
     if ( obj )
     {
@@ -279,9 +256,9 @@ D3DSpriteObject* D3D_OpenSpriteFile( char const* filename, long filtering )
     return obj;
 }
 
-D3DSpriteObject* D3D_OpenBackground( long frame )
+SpriteObject* D3D_OpenBackground( long frame )
 {
-    D3DSpriteObject* obj = D3DSpriteObject::OpenBackground( frame );
+    SpriteObject* obj = SpriteObject::OpenBackground( frame );
 
     if ( obj )
     {
@@ -292,100 +269,100 @@ D3DSpriteObject* D3D_OpenBackground( long frame )
 }
 
 
-// *** D3DObject ***
-void D3DObject_SetEnabled( D3DObject* obj, bool enabled ) { obj->SetEnabled( enabled ); }
-long D3DObject_GetEnabled( D3DObject* obj ) { return obj->IsEnabled(); }
-void D3DObject_SetVisible( D3DObject* obj, bool visible ) { obj->SetVisible( visible ); }
-long D3DObject_GetVisible( D3DObject* obj ) { return obj->IsVisible(); }
-void D3DObject_SetX( D3DObject* obj, long x ) { long y = obj->GetPosition().y; obj->SetPosition( Point( x, y ) ); }
-long D3DObject_GetX( D3DObject* obj ) { return obj->GetPosition().x; }
-void D3DObject_SetY( D3DObject* obj, long y ) { long x = obj->GetPosition().x; obj->SetPosition( Point( x, y ) ); }
-long D3DObject_GetY( D3DObject* obj ) { return obj->GetPosition().y; }
-long D3DObject_GetWidth( D3DObject* obj ) { return obj->GetWidth(); }
-long D3DObject_GetHeight( D3DObject* obj ) { return obj->GetHeight(); }
+// *** BaseObject ***
+void D3DObject_SetEnabled( BaseObject* obj, bool enabled ) { obj->SetEnabled( enabled ); }
+long D3DObject_GetEnabled( BaseObject* obj ) { return obj->IsEnabled(); }
+void D3DObject_SetVisible( BaseObject* obj, bool visible ) { obj->SetVisible( visible ); }
+long D3DObject_GetVisible( BaseObject* obj ) { return obj->IsVisible(); }
+void D3DObject_SetX( BaseObject* obj, long x ) { long y = obj->GetPosition().y; obj->SetPosition( Point( x, y ) ); }
+long D3DObject_GetX( BaseObject* obj ) { return obj->GetPosition().x; }
+void D3DObject_SetY( BaseObject* obj, long y ) { long x = obj->GetPosition().x; obj->SetPosition( Point( x, y ) ); }
+long D3DObject_GetY( BaseObject* obj ) { return obj->GetPosition().y; }
+long D3DObject_GetWidth( BaseObject* obj ) { return obj->GetWidth(); }
+long D3DObject_GetHeight( BaseObject* obj ) { return obj->GetHeight(); }
 
-void D3DObject_SetAnchorX( D3DObject* obj, SCRIPT_FLOAT(x) ) {
+void D3DObject_SetAnchorX( BaseObject* obj, SCRIPT_FLOAT(x) ) {
 	INIT_SCRIPT_FLOAT( x );
 	float y = obj->GetAnchor().y; obj->SetAnchor( PointF( x, y ) ); }
-FLOAT_RETURN_TYPE D3DObject_GetAnchorX( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetAnchorX( BaseObject* obj ) {
 	float x = obj->GetAnchor().x;
 	RETURN_FLOAT( x ); }
 
-void D3DObject_SetAnchorY( D3DObject* obj, SCRIPT_FLOAT(y) ) {
+void D3DObject_SetAnchorY( BaseObject* obj, SCRIPT_FLOAT(y) ) {
 	INIT_SCRIPT_FLOAT( y );
 	float x = obj->GetAnchor().x; obj->SetAnchor( PointF( x, y ) ); }
-FLOAT_RETURN_TYPE D3DObject_GetAnchorY( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetAnchorY( BaseObject* obj ) {
 	float y = obj->GetAnchor().y;
 	RETURN_FLOAT( y ); }
 
-void D3DObject_SetRotation( D3DObject* obj, SCRIPT_FLOAT(rot) ) {
+void D3DObject_SetRotation( BaseObject* obj, SCRIPT_FLOAT(rot) ) {
 	INIT_SCRIPT_FLOAT( rot );
 	obj->SetRotation( rot ); }
-FLOAT_RETURN_TYPE D3DObject_GetRotation( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetRotation( BaseObject* obj ) {
 	float r = obj->GetRotation();
 	RETURN_FLOAT( r ); }
 
-void D3DObject_SetScaling( D3DObject* obj, SCRIPT_FLOAT(scaling) ) {
+void D3DObject_SetScaling( BaseObject* obj, SCRIPT_FLOAT(scaling) ) {
 	INIT_SCRIPT_FLOAT( scaling );
 	obj->SetScaling( scaling ); }
-FLOAT_RETURN_TYPE D3DObject_GetScaling( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetScaling( BaseObject* obj ) {
 	float s = obj->GetScaling().x;
 	RETURN_FLOAT( s ); }
 
-void D3DObject_SetTintR( D3DObject* obj, SCRIPT_FLOAT(r) ) {
+void D3DObject_SetTintR( BaseObject* obj, SCRIPT_FLOAT(r) ) {
 	INIT_SCRIPT_FLOAT( r );
 	obj->SetTintR( r ); }
-FLOAT_RETURN_TYPE D3DObject_GetTintR( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetTintR( BaseObject* obj ) {
 	float r = obj->GetTintR();
 	RETURN_FLOAT( r ); }
 
-void D3DObject_SetTintG( D3DObject* obj, SCRIPT_FLOAT(r) ) {
+void D3DObject_SetTintG( BaseObject* obj, SCRIPT_FLOAT(r) ) {
 	INIT_SCRIPT_FLOAT( r );
 	obj->SetTintG( r ); }
-FLOAT_RETURN_TYPE D3DObject_GetTintG( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetTintG( BaseObject* obj ) {
 	float g = obj->GetTintG();
 	RETURN_FLOAT( g ); }
 
-void D3DObject_SetTintB( D3DObject* obj, SCRIPT_FLOAT(r) ) {
+void D3DObject_SetTintB( BaseObject* obj, SCRIPT_FLOAT(r) ) {
 	INIT_SCRIPT_FLOAT( r );
 	obj->SetTintB( r ); }
-FLOAT_RETURN_TYPE D3DObject_GetTintB( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetTintB( BaseObject* obj ) {
 	float b = obj->GetTintB();
 	RETURN_FLOAT( b ); }
 
-void D3DObject_SetAlpha( D3DObject* obj, SCRIPT_FLOAT(a) ) {
+void D3DObject_SetAlpha( BaseObject* obj, SCRIPT_FLOAT(a) ) {
 	INIT_SCRIPT_FLOAT( a ); obj->SetAlpha( a ); }
-FLOAT_RETURN_TYPE D3DObject_GetAlpha( D3DObject* obj ) {
+FLOAT_RETURN_TYPE D3DObject_GetAlpha( BaseObject* obj ) {
 	float a = obj->GetAlpha();
 	RETURN_FLOAT( a ); }
 
-void D3DObject_SetAutoUpdated( D3DObject* obj, bool autoUpdated ) { obj->SetAutoUpdated( autoUpdated ); }
-long D3DObject_GetAutoUpdated( D3DObject* obj ) { return obj->IsAutoUpdated(); }
-void D3DObject_SetAutoRendered( D3DObject* obj, bool autoRendered ) { obj->SetAutoRendered( autoRendered ); }
-long D3DObject_GetAutoRendered( D3DObject* obj ) { return obj->IsAutoRendered(); }
-void D3DObject_SetRenderStage( D3DObject* obj, long stage ) { obj->SetRenderStage( (D3DObject::RenderStage)stage ); }
-long D3DObject_GetRenderStage( D3DObject* obj ) { return (long)obj->GetRenderStage(); }
-void D3DObject_SetRelativeTo( D3DObject* obj, long relative ) { obj->SetRelativeTo( (D3DObject::RelativeTo)relative ); }
-long D3DObject_GetRelativeTo( D3DObject* obj ) { return (long)obj->GetRelativeTo(); }
-void D3DObject_SetRoom( D3DObject* obj, long room ) { obj->SetRoom( room ); }
-long D3DObject_GetRoom( D3DObject* obj ) { return obj->GetRoom(); }
-void D3DObject_SetPosition( D3DObject* obj, long x, long y ) { obj->SetPosition( Point( x, y ) ); }
+void D3DObject_SetAutoUpdated( BaseObject* obj, bool autoUpdated ) { obj->SetAutoUpdated( autoUpdated ); }
+long D3DObject_GetAutoUpdated( BaseObject* obj ) { return obj->IsAutoUpdated(); }
+void D3DObject_SetAutoRendered( BaseObject* obj, bool autoRendered ) { obj->SetAutoRendered( autoRendered ); }
+long D3DObject_GetAutoRendered( BaseObject* obj ) { return obj->IsAutoRendered(); }
+void D3DObject_SetRenderStage( BaseObject* obj, long stage ) { obj->SetRenderStage( (BaseObject::RenderStage)stage ); }
+long D3DObject_GetRenderStage( BaseObject* obj ) { return (long)obj->GetRenderStage(); }
+void D3DObject_SetRelativeTo( BaseObject* obj, long relative ) { obj->SetRelativeTo( (BaseObject::RelativeTo)relative ); }
+long D3DObject_GetRelativeTo( BaseObject* obj ) { return (long)obj->GetRelativeTo(); }
+void D3DObject_SetRoom( BaseObject* obj, long room ) { obj->SetRoom( room ); }
+long D3DObject_GetRoom( BaseObject* obj ) { return obj->GetRoom(); }
+void D3DObject_SetPosition( BaseObject* obj, long x, long y ) { obj->SetPosition( Point( x, y ) ); }
 
-void D3DObject_SetAnchor( D3DObject* obj, SCRIPT_FLOAT(x), SCRIPT_FLOAT(y) ) {
+void D3DObject_SetAnchor( BaseObject* obj, SCRIPT_FLOAT(x), SCRIPT_FLOAT(y) ) {
 	INIT_SCRIPT_FLOAT( x );
 	INIT_SCRIPT_FLOAT( y );
 	obj->SetAnchor( PointF( x, y ) ); }
 
-void D3DObject_SetTint( D3DObject* obj, SCRIPT_FLOAT(r), SCRIPT_FLOAT(g), SCRIPT_FLOAT(b) ) {
+void D3DObject_SetTint( BaseObject* obj, SCRIPT_FLOAT(r), SCRIPT_FLOAT(g), SCRIPT_FLOAT(b) ) {
 	INIT_SCRIPT_FLOAT( r );
 	INIT_SCRIPT_FLOAT( g );
 	INIT_SCRIPT_FLOAT( b );
 	obj->SetTint( r, g, b ); }
 
-void D3DObject_SetParent( D3DObject* obj, int key ) { obj->SetParent( (D3DObject*)GetAGS()->GetManagedObjectAddressByKey( key ) ); }
-int D3DObject_GetKey( D3DObject* obj ) { return GetAGS()->GetManagedObjectKeyByAddress( (char*)obj ); }
-void D3DObject_Update( D3DObject* obj ) { obj->Update(); }
-void D3DObject_Render( D3DObject* obj ) { manualRenderBatch.push_back( obj ); }
+void D3DObject_SetParent( BaseObject* obj, int key ) { obj->SetParent( (BaseObject*)GetAGS()->GetManagedObjectAddressByKey( key ) ); }
+int D3DObject_GetKey( BaseObject* obj ) { return GetAGS()->GetManagedObjectKeyByAddress( (char*)obj ); }
+void D3DObject_Update( BaseObject* obj ) { obj->Update(); }
+void D3DObject_Render( BaseObject* obj ) { manualRenderBatch.push_back( obj ); }
 
 // *** D3DVideoObject ***
 void D3DVideoObject_SetLooping( D3DVideoObject* obj, bool loop ) { /* dummy */ }
@@ -406,7 +383,7 @@ long D3DVideoObject_IsAutoplaying( D3DVideoObject* obj ) { return 0; /* dummy */
 void D3DVideoObject_StopAutoplay( D3DVideoObject* obj ) { /* dummy */ }
 
 
-void dummy( D3DObject* obj ) {}
+void dummy( BaseObject* obj ) {}
 
 #define REG_D3DOBJECT_BASE( cname ) \
     REG( cname "::set_isEnabled", D3DObject_SetEnabled );\
@@ -530,15 +507,7 @@ void AGS_EngineInitGfx( char const* driverID, void* data )
         engine->AbortGame( "Game needs to be run in Direct3D mode." );
     }
 
-	D3DPRESENT_PARAMETERS* params = (D3DPRESENT_PARAMETERS*)data;
-	if (params->BackBufferFormat != D3DFMT_X8R8G8B8)
-	{
-		engine->AbortGame( "32bit colour mode required." );
-	}
-
-	screen.backBufferWidth = params->BackBufferWidth;
-	screen.backBufferHeight = params->BackBufferHeight;
-	screen.bpp = 32;
+    InitD3DGfx(data, &screen);
 
     DBG( "Running at %dx%dx%d", screen.backBufferWidth, screen.backBufferHeight, screen.bpp );
 }
@@ -570,30 +539,24 @@ void Restore( int handle )
     DBG( "RESTORE gameSpeed: %d", screen.gameSpeed );
 }
 
-void Render( D3DObject::RenderStage stage )
+void Render( BaseObject::RenderStage stage )
 {
 	engine->GetScreenDimensions(&screen.width, &screen.height, &screen.bpp);
-    //DBG( "RENDER screen %dx%d", screen.width, screen.height );
+    DBG( "RENDER screen %dx%d", screen.width, screen.height );
     // Engine interface >= 25 provides transform matrixes
     if (engine->version >= 25)
     {
         AGSRenderStageDesc desc = {0};
         desc.Version = 25;
         engine->GetRenderStageDesc(&desc);
-        memcpy(screen.globalWorld.m, desc.Matrixes.WorldMatrix, sizeof(float[16]));
-        memcpy(screen.globalView.m, desc.Matrixes.ViewMatrix, sizeof(float[16]));
-        memcpy(screen.globalProj.m, desc.Matrixes.ProjMatrix, sizeof(float[16]));
-        screen.matrixValid = true;
+        SetScreenMatrixes(&screen, &desc.Matrixes.WorldMatrix, &desc.Matrixes.ViewMatrix, &desc.Matrixes.ProjMatrix);
     }
     else
     {
-        SetMatrixIdentity(&screen.globalWorld);
-        SetMatrixIdentity(&screen.globalView);
-        SetMatrixIdentity(&screen.globalProj);
-        screen.matrixValid = false;
+        SetScreenMatrixes(&screen, nullptr, nullptr, nullptr);
     }
 	
-    D3DObject::RenderAll( stage );
+    BaseObject::RenderAll( stage );
 
     for ( auto i = manualRenderBatch.begin(); i != manualRenderBatch.end(); ++i )
     {
@@ -620,7 +583,7 @@ int AGS_EngineOnEvent( int ev, int data )
     }
     else if ( ev == AGSE_PRERENDER )
     {
-        D3DObject::UpdateAll();
+        BaseObject::UpdateAll();
     }
     else if ( ev == AGSE_PRESCREENDRAW )
     {
@@ -632,27 +595,22 @@ int AGS_EngineOnEvent( int ev, int data )
             engine->RoomToViewport( &screen.viewport.x, &screen.viewport.y );
         }
 
-        if ( !d3dDevice )
-        {
-            // Received Direct3D device pointer
-            d3dDevice = (IDirect3DDevice9*)data;
+        // FIXME: won't work on 64-bit systems!!! use extended engine API?
+        InitGfxDevice(reinterpret_cast<void*>(data));
 
-            initGraphics();
-        }
-
-        Render( D3DObject::STAGE_BACKGROUND );
+        Render( BaseObject::STAGE_BACKGROUND );
     }
     else if ( ev == AGSE_PREGUIDRAW )
     {
-        Render( D3DObject::STAGE_SCENE );
+        Render( BaseObject::STAGE_SCENE );
     }
     else if ( ev == AGSE_POSTSCREENDRAW )
     {
-        Render( D3DObject::STAGE_GUI );
+        Render( BaseObject::STAGE_GUI );
     }
     else if ( ev == AGSE_FINALSCREENDRAW )
     {
-        Render( D3DObject::STAGE_SCREEN );
+        Render( BaseObject::STAGE_SCREEN );
 
         // Clear batch
         manualRenderBatch.clear();

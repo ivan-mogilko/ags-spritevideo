@@ -5,28 +5,10 @@
  * @brief Data structures.
  */
 
-#ifndef D3D_STRUCTURES_H
-#define D3D_STRUCTURES_H
+#ifndef SPRITE3D_STRUCTURES_H
+#define SPRITE3D_STRUCTURES_H
 
-
-struct Vertex
-{
-    float x, y, z;      // Position
-    float nx, ny, nz;   // Normal
-	D3DCOLOR color;		// Color
-    float tu, tv;       // Texture coords
-    float tu2, tv2;     // Second texture coords
-};
-
-DWORD const VERTEX_FVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1 | D3DFVF_TEX2;
-
-Vertex const DEFAULT_QUAD[4] =
-{
-	{ -0.5f, -0.5f, 0.f, 0.f, 0.f, -1.f, D3DCOLOR_RGBA( 1, 1, 1, 1 ), 0.f, 1.f, 0.f, 1.f },
-    { 0.5f, -0.5f, 0.f, 0.f, 0.f, -1.f, D3DCOLOR_RGBA( 1, 1, 1, 1 ), 1.f, 1.f, 1.f, 1.f },
-    { 0.5f, 0.5f, 0.f, 0.f, 0.f, -1.f, D3DCOLOR_RGBA( 1, 1, 1, 1 ), 1.f, 0.f, 1.f, 0.f },
-    { -0.5f, 0.5f, 0.f, 0.f, 0.f, -1.f, D3DCOLOR_RGBA( 1, 1, 1, 1 ), 0.f, 0.f, 0.f, 0.f }
-};
+#include <string.h> // memset
 
 struct Point
 {
@@ -42,6 +24,35 @@ struct PointF
     PointF( float x, float y ): x( x ), y( y ) {}
 };
 
+struct Matrix
+{
+    union
+    {
+        struct
+        {
+            float        _11, _12, _13, _14;
+            float        _21, _22, _23, _24;
+            float        _31, _32, _33, _34;
+            float        _41, _42, _43, _44;
+
+        };
+        float m[4][4];
+        float marr[16];
+    };
+};
+
+struct RGBA
+{
+    union
+    {
+        struct
+        {
+            float r, g, b, a;
+        };
+        float rgba[4];
+    };
+};
+
 struct Screen
 {
     int width;
@@ -55,9 +66,9 @@ struct Screen
 
     // Render stage transform matrixes
     bool matrixValid;
-    D3DMATRIX globalWorld;
-    D3DMATRIX globalView;
-    D3DMATRIX globalProj;
+    Matrix globalWorld;
+    Matrix globalView;
+    Matrix globalProj;
 
     Screen():
         width( 0 ),
@@ -86,4 +97,4 @@ struct Screen
     }
 };
 
-#endif
+#endif // SPRITE3D_STRUCTURES_H

@@ -1,19 +1,18 @@
 /**
- * @file D3DObject.h
+ * @file BaseObject.h
  * @author Ahonen
  *
  * @brief Base class for Direct3D objects.
  */
 
-#ifndef D3D_D3DOBJECT_H
-#define D3D_D3DOBJECT_H
+#ifndef SPRITE3D_BASEOBJECT_H
+#define SPRITE3D_BASEOBJECT_H
 
-#include "Common.h"
 #include <list>
+#include "Common.h"
+#include "RenderObject.h"
 
-class D3DSpriteObject;
-
-class D3DObject
+class BaseObject
 {
 public:
     enum Filtering
@@ -40,9 +39,9 @@ public:
 
     static void RenderAll( RenderStage stage );
 
-    D3DObject();
+    BaseObject();
 
-    virtual ~D3DObject();
+    virtual ~BaseObject();
 
     void SetEnabled( bool enabled );
 
@@ -88,9 +87,9 @@ public:
 
 	float GetAlpha() const;
 
-	void SetParent( D3DObject* parent );
+	void SetParent(BaseObject* parent );
 
-	D3DObject* GetParent() const;
+    BaseObject* GetParent() const;
 
     void SetAutoUpdated( bool autoUpdated );
 
@@ -126,13 +125,10 @@ public:
 
     virtual int Unserialize( char const* buffer, int size );
 
-    //D3DSpriteObject* mask;
-
 protected:
-    void Render( IDirect3DTexture9* texture, int texWidth, int texHeight );
-
 	void HandleParenting( Point* outPosition, float* outRotation, PointF* outScaling, PointF* outAnchor,
 						  float* outTintR, float* outTintG, float* outTintB, float* outAlpha ) const;
+    void RenderSelf();
 
     bool myHasStarted;
     bool myIsEnabled;
@@ -153,13 +149,15 @@ protected:
 	float myTintG;
 	float myTintB;
 	float myAlpha;
-	D3DObject* myParent;
+    BaseObject* myParent;
 
 	int myWidth;
 	int myHeight;
 
-    static std::list< D3DObject* > ourObjects;
-    static std::list< D3DObject* > ourStartQueue;
+    RenderObject* myRender;
+
+    static std::list< BaseObject* > ourObjects;
+    static std::list< BaseObject* > ourStartQueue;
 };
 
-#endif
+#endif // SPRITE3D_BASEOBJECT_H
