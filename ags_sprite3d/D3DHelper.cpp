@@ -82,13 +82,7 @@ void MatrixMultiply(D3DMATRIX* result, const D3DMATRIX* a, const D3DMATRIX* b)
         }
     }
 
-    for (int j = 0; j < 4; ++j)
-    {
-        for (int i = 0; i < 4; ++i)
-        {
-            result->m[j][i] = temp.m[j][i];
-        }
-    }
+    memcpy(result->m, temp.m, sizeof(D3DMATRIX::m));
 }
 
 IDirect3DTexture9* CreateTexture(unsigned char const* data, int width, int height, bool alpha)

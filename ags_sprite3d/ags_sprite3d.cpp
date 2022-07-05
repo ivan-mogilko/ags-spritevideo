@@ -201,6 +201,7 @@ void AGS_EditorLoadGame( char *buffer, int bufsize )
 // ****** RUN TIME ********
 
 #include "D3D9Factory.h"
+#include "OGLFactory.h"
 
 Screen screen;
 RenderFactory* factory = nullptr;
@@ -215,6 +216,11 @@ RenderFactory* CreateFactory(const char* driverid)
     if (stricmp(driverid, "d3d9") == 0)
     {
         factory = new D3D9Factory();
+        return factory;
+    }
+    else if (stricmp(driverid, "ogl") == 0)
+    {
+        factory = new OGLFactory();
         return factory;
     }
     return nullptr;

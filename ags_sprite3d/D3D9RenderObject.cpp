@@ -139,9 +139,9 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
 
     // World matrix, set position, anchor, rotation and scaling
     D3DMATRIX trans, scale, rot, anchor;
-    DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * GetScreen()->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * GetScreen()->height / 2.f);
-    SetMatrix(&trans, pos.x - screenScaleX * GetScreen()->width / 2.f,
-        pos.y - (1.f + 1.f - screenScaleY) * GetScreen()->height / 2.f,
+    DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
+    SetMatrix(&trans, pos.x - screenScaleX * screen->width / 2.f,
+        pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f,
         1, 1);
     DBG("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
     SetMatrix(&scale, 0, 0, screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
@@ -162,13 +162,14 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
     device->SetTransform(D3DTS_VIEW, reinterpret_cast<const D3DMATRIX*>(&screen->globalView));
 
     // Scale texture coordinates
+    /* CHECKME?
     float scaleU = myTexWidth / static_cast<float>(myWidth);
     float scaleV = myTexHeight / static_cast<float>(myHeight);
+    */
 
     D3DMATRIX tex;
-    SetMatrix(&tex, .5f, -150, 1, .5f);
+    SetMatrix(&tex, .5f, -150, 1, .5f); // FIXME: wtf??
     device->SetTransform(D3DTS_TEXTURE1, &tex);
-
 
     // Store old vertex format
     DWORD oldFVF;
