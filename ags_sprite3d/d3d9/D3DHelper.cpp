@@ -1,3 +1,5 @@
+#if defined (WINDOWS_VERSION)
+
 #include "D3DHelper.h"
 #include <d3dx9.h>
 #include "Common.h"
@@ -30,7 +32,7 @@ IDirect3DTexture9* CreateTexture(unsigned char const* data, int width, int heigh
 
     if (result != D3D_OK)
     {
-        DBG("ERROR: Couldn't create texture: %08x", result);
+        DBGF("ERROR: Couldn't create texture: %08x", result);
         return NULL;
     }
 
@@ -98,7 +100,7 @@ IDirect3DTexture9* CreateTexture(unsigned char const* const* data, int width, in
 
     if (result != D3D_OK)
     {
-        DBG("ERROR: Couldn't create texture: %08x", result);
+        DBGF("ERROR: Couldn't create texture: %08x", result);
         return NULL;
     }
 
@@ -138,3 +140,5 @@ bool SetTextureData(IDirect3DTexture9* texture, unsigned char const* const* data
     //DBG( "OK" );
     return true;
 }
+
+#endif // WINDOWS_VERSION

@@ -1,6 +1,8 @@
 #ifndef SPRITE3D_D3D9FACTORY_H
 #define SPRITE3D_D3D9FACTORY_H
 
+#if defined (WINDOWS_VERSION)
+
 #include <d3d9.h>
 #include "RenderFactory.h"
 
@@ -14,5 +16,7 @@ public:
 };
 
 IDirect3DDevice9* GetD3D();
+
+#endif // #if defined (WINDOWS_VERSION)
 
 #endif // SPRITE3D_D3D9FACTORY_H

@@ -1,6 +1,8 @@
 #ifndef SPRITE3D_D3DHELPER_H
 #define SPRITE3D_D3DHELPER_H
 
+#if defined (WINDOWS_VERSION)
+
 #include <d3d9.h>
 
 struct Vertex
@@ -27,5 +29,8 @@ IDirect3DTexture9* CreateTexture( unsigned char const* data, int width, int heig
 bool SetTextureData( IDirect3DTexture9* texture, unsigned char const* data, int width, int height );
 IDirect3DTexture9* CreateTexture( unsigned char const* const* data, int width, int height, bool alpha = false );
 bool SetTextureData( IDirect3DTexture9* texture, unsigned char const* const* data, int width, int height );
+
+
+#endif // WINDOWS_VERSION
 
 #endif // SPRITE3D_D3DHELPER_H

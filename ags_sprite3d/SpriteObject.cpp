@@ -139,19 +139,19 @@ void SpriteObject::CreateTexture()
     if ( myType == TYPE_INTERNAL && mySpriteID >= 0 )
     {
         // Get sprite from AGS
-        DBG( "Creating texture from sprite: %d", mySpriteID );
+        DBGF( "Creating texture from sprite: %d", mySpriteID );
         myRender->CreateTexture(mySpriteID, -1, nullptr);
     }
-	else if ( myType == TYPE_BACKGROUND && mySpriteID >= 0 )
-	{
-		// Get sprite from AGS background frame
-		DBG( "Creating texture from room background: %d", mySpriteID );
+    else if ( myType == TYPE_BACKGROUND && mySpriteID >= 0 )
+    {
+        // Get sprite from AGS background frame
+        DBGF( "Creating texture from room background: %d", mySpriteID );
         myRender->CreateTexture(-1, mySpriteID, nullptr);
-	}
+    }
     else if ( myType == TYPE_EXTERNAL && myFile )
     {
         // Create from PNG data
-        DBG( "Creating texture from file: %s", myFile );
+        DBGF( "Creating texture from file: %s", myFile );
         myRender->CreateTexture(-1, -1, myFile);
     }
 
@@ -159,7 +159,7 @@ void SpriteObject::CreateTexture()
     {
         myWidth = myRender->GetTexWidth();
         myHeight = myRender->GetTexHeight();
-        DBG("myRender created: %d x %d", myWidth, myHeight);
+        DBGF("myRender created: %d x %d", myWidth, myHeight);
     }
 }
 

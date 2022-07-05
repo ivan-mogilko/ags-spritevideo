@@ -116,7 +116,7 @@ void OGLRenderObject::CreateTexture(int sprite_id, int bkg_num, const char *file
 
         if (!myTexture)
         {
-            DBG("Could not open sprite #%d", sprite_id);
+            DBGF("Could not open sprite #%d", sprite_id);
         }
     }
     else if (bkg_num >= 0)
@@ -134,7 +134,7 @@ void OGLRenderObject::CreateTexture(int sprite_id, int bkg_num, const char *file
 
         if (!myTexture)
         {
-            DBG("Could not open room background #%d", bkg_num);
+            DBGF("Could not open room background #%d", bkg_num);
         }
     }
     else if (file)
@@ -163,18 +163,18 @@ void OGLRenderObject::Render(const Point &pos, const PointF &scaling, float rota
     {
     }
 
-    //DBG("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
+    //DBGF("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
 
     // World matrix, set position, anchor, rotation and scaling
     Matrix trans, scale, rot, anchor;
-    //DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
+    //DBGF("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
     SetMatrix(&trans, pos.x - screenScaleX * screen->width / 2.f,
         pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f,
         //((1.f + 1.f - screenScaleY) * screen->height / 2.f) - pos.y,
         1, 1);
-    //DBG("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
+    //DBGF("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
     SetMatrix(&scale, 0, 0, screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
-    //DBG("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
+    //DBGF("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
     SetMatrix(&anchor, -anchorPos.x - 0.5, anchorPos.y + 0.5, 1, 1); // Mirror Y
     SetMatrixRotation(&rot, rotation * RADS_PER_DEGREE);
 

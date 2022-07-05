@@ -8,9 +8,6 @@
 #ifndef SPRITE3D_COMMON_H
 #define SPRITE3D_COMMON_H
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-
 // Plugin API
 #include "agsplugin.h"
 
@@ -25,17 +22,21 @@
     #include <cstdio>    
 
     extern FILE* debug;
-    #define DBG( x, ... ) { fprintf( debug, x"\n", __VA_ARGS__ ); fflush( debug ); }
+    #define DBG( x ) { fprintf( debug, "%s\n", x ); fflush( debug ); }
+    #define DBGF( x, ... ) { fprintf( debug, x"\n", __VA_ARGS__ ); fflush( debug ); }
     #define OPEN_DBG( filename ) { debug = fopen( filename, "w" ); }
     #define CLOSE_DBG() { fclose( debug ); debug = NULL; }
 #else
     #define DBG( x, ... )
+    #define DBGF( x, ... )
+    #define OPEN_DBG( filename )
+    #define CLOSE_DBG()
 #endif
 
 // Use only within Serialize methods!
 #define SERIALIZE( var )\
     {\
-        DBG( "SERIALIZE( " #var " ): %f", static_cast<float>( var ) );\
+        DBGF( "SERIALIZE( " #var " ): %f", static_cast<float>( var ) );\
         buffer = (char*)memcpy( buffer, &var, sizeof( var ) ) + sizeof( var );\
     }
 #define SERIALIZE_S( str )\
@@ -44,7 +45,7 @@
         else {\
             size_t len = strlen( str );\
             SERIALIZE( len );\
-            DBG( "SERIALIZE_S( " #str " ): %s", str );\
+            DBGF( "SERIALIZE_S( " #str " ): %s", str );\
             buffer = (char*)memcpy( buffer, str, len ) + len;\
         }\
     }
@@ -53,7 +54,7 @@
 #define UNSERIALIZE( var )\
     {\
         memcpy( &var, buffer, sizeof( var ) ); buffer += sizeof( var );\
-        DBG( "UNSERIALIZE( " #var " ): %f", static_cast<float>( var ) );\
+        DBGF( "UNSERIALIZE( " #var " ): %f", static_cast<float>( var ) );\
     }
 #define UNSERIALIZE_S( str )\
     {\
@@ -63,12 +64,13 @@
             str = new char[n + 1];\
             memcpy( str, buffer, n );\
             str[n] = '\0';\
-            DBG( "UNSERIALIZE_S( " #str " ): %s", str );\
+            DBGF( "UNSERIALIZE_S( " #str " ): %s", str );\
         }\
         buffer += n;\
     }
 
 
+#include <cstring>
 #include "MathHelper.h"
 #include "RenderFactory.h"
 

@@ -1,6 +1,12 @@
 #define THIS_IS_THE_PLUGIN
 
+#if defined (WINDOWS_VERSION)
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 #include <list>
+#include <string>
 #include "Common.h"
 #include "BaseObject.h"
 #include "SpriteObject.h"
@@ -25,6 +31,16 @@
 #define FLOAT_RETURN_TYPE long
 #define RETURN_FLOAT(x) return *((long*)&x)
 
+// TODO: move to a separate helper h/cpp
+#if !defined (WINDOWS_VERSION)
+#ifndef MAX_PATH
+    #define MAX_PATH (512)
+#endif
+
+inline stricmp(const char* a, const char* b) { return strcasecmp(a,b); }
+#endif
+
+
 
 IAGSEngine* engine = NULL;
 
@@ -33,6 +49,8 @@ IAGSEngine* GetAGS()
     return engine;
 }
 
+
+#if defined (WINDOWS_VERSION)
 
 // DllMain - standard Windows DLL entry point.
 // The AGS editor will cause this to get called when the editor first
@@ -52,6 +70,11 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 
         return TRUE;
 }
+
+#endif // WINDOWS_VERSION
+
+// EDITOR STUFF; TODO: move to a separate file?
+#if defined (WINDOWS_VERSION)
 
 // ***** DESIGN TIME CALLS *******
 
@@ -196,11 +219,14 @@ void AGS_EditorLoadGame( char *buffer, int bufsize )
 }
 
 // ******* END DESIGN TIME  *******
+#endif // WINDOWS_VERSION
 
 
 // ****** RUN TIME ********
 
+#if defined (WINDOWS_VERSION)
 #include "d3d9/D3D9Factory.h"
+#endif
 #include "ogl/OGLFactory.h"
 
 Screen screen;
@@ -213,12 +239,15 @@ Screen const* GetScreen()
 
 RenderFactory* CreateFactory(const char* driverid)
 {
+#if defined (WINDOWS_VERSION)
     if (stricmp(driverid, "d3d9") == 0)
     {
         factory = new D3D9Factory();
         return factory;
     }
-    else if (stricmp(driverid, "ogl") == 0)
+    else
+#endif // WINDOWS_VERSION
+    if (stricmp(driverid, "ogl") == 0)
     {
         factory = new OGLFactory();
         return factory;
@@ -461,10 +490,10 @@ void testCall()
 {
 	void(*func)( const char*, ... ) = (void(*)( const char*, ... ))engine->GetScriptFunctionAddress( "Display" );
 	
-	DBG( "%x", (int)engine->GetScriptFunctionAddress( "Character::Say^0" ) );
+	DBGF( "%x", (int)engine->GetScriptFunctionAddress( "Character::Say^0" ) );
 	func( "%d", (int)engine->GetScriptFunctionAddress( "Character::Say^3" ) );
 
-	DBG( "%x", (int)engine->GetScriptFunctionAddress( "Character::LockView^1" ) );
+	DBGF( "%x", (int)engine->GetScriptFunctionAddress( "Character::LockView^1" ) );
 	func( "%d", (int)engine->GetScriptFunctionAddress( "Character::LockView^1" ) );
 }
 
@@ -476,7 +505,7 @@ void AGS_EngineStartup( IAGSEngine *lpEngine )
     DBG( "Register" );
 
     // Make sure it's got the version with the features we need
-    DBG("Engine interface: %d", engine->version);
+    DBGF("Engine interface: %d", engine->version);
     if (engine->version < 23)
     {
         DBG( "Abort" );
@@ -533,7 +562,7 @@ void AGS_EngineInitGfx( char const* driverID, void* data )
     }
 
     GetFactory()->InitGfxMode(&screen, data);
-    //DBG( "Running at %dx%dx%d", screen.backBufferWidth, screen.backBufferHeight, screen.bpp );
+    //DBGF( "Running at %dx%dx%d", screen.backBufferWidth, screen.backBufferHeight, screen.bpp );
 }
 
 void AGS_EngineShutdown()
@@ -550,9 +579,9 @@ void AGS_EngineShutdown()
 void Save( int handle )
 {
     // Screen
-    DBG( "SAVE frameDelay: %f", screen.frameDelay );
+    DBGF( "SAVE frameDelay: %f", screen.frameDelay );
     engine->FWrite( &screen.frameDelay, sizeof( screen.frameDelay ), handle );
-    DBG( "SAVE gameSpeed: %d", screen.gameSpeed );
+    DBGF( "SAVE gameSpeed: %d", screen.gameSpeed );
     engine->FWrite( &screen.gameSpeed, sizeof( screen.gameSpeed ), handle );
 }
 
@@ -560,15 +589,15 @@ void Restore( int handle )
 {
     // Screen
     engine->FRead( &screen.frameDelay, sizeof( screen.frameDelay ), handle );
-    DBG( "RESTORE frameDelay: %f", screen.frameDelay );
+    DBGF( "RESTORE frameDelay: %f", screen.frameDelay );
     engine->FRead( &screen.gameSpeed, sizeof( screen.gameSpeed ), handle );
-    DBG( "RESTORE gameSpeed: %d", screen.gameSpeed );
+    DBGF( "RESTORE gameSpeed: %d", screen.gameSpeed );
 }
 
 void Render( BaseObject::RenderStage stage )
 {
-	engine->GetScreenDimensions(&screen.width, &screen.height, &screen.bpp);
-    DBG( "RENDER screen %dx%d", screen.width, screen.height );
+    engine->GetScreenDimensions(&screen.width, &screen.height, &screen.bpp);
+    DBGF( "RENDER screen %dx%d", screen.width, screen.height );
     // Engine interface >= 25 provides transform matrixes
     if (engine->version >= 25)
     {

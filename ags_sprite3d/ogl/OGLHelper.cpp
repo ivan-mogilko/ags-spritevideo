@@ -48,11 +48,11 @@ void OutputShaderError(GLuint obj_id, const char* obj_name, bool is_shader)
             glGetProgramInfoLog(obj_id, log_len, &log_len, &errorLog[0]);
     }
 
-    DBG("ERROR: OpenGL: %s %s:", obj_name, is_shader ? "failed to compile" : "failed to link");
+    DBGF("ERROR: OpenGL: %s %s:", obj_name, is_shader ? "failed to compile" : "failed to link");
     if (errorLog.size() > 0)
     {
         DBG("----------------------------------------");
-        DBG("%s", &errorLog[0]);
+        DBGF("%s", &errorLog[0]);
         DBG("----------------------------------------");
     }
     else
@@ -109,7 +109,7 @@ bool CreateShaderProgram(ShaderProgram &prg, const char *name, const char *verte
     glDeleteShader(fragment_shader);
 
     prg.Program = program;
-    DBG("OGL: %s shader program created successfully", name);
+    DBGF("OGL: %s shader program created successfully", name);
     return true;
 }
 

@@ -1,3 +1,5 @@
+#if defined (WINDOWS_VERSION)
+
 #include "D3D9RenderObject.h"
 #include <d3dx9.h>
 #include "Common.h"
@@ -32,7 +34,7 @@ void D3D9RenderObject::CreateTexture(int sprite_id, int bkg_num, const char *fil
 
         if (!myTexture)
         {
-            DBG("Could not open sprite #%d", sprite_id);
+            DBGF("Could not open sprite #%d", sprite_id);
         }
     }
     else if (bkg_num >= 0)
@@ -50,7 +52,7 @@ void D3D9RenderObject::CreateTexture(int sprite_id, int bkg_num, const char *fil
 
         if (!myTexture)
         {
-            DBG("Could not open room background #%d", bkg_num);
+            DBGF("Could not open room background #%d", bkg_num);
         }
     }
     else if (file)
@@ -129,23 +131,23 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
         float orthoSizeY = 2.f / screen->globalProj._22;
         screenScaleX = orthoSizeX / screen->width;
         screenScaleY = orthoSizeY / screen->height;
-        //DBG("---ORTHO w = %f, h = %f", orthoSizeX, orthoSizeY);
+        //DBGF("---ORTHO w = %f, h = %f", orthoSizeX, orthoSizeY);
     }
     else
     {
     }
 
-    //DBG("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
+    //DBGF("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
 
     // World matrix, set position, anchor, rotation and scaling
     Matrix trans, scale, rot, anchor;
-    //DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
+    //DBGF("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
     SetMatrix(&trans, pos.x - screenScaleX * screen->width / 2.f,
         pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f,
         1, 1);
-    //DBG("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
+    //DBGF("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
     SetMatrix(&scale, 0, 0, screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
-    //DBG("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
+    //DBGF("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
     SetMatrix(&anchor, -anchorPos.x, anchorPos.y, 1, 1); // Mirror Y
     SetMatrixRotation(&rot, rotation * RADS_PER_DEGREE);
 
@@ -213,3 +215,5 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
     // Restore old vertex format
     device->SetFVF(oldFVF);
 }
+
+#endif // WINDOWS_VERSION

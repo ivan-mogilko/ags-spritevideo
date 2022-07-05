@@ -1,3 +1,5 @@
+#if defined (WINDOWS_VERSION)
+
 #include "D3D9Factory.h"
 #include "Common.h"
 #include "D3D9RenderObject.h"
@@ -51,3 +53,5 @@ RenderObject* D3D9Factory::CreateRenderObject()
 {
     return new D3D9RenderObject();
 }
+
+#endif // WINDOWS_VERSION

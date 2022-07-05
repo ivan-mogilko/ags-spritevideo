@@ -1,6 +1,8 @@
 #ifndef SPRITE3D_D3D9RENDEROBJECT_H
 #define SPRITE3D_D3D9RENDEROBJECT_H
 
+#if defined (WINDOWS_VERSION)
+
 #include <d3d9.h>
 #include "MathHelper.h"
 #include "RenderObject.h"
@@ -27,5 +29,7 @@ private:
     int myTexHeight = 0;
     bool myHasAlpha = false;
 };
+
+#endif // WINDOWS_VERSION
 
 #endif // SPRITE3D_D3D9RENDEROBJECT_H

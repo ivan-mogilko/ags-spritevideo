@@ -443,23 +443,23 @@ void BaseObject::HandleParenting( Point* outPosition, float* outRotation, PointF
 		// Parent's absolute anchor position
 		float pax = parentPos.x + parentAnchor.x * myParent->myWidth;
 		float pay = parentPos.y + parentAnchor.y * myParent->myHeight;
-		//DBG( "Parent absolute: %f, %f", pax, pay );
+		//DBGF( "Parent absolute: %f, %f", pax, pay );
 
 		// Our absolute anchor position
 		float ax = myPosition.x + parentPos.x + myAnchor.x * myWidth;
 		float ay = myPosition.y + parentPos.y + myAnchor.y * myHeight;
-		//DBG( "Our absolute: %f, %f", ax, ay );
+		//DBGF( "Our absolute: %f, %f", ax, ay );
 
 		// Difference
 		float dx = pax - ax - myPosition.x;
 		float dy = pay - ay - myPosition.y;
-		//DBG( "Diff: %f, %f", dx, dy );
+		//DBGF( "Diff: %f, %f", dx, dy );
 
 		float widthRatio = static_cast<float>( myWidth ) / myParent->myWidth;
 		float heightRatio = static_cast<float>( myHeight ) / myParent->myHeight;
 
 		outAnchor->x = myAnchor.x + dx / myWidth + parentAnchor.x * widthRatio;
 		outAnchor->y = myAnchor.y + dy / myHeight + parentAnchor.y * heightRatio;
-		//DBG( "Anchor: %f, %f", outAnchor->x, outAnchor->y );
+		//DBGF( "Anchor: %f, %f", outAnchor->x, outAnchor->y );
 	}
 }

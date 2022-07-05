@@ -45,8 +45,8 @@ void SetMatrixIdentity(Matrix* matrix)
 
 void SetMatrixRotation(Matrix* matrix, float radians)
 {
-    float sin = std::sinf(radians);
-    float cos = std::cosf(radians);
+    float sin = sinf(radians);
+    float cos = cosf(radians);
 
     matrix->_11 = cos;
     matrix->_12 = -sin;
