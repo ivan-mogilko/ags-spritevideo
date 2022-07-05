@@ -613,6 +613,16 @@ int AGS_EngineOnEvent( int ev, int data )
     }
     else if ( ev == AGSE_PRESCREENDRAW )
     {
+        // Support older versions, where some renderers may have forgotten
+        // to call the "init gfx mode" event
+        if (!GetFactory() && !CreateFactory(GetAGS()->GetGraphicsDriverID()))
+        {
+            std::string msg = "Unable to initialize plugin: graphics renderer not supported (";
+            msg += GetAGS()->GetGraphicsDriverID(); msg += ").";
+            engine->AbortGame(msg.c_str());
+            return 0;
+        }
+
         // Save viewport
         screen.viewport.x = 0;
         screen.viewport.y = 0;
