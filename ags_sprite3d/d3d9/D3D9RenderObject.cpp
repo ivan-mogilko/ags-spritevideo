@@ -96,7 +96,7 @@ void D3D9RenderObject::CreateTexture(int sprite_id, int bkg_num, const char *fil
 void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rotation,
     const PointF &anchorPos, const RGBA &rgba, int filter)
 {
-    DBG("myRender::Render");
+    //DBG("myRender::Render");
     IDirect3DDevice9* device = GetD3D();
     const Screen *screen = GetScreen();
 
@@ -129,23 +129,23 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
         float orthoSizeY = 2.f / screen->globalProj._22;
         screenScaleX = orthoSizeX / screen->width;
         screenScaleY = orthoSizeY / screen->height;
-        DBG("---ORTHO w = %f, h = %f", orthoSizeX, orthoSizeY);
+        //DBG("---ORTHO w = %f, h = %f", orthoSizeX, orthoSizeY);
     }
     else
     {
     }
 
-    DBG("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
+    //DBG("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
 
     // World matrix, set position, anchor, rotation and scaling
     Matrix trans, scale, rot, anchor;
-    DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
+    //DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
     SetMatrix(&trans, pos.x - screenScaleX * screen->width / 2.f,
         pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f,
         1, 1);
-    DBG("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
+    //DBG("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
     SetMatrix(&scale, 0, 0, screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
-    DBG("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
+    //DBG("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
     SetMatrix(&anchor, -anchorPos.x, anchorPos.y, 1, 1); // Mirror Y
     SetMatrixRotation(&rot, rotation * RADS_PER_DEGREE);
 
@@ -207,7 +207,7 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
 
     if (FAILED(device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, (void*)quad, sizeof(Vertex))))
     {
-        DBG("Draw failed");
+        //DBG("Draw failed");
     }
 
     // Restore old vertex format
