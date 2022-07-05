@@ -2,6 +2,7 @@
 #define SPRITE3D_OGLRENDEROBJECT_H
 
 #include "RenderObject.h"
+#include "MathHelper.h"
 #include "OGLHelper.h"
 
 class OGLRenderObject : public RenderObject

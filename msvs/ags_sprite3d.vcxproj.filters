@@ -37,6 +37,7 @@
     <ClCompile Include="..\ags_sprite3d\ogl\OGLRenderObject.cpp">
       <Filter>ogl</Filter>
     </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\MathHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h">
@@ -58,7 +59,6 @@
     <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
     <ClInclude Include="..\ags_sprite3d\resource.h" />
     <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
-    <ClInclude Include="..\ags_sprite3d\Structures.h" />
     <ClInclude Include="..\ags_sprite3d\ogl\OGLFactory.h">
       <Filter>ogl</Filter>
     </ClInclude>
@@ -68,5 +68,6 @@
     <ClInclude Include="..\ags_sprite3d\ogl\OGLRenderObject.h">
       <Filter>ogl</Filter>
     </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\MathHelper.h" />
   </ItemGroup>
 </Project>

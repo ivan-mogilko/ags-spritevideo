@@ -1,9 +1,7 @@
 #include "OGLRenderObject.h"
 #include <glad/glad.h>
 #include "Common.h"
-#include "BaseObject.h" // FIXME
-#include "OGLFactory.h"
-#include "OGLHelper.h"
+#include "BaseObject.h" // FIXME, move enums to separate header?
 
 
 OGLCUSTOMVERTEX OGLRenderObject::defaultVertices[4]{};
@@ -183,16 +181,16 @@ void OGLRenderObject::Render(const Point &pos, const PointF &scaling, float rota
     Matrix world;
     // OpenGL multiplies matrixes in reverse:
     // first global and then self transform
-    MatrixMultiply(&world, &screen->globalProj, &screen->globalView);
-    MatrixMultiply(&world, &world, &screen->globalWorld);
-    MatrixMultiply(&world, &world, &trans);
+    MatrixMulOGL(&world, &screen->globalProj, &screen->globalView);
+    MatrixMulOGL(&world, &world, &screen->globalWorld);
+    MatrixMulOGL(&world, &world, &trans);
     // FIXME: Origin is at the middle of the surface
     // perhaps pass from the engine as globalView?
     world._41 += 1.f;
     world._42 += 1.f;
-    MatrixMultiply(&world, &world, &rot);
-    MatrixMultiply(&world, &world, &scale);
-    MatrixMultiply(&world, &world, &anchor);
+    MatrixMulOGL(&world, &world, &rot);
+    MatrixMulOGL(&world, &world, &scale);
+    MatrixMulOGL(&world, &world, &anchor);
 
 
     // Scale texture coordinates

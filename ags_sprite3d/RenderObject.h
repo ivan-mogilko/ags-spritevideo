@@ -1,7 +1,7 @@
 #ifndef SPRITE3D_RENDEROBJECT_H
 #define SPRITE3D_RENDEROBJECT_H
 
-#include "Structures.h"
+#include "MathHelper.h"
 
 class RenderObject
 {

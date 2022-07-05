@@ -105,6 +105,7 @@
     <ClCompile Include="..\ags_sprite3d\d3d9\D3D9RenderObject.cpp" />
     <ClCompile Include="..\ags_sprite3d\d3d9\D3DHelper.cpp" />
     <ClCompile Include="..\ags_sprite3d\glad\src\glad.c" />
+    <ClCompile Include="..\ags_sprite3d\MathHelper.cpp" />
     <ClCompile Include="..\ags_sprite3d\ogl\OGLFactory.cpp" />
     <ClCompile Include="..\ags_sprite3d\ogl\OGLHelper.cpp" />
     <ClCompile Include="..\ags_sprite3d\ogl\OGLRenderObject.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="..\ags_sprite3d\d3d9\D3D9RenderObject.h" />
     <ClInclude Include="..\ags_sprite3d\d3d9\D3DHelper.h" />
     <ClInclude Include="..\ags_sprite3d\glad\include\glad\glad.h" />
+    <ClInclude Include="..\ags_sprite3d\MathHelper.h" />
     <ClInclude Include="..\ags_sprite3d\ogl\OGLFactory.h" />
     <ClInclude Include="..\ags_sprite3d\ogl\OGLHelper.h" />
     <ClInclude Include="..\ags_sprite3d\ogl\OGLRenderObject.h" />
@@ -125,7 +127,6 @@
     <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
     <ClInclude Include="..\ags_sprite3d\resource.h" />
     <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
-    <ClInclude Include="..\ags_sprite3d\Structures.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

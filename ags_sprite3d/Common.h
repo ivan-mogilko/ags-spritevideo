@@ -18,9 +18,6 @@
 #pragma warning(disable : 4251) // dll string warnings
 #pragma warning(disable : 4996) // sprintf_s etc.
 
-// Constants and math
-float const RADS_PER_DEGREE = 3.14159265f / 180.f;
-
 // Debug printing
 #define DEBUG
 
@@ -71,8 +68,49 @@ float const RADS_PER_DEGREE = 3.14159265f / 180.f;
         buffer += n;\
     }
 
-#include "Structures.h"
+
+#include "MathHelper.h"
 #include "RenderFactory.h"
+
+struct Screen
+{
+    int width;
+    int height;
+    int bpp;
+    Point viewport;
+    int gameSpeed;
+    float frameDelay;
+
+    // Render stage transform matrixes
+    bool matrixValid;
+    Matrix globalWorld;
+    Matrix globalView;
+    Matrix globalProj;
+
+    Screen() :
+        width(0),
+        height(0),
+        bpp(0),
+        viewport(0, 0),
+        gameSpeed(40),
+        frameDelay(1.f / 40)
+    {
+        matrixValid = false;
+        memset(&globalWorld, 0, sizeof(float[16]));
+        memset(&globalView, 0, sizeof(float[16]));
+        memset(&globalProj, 0, sizeof(float[16]));
+    }
+
+    Point FromRoom(Point pt) const
+    {
+        return Point(pt.x + viewport.x, height - pt.y - viewport.y);
+    }
+
+    Point FromScreen(Point pt) const
+    {
+        return Point(pt.x, height - pt.y);
+    }
+};
 
 // *** Global functions ***
 IAGSEngine* GetAGS();

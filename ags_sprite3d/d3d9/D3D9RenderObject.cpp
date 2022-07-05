@@ -1,7 +1,7 @@
 #include "D3D9RenderObject.h"
 #include <d3dx9.h>
 #include "Common.h"
-#include "BaseObject.h" // FIXME
+#include "BaseObject.h" // FIXME, move enums to separate header?
 #include "D3DHelper.h"
 #include "D3D9Factory.h"
 
@@ -138,7 +138,7 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
     DBG("---RENDER screenScale: %f,%f", screenScaleX, screenScaleY);
 
     // World matrix, set position, anchor, rotation and scaling
-    D3DMATRIX trans, scale, rot, anchor;
+    Matrix trans, scale, rot, anchor;
     DBG("---RENDER TRANS: %f,%f", pos.x - screenScaleX * screen->width / 2.f, pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f);
     SetMatrix(&trans, pos.x - screenScaleX * screen->width / 2.f,
         pos.y - (1.f + 1.f - screenScaleY) * screen->height / 2.f,
@@ -149,16 +149,16 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
     SetMatrix(&anchor, -anchorPos.x, anchorPos.y, 1, 1); // Mirror Y
     SetMatrixRotation(&rot, rotation * RADS_PER_DEGREE);
 
-    D3DMATRIX world;
+    Matrix world;
     // Apply self-transform first
-    MatrixMultiply(&world, &anchor, &scale);
-    MatrixMultiply(&world, &world, &rot);
-    MatrixMultiply(&world, &world, &trans);
+    MatrixMulD3D(&world, &anchor, &scale);
+    MatrixMulD3D(&world, &world, &rot);
+    MatrixMulD3D(&world, &world, &trans);
     // Apply global world matrix too
-    MatrixMultiply(&world, &world, reinterpret_cast<const D3DMATRIX*>(&screen->globalWorld));
+    MatrixMulD3D(&world, &world, &screen->globalWorld);
 
     // Set transforms
-    device->SetTransform(D3DTS_WORLD, &world);
+    device->SetTransform(D3DTS_WORLD, reinterpret_cast<const D3DMATRIX*>(&world));
     device->SetTransform(D3DTS_VIEW, reinterpret_cast<const D3DMATRIX*>(&screen->globalView));
 
     // Scale texture coordinates
@@ -167,9 +167,9 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
     float scaleV = myTexHeight / static_cast<float>(myHeight);
     */
 
-    D3DMATRIX tex;
+    Matrix tex;
     SetMatrix(&tex, .5f, -150, 1, .5f); // FIXME: wtf??
-    device->SetTransform(D3DTS_TEXTURE1, &tex);
+    device->SetTransform(D3DTS_TEXTURE1, reinterpret_cast<const D3DMATRIX*>(&tex));
 
     // Store old vertex format
     DWORD oldFVF;

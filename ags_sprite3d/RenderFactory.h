@@ -1,8 +1,9 @@
 #ifndef SPRITE3D_RENDERFACTORY_H
 #define SPRITE3D_RENDERFACTORY_H
 
-#include "Structures.h"
 #include "RenderObject.h"
+
+struct Screen;
 
 class RenderFactory
 {

@@ -1,6 +1,5 @@
 #include "D3D9Factory.h"
 #include "Common.h"
-#include "D3DHelper.h"
 #include "D3D9RenderObject.h"
 
 IDirect3DDevice9* d3dDevice = NULL;
@@ -41,9 +40,9 @@ void D3D9Factory::SetScreenMatrixes(Screen* screen, float(*world)[16], float(*vi
     }
     else
     {
-        SetMatrixIdentity(reinterpret_cast<D3DMATRIX*>(&screen->globalWorld));
-        SetMatrixIdentity(reinterpret_cast<D3DMATRIX*>(&screen->globalView));
-        SetMatrixIdentity(reinterpret_cast<D3DMATRIX*>(&screen->globalProj));
+        SetMatrixIdentity(&screen->globalWorld);
+        SetMatrixIdentity(&screen->globalView);
+        SetMatrixIdentity(&screen->globalProj);
         screen->matrixValid = false;
     }
 }

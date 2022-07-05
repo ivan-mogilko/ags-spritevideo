@@ -1,89 +1,8 @@
 #include "D3DHelper.h"
 #include <d3dx9.h>
-#include <cmath>
 #include "Common.h"
 #include "D3D9Factory.h"
 
-void SetMatrix(D3DMATRIX* matrix, float tx, float ty, float sx, float sy)
-{
-    matrix->_11 = sx;
-    matrix->_12 = 0.0;
-    matrix->_13 = 0.0;
-    matrix->_14 = 0.0;
-    matrix->_21 = 0.0;
-    matrix->_22 = sy;
-    matrix->_23 = 0.0;
-    matrix->_24 = 0.0;
-    matrix->_31 = 0.0;
-    matrix->_32 = 0.0;
-    matrix->_33 = 1.0;
-    matrix->_34 = 0.0;
-    matrix->_41 = tx;
-    matrix->_42 = ty;
-    matrix->_43 = 0.0;
-    matrix->_44 = 1.0;
-}
-
-void SetMatrixIdentity(D3DMATRIX* matrix)
-{
-    matrix->_11 = 1.0;
-    matrix->_12 = 0.0;
-    matrix->_13 = 0.0;
-    matrix->_14 = 0.0;
-    matrix->_21 = 0.0;
-    matrix->_22 = 1.0;
-    matrix->_23 = 0.0;
-    matrix->_24 = 0.0;
-    matrix->_31 = 0.0;
-    matrix->_32 = 0.0;
-    matrix->_33 = 1.0;
-    matrix->_34 = 0.0;
-    matrix->_41 = 0.0;
-    matrix->_42 = 0.0;
-    matrix->_43 = 0.0;
-    matrix->_44 = 1.0;
-}
-
-void SetMatrixRotation(D3DMATRIX* matrix, float radians)
-{
-    float sin = std::sinf(radians);
-    float cos = std::cosf(radians);
-
-    matrix->_11 = cos;
-    matrix->_12 = -sin;
-    matrix->_13 = 0.0;
-    matrix->_14 = 0.0;
-    matrix->_21 = sin;
-    matrix->_22 = cos;
-    matrix->_23 = 0.0;
-    matrix->_24 = 0.0;
-    matrix->_31 = 0.0;
-    matrix->_32 = 0.0;
-    matrix->_33 = 1.0;
-    matrix->_34 = 0.0;
-    matrix->_41 = 0.0;
-    matrix->_42 = 0.0;
-    matrix->_43 = 0.0;
-    matrix->_44 = 1.0;
-}
-
-void MatrixMultiply(D3DMATRIX* result, const D3DMATRIX* a, const D3DMATRIX* b)
-{
-    D3DMATRIX temp;
-
-    for (int j = 0; j < 4; ++j)
-    {
-        for (int i = 0; i < 4; ++i)
-        {
-            temp.m[j][i] = a->m[j][0] * b->m[0][i] +
-                a->m[j][1] * b->m[1][i] +
-                a->m[j][2] * b->m[2][i] +
-                a->m[j][3] * b->m[3][i];
-        }
-    }
-
-    memcpy(result->m, temp.m, sizeof(D3DMATRIX::m));
-}
 
 IDirect3DTexture9* CreateTexture(unsigned char const* data, int width, int height, bool alpha)
 {

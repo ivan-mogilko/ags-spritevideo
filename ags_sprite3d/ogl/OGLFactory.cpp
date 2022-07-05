@@ -1,6 +1,6 @@
 #include "OGLFactory.h"
+#include <glad/glad.h>
 #include "Common.h"
-#include "OGLHelper.h"
 #include "OGLRenderObject.h"
 
 

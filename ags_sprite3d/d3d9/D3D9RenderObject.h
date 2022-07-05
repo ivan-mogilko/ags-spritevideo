@@ -2,6 +2,7 @@
 #define SPRITE3D_D3D9RENDEROBJECT_H
 
 #include <d3d9.h>
+#include "MathHelper.h"
 #include "RenderObject.h"
 
 class D3D9RenderObject : public RenderObject
