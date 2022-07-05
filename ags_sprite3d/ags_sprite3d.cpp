@@ -200,8 +200,8 @@ void AGS_EditorLoadGame( char *buffer, int bufsize )
 
 // ****** RUN TIME ********
 
-#include "D3D9Factory.h"
-#include "OGLFactory.h"
+#include "d3d9/D3D9Factory.h"
+#include "ogl/OGLFactory.h"
 
 Screen screen;
 RenderFactory* factory = nullptr;

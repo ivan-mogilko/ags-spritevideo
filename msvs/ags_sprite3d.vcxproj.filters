@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="d3d9">
+      <UniqueIdentifier>{b5a15f82-965d-40e1-acdd-d9bbaa5611cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ogl">
+      <UniqueIdentifier>{f5a58124-b36c-4b55-9b48-f625d272177d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="glad">
+      <UniqueIdentifier>{9e62af41-107e-405c-b516-7a9f4efa9010}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ags_sprite3d\d3d9\D3D9Factory.cpp">
+      <Filter>d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\d3d9\D3D9RenderObject.cpp">
+      <Filter>d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\d3d9\D3DHelper.cpp">
+      <Filter>d3d9</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\glad\src\glad.c">
+      <Filter>glad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\ags_sprite3d.cpp" />
+    <ClCompile Include="..\ags_sprite3d\BaseObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\Common.cpp" />
+    <ClCompile Include="..\ags_sprite3d\SpriteObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ogl\OGLFactory.cpp">
+      <Filter>ogl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\ogl\OGLHelper.cpp">
+      <Filter>ogl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ags_sprite3d\ogl\OGLRenderObject.cpp">
+      <Filter>ogl</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h">
+      <Filter>d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\d3d9\D3D9RenderObject.h">
+      <Filter>d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\d3d9\D3DHelper.h">
+      <Filter>d3d9</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\glad\include\glad\glad.h">
+      <Filter>glad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\agsplugin.h" />
+    <ClInclude Include="..\ags_sprite3d\BaseObject.h" />
+    <ClInclude Include="..\ags_sprite3d\Common.h" />
+    <ClInclude Include="..\ags_sprite3d\RenderFactory.h" />
+    <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
+    <ClInclude Include="..\ags_sprite3d\resource.h" />
+    <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
+    <ClInclude Include="..\ags_sprite3d\Structures.h" />
+    <ClInclude Include="..\ags_sprite3d\ogl\OGLFactory.h">
+      <Filter>ogl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\ogl\OGLHelper.h">
+      <Filter>ogl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ags_sprite3d\ogl\OGLRenderObject.h">
+      <Filter>ogl</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

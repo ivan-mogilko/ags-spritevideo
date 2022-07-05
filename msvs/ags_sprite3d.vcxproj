@@ -43,18 +43,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
     <IncludePath>$(SolutionDir)\include;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
     <GenerateManifest>false</GenerateManifest>
     <IncludePath>$(SolutionDir)\include;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
+    <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -64,7 +66,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AGS_D3D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>D:\Dev\ags-plugins\sprite3d\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_sprite3d;..\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -82,7 +84,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AGS_D3D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>D:\Dev\ags-plugins\sprite3d\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_sprite3d;..\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -96,33 +98,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ags_sprite3d.cpp" />
-    <ClCompile Include="Common.cpp" />
-    <ClCompile Include="BaseObject.cpp" />
-    <ClCompile Include="D3D9Factory.cpp" />
-    <ClCompile Include="D3D9RenderObject.cpp" />
-    <ClCompile Include="D3DHelper.cpp" />
-    <ClCompile Include="glad\src\glad.c" />
-    <ClCompile Include="OGLFactory.cpp" />
-    <ClCompile Include="OGLHelper.cpp" />
-    <ClCompile Include="OGLRenderObject.cpp" />
-    <ClCompile Include="SpriteObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ags_sprite3d.cpp" />
+    <ClCompile Include="..\ags_sprite3d\BaseObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\Common.cpp" />
+    <ClCompile Include="..\ags_sprite3d\d3d9\D3D9Factory.cpp" />
+    <ClCompile Include="..\ags_sprite3d\d3d9\D3D9RenderObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\d3d9\D3DHelper.cpp" />
+    <ClCompile Include="..\ags_sprite3d\glad\src\glad.c" />
+    <ClCompile Include="..\ags_sprite3d\ogl\OGLFactory.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ogl\OGLHelper.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ogl\OGLRenderObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\SpriteObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="agsplugin.h" />
-    <ClInclude Include="D3D9Factory.h" />
-    <ClInclude Include="D3D9RenderObject.h" />
-    <ClInclude Include="OGLFactory.h" />
-    <ClInclude Include="OGLHelper.h" />
-    <ClInclude Include="OGLRenderObject.h" />
-    <ClInclude Include="RenderFactory.h" />
-    <ClInclude Include="RenderObject.h" />
-    <ClInclude Include="Common.h" />
-    <ClInclude Include="BaseObject.h" />
-    <ClInclude Include="D3DHelper.h" />
-    <ClInclude Include="SpriteObject.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="Structures.h" />
+    <ClInclude Include="..\ags_sprite3d\agsplugin.h" />
+    <ClInclude Include="..\ags_sprite3d\BaseObject.h" />
+    <ClInclude Include="..\ags_sprite3d\Common.h" />
+    <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h" />
+    <ClInclude Include="..\ags_sprite3d\d3d9\D3D9RenderObject.h" />
+    <ClInclude Include="..\ags_sprite3d\d3d9\D3DHelper.h" />
+    <ClInclude Include="..\ags_sprite3d\glad\include\glad\glad.h" />
+    <ClInclude Include="..\ags_sprite3d\ogl\OGLFactory.h" />
+    <ClInclude Include="..\ags_sprite3d\ogl\OGLHelper.h" />
+    <ClInclude Include="..\ags_sprite3d\ogl\OGLRenderObject.h" />
+    <ClInclude Include="..\ags_sprite3d\RenderFactory.h" />
+    <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
+    <ClInclude Include="..\ags_sprite3d\resource.h" />
+    <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
+    <ClInclude Include="..\ags_sprite3d\Structures.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

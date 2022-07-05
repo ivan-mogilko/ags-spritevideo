@@ -1,8 +1,6 @@
-/.vs/*
 *.VC.db
 *.VC.VC.opendb
 *.vcxproj.user
-/ags_sprite3D/Debug/
-/ags_sprite3D/Release/*
-/Debug/*
-/Release/*
+/msvs/.build/*
+/msvs/.temp/*
+/msvs/.vs/*
