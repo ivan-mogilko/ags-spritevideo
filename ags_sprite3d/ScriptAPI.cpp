@@ -1,6 +1,7 @@
 #include <list>
 #include "Common.h"
 #include "SpriteObject.h"
+#include "VideoObject.h"
 
 // AGS:n float-tyypin muunnokset
 #define SCRIPT_FLOAT(x) int32_t __script_float##x
@@ -13,18 +14,15 @@ extern Screen screen;
 extern std::list< BaseObject* > manualRenderBatch;
 
 // *** D3D ***
+#if defined (VIDEO_PLAYBACK)
+VideoObject_Manager videoObjManager;
+#endif
+SpriteObject_Manager spriteObjManager;
+
 void D3D_SetGameSpeed(int speed)
 {
     screen.gameSpeed = speed;
     screen.frameDelay = 1.f / speed;
-}
-
-SpriteObject_Manager spriteObjManager;
-
-struct D3DVideoObject; // dummy
-D3DVideoObject* D3D_OpenVideo(char const* filename)
-{
-    return nullptr;
 }
 
 SpriteObject* D3D_OpenSprite(int spriteID)
@@ -64,6 +62,27 @@ SpriteObject* D3D_OpenBackground(int frame)
     }
 
     return obj;
+}
+
+class VideoObject;
+VideoObject* D3D_OpenVideo(char const* filename)
+{
+#if defined (VIDEO_PLAYBACK)
+    char buffer[MAX_PATH];
+    IAGSEngine* engine = GetAGS();
+    engine->GetPathToFileInCompiledFolder(filename, buffer);
+
+    VideoObject* obj = VideoObject::Open(buffer);
+
+    if (obj)
+    {
+        engine->RegisterManagedObject(obj, &videoObjManager);
+    }
+
+    return obj;
+#else
+    return nullptr;
+#endif
 }
 
 
@@ -180,23 +199,44 @@ int D3DObject_GetKey(BaseObject* obj) { return GetAGS()->GetManagedObjectKeyByAd
 void D3DObject_Update(BaseObject* obj) { obj->Update(); }
 void D3DObject_Render(BaseObject* obj) { manualRenderBatch.push_back(obj); }
 
-// *** D3DVideoObject ***
-void D3DVideoObject_SetLooping(D3DVideoObject* obj, bool loop) { /* dummy */ }
-int D3DVideoObject_GetLooping(D3DVideoObject* obj) { return 0 /* dummy */; }
+// *** VideoObject ***
+#if defined (VIDEO_PLAYBACK)
 
-void D3DVideoObject_SetFPS(D3DVideoObject* obj, SCRIPT_FLOAT(fps)) {
+void D3DVideoObject_SetLooping(VideoObject* obj, bool loop) { obj->SetLooping(loop); }
+int D3DVideoObject_GetLooping(VideoObject* obj) { return obj->IsLooping(); }
+
+void D3DVideoObject_SetFPS(VideoObject* obj, SCRIPT_FLOAT(fps)) {
     INIT_SCRIPT_FLOAT(fps);
-    /* dummy */
+    obj->SetFPS(fps);
 }
-FLOAT_RETURN_TYPE D3DVideoObject_GetFPS(D3DVideoObject* obj) {
-    /* dummy */
+FLOAT_RETURN_TYPE D3DVideoObject_GetFPS(VideoObject* obj) {
+    float fps = obj->GetFPS();
+    RETURN_FLOAT(fps);
+}
+
+int D3DVideoObject_NextFrame(VideoObject* obj) { return obj->NextFrame(); }
+void D3DVideoObject_Autoplay(VideoObject* obj) { obj->Autoplay(); }
+int D3DVideoObject_IsAutoplaying(VideoObject* obj) { return obj->IsAutoplaying(); }
+void D3DVideoObject_StopAutoplay(VideoObject* obj) { obj->StopAutoplay(); }
+
+#else
+
+void D3DVideoObject_SetLooping(VideoObject* obj, bool loop) { /* do nothing */ }
+int D3DVideoObject_GetLooping(VideoObject* obj) { return 0; }
+
+void D3DVideoObject_SetFPS(VideoObject* obj, SCRIPT_FLOAT(fps)) {
+    /* do nothing */
+}
+FLOAT_RETURN_TYPE D3DVideoObject_GetFPS(VideoObject* obj) {
     return 0;
 }
 
-int D3DVideoObject_NextFrame(D3DVideoObject* obj) { return 0; /* dummy */ }
-void D3DVideoObject_Autoplay(D3DVideoObject* obj) { /* dummy */; }
-int D3DVideoObject_IsAutoplaying(D3DVideoObject* obj) { return 0; /* dummy */ }
-void D3DVideoObject_StopAutoplay(D3DVideoObject* obj) { /* dummy */ }
+int D3DVideoObject_NextFrame(VideoObject* obj) { return 0; }
+void D3DVideoObject_Autoplay(VideoObject* obj) { /* do nothing */ }
+int D3DVideoObject_IsAutoplaying(VideoObject* obj) { return 0; }
+void D3DVideoObject_StopAutoplay(VideoObject* obj) { /* do nothing */ }
+
+#endif
 
 
 void dummy(BaseObject* obj) {}

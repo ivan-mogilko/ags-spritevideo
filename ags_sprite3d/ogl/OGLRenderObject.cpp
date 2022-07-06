@@ -143,6 +143,25 @@ void OGLRenderObject::CreateTexture(int sprite_id, int bkg_num, const char *file
     }
 }
 
+void OGLRenderObject::CreateTexture(const unsigned char* data, int width, int height, int bpp)
+{
+    if (myTexture == 0 || myTexWidth != width || myTexHeight != height)
+    {
+        if (myTexture > 0)
+            glDeleteTextures(1, &myTexture);
+        myTexture = ::CreateTexture(data, width, height);
+        myWidth = width;
+        myHeight = height;
+        myTexWidth = width;
+        myTexHeight = height;
+        myHasAlpha = false; // CHECKME??
+    }
+    else
+    {
+        ::SetTextureData(myTexture, data, width, height);
+    }
+}
+
 void OGLRenderObject::Render(const Point &pos, const PointF &scaling, float rotation,
     const PointF &anchorPos, const RGBA &rgba, int filter)
 {

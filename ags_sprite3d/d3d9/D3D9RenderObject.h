@@ -14,6 +14,7 @@ public:
     ~D3D9RenderObject() override;
 
     void CreateTexture(int sprite_id, int bkg_num, const char *file) override;
+    void CreateTexture(const unsigned char* data, int width, int height, int bpp) override;
     void Render(const Point &pos, const PointF &scaling, float rotation, const PointF &anchorPos,
         const RGBA &rgba, int filtering) override;
 

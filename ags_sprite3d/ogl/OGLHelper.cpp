@@ -4,6 +4,36 @@
 #include <glad/glad.h>
 #include "Common.h"
 
+
+unsigned CreateTexture(unsigned char const* data, int width, int height, bool alpha)
+{
+    unsigned texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    SetTextureData(texture, data, width, height);
+    return texture;
+}
+
+bool SetTextureData(unsigned texture, unsigned char const* data, int width, int height)
+{
+    int bpp = 4; // TODO: get from elsewhere?
+    std::vector<unsigned char> input(width * height * bpp);
+    int pitch = width * bpp;
+    for (int y = 0; y < height; ++y)
+    {
+        memcpy(&input[0] + pitch * y, data + pitch * y, pitch);
+    }
+
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, &input[0]);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    return true;
+}
+
 unsigned CreateTexture(unsigned char const* const* data, int width, int height, bool alpha)
 {
     unsigned texture;
@@ -27,7 +57,9 @@ bool SetTextureData(unsigned texture, unsigned char const* const* data, int widt
         memcpy(&input[0] + pitch * y, data[y], pitch);
     }
     
+    glBindTexture(GL_TEXTURE_2D, texture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, &input[0]);
+    glBindTexture(GL_TEXTURE_2D, 0);
     return true;
 }
 

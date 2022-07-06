@@ -25,6 +25,8 @@ struct ShaderProgram
     GLuint Alpha = 0;
 };
 
+unsigned CreateTexture(unsigned char const* data, int width, int height, bool alpha = false);
+bool SetTextureData(unsigned texture, unsigned char const* data, int width, int height);
 unsigned CreateTexture(unsigned char const* const* data, int width, int height, bool alpha = false);
 bool SetTextureData(unsigned texture, unsigned char const* const* data, int width, int height);
 bool CreateShaderProgram(ShaderProgram &prg, const char *name, const char *vertex_shader_src, const char *fragment_shader_src);

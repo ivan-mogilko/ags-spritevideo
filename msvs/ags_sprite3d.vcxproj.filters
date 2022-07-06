@@ -40,6 +40,7 @@
     <ClCompile Include="..\ags_sprite3d\MathHelper.cpp" />
     <ClCompile Include="..\ags_sprite3d\EditorPlugin.cpp" />
     <ClCompile Include="..\ags_sprite3d\ScriptAPI.cpp" />
+    <ClCompile Include="..\ags_sprite3d\VideoObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h">
@@ -70,5 +71,6 @@
       <Filter>ogl</Filter>
     </ClInclude>
     <ClInclude Include="..\ags_sprite3d\MathHelper.h" />
+    <ClInclude Include="..\ags_sprite3d\VideoObject.h" />
   </ItemGroup>
 </Project>

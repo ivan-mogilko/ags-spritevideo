@@ -95,6 +95,32 @@ void D3D9RenderObject::CreateTexture(int sprite_id, int bkg_num, const char *fil
     }
 }
 
+void D3D9RenderObject::CreateTexture(const unsigned char* data, int width, int height, int bpp)
+{
+    if (!myTexture || myTexWidth != width || myTexHeight != height)
+    {
+        if (myTexture)
+            myTexture->Release();
+
+        if (width <= 0 || height <= 0 || bpp <= 0)
+            return; // fail
+
+        myTexture = ::CreateTexture(data, width, height);
+        myWidth = width;
+        myHeight = height;
+        myTexWidth = width;
+        myTexHeight = height;
+        myHasAlpha = false; // CHECKME??
+    }
+    else
+    {
+        if (width <= 0 || height <= 0 || bpp <= 0)
+            return; // fail
+
+        ::SetTextureData(myTexture, data, width, height);
+    }
+}
+
 void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rotation,
     const PointF &anchorPos, const RGBA &rgba, int filter)
 {
