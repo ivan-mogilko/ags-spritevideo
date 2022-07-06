@@ -8,7 +8,14 @@
 #ifndef SPRITE3D_COMMON_H
 #define SPRITE3D_COMMON_H
 
+#if defined (WINDOWS_VERSION)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN 1
+#endif
+#include <windows.h>
+#endif
 // Plugin API
+#define THIS_IS_THE_PLUGIN
 #include "agsplugin.h"
 
 // Disabled warnings
@@ -17,6 +24,15 @@
 
 // Debug printing
 #define DEBUG
+
+// TODO: move to a separate helper h/cpp
+#ifndef MAX_PATH
+#define MAX_PATH (512)
+#endif
+
+#if !defined (WINDOWS_VERSION)
+inline stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
+#endif
 
 #ifdef DEBUG
     #include <cstdio>    

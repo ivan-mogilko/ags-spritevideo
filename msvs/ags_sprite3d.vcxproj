@@ -104,11 +104,13 @@
     <ClCompile Include="..\ags_sprite3d\d3d9\D3D9Factory.cpp" />
     <ClCompile Include="..\ags_sprite3d\d3d9\D3D9RenderObject.cpp" />
     <ClCompile Include="..\ags_sprite3d\d3d9\D3DHelper.cpp" />
+    <ClCompile Include="..\ags_sprite3d\EditorPlugin.cpp" />
     <ClCompile Include="..\ags_sprite3d\glad\src\glad.c" />
     <ClCompile Include="..\ags_sprite3d\MathHelper.cpp" />
     <ClCompile Include="..\ags_sprite3d\ogl\OGLFactory.cpp" />
     <ClCompile Include="..\ags_sprite3d\ogl\OGLHelper.cpp" />
     <ClCompile Include="..\ags_sprite3d\ogl\OGLRenderObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ScriptAPI.cpp" />
     <ClCompile Include="..\ags_sprite3d\SpriteObject.cpp" />
   </ItemGroup>
   <ItemGroup>

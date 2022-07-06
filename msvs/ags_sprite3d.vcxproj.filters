@@ -38,6 +38,8 @@
       <Filter>ogl</Filter>
     </ClCompile>
     <ClCompile Include="..\ags_sprite3d\MathHelper.cpp" />
+    <ClCompile Include="..\ags_sprite3d\EditorPlugin.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ScriptAPI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h">

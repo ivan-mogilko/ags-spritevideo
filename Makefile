@@ -28,7 +28,9 @@ LDFLAGS  += -rdynamic -Wl,--as-needed $(addprefix -L,$(LIBDIR))
 OBJS := ags_sprite3d/ags_sprite3d.cpp \
 	ags_sprite3d/BaseObject.cpp \
 	ags_sprite3d/Common.cpp \
+	ags_sprite3d/EditorPlugin.cpp \
 	ags_sprite3d/MathHelper.cpp \
+	ags_sprite3d/ScriptAPI.cpp \
 	ags_sprite3d/SpriteObject.cpp \
 	ags_sprite3d/ogl/OGLFactory.cpp \
 	ags_sprite3d/ogl/OGLHelper.cpp \
