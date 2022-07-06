@@ -3,17 +3,17 @@
 #include "SpriteObject.h"
 
 // AGS:n float-tyypin muunnokset
-#define SCRIPT_FLOAT(x) long __script_float##x
+#define SCRIPT_FLOAT(x) int32_t __script_float##x
 #define INIT_SCRIPT_FLOAT(x) float x = *((float*)&__script_float##x)
-#define FLOAT_RETURN_TYPE long
-#define RETURN_FLOAT(x) return *((long*)&x)
+#define FLOAT_RETURN_TYPE int32_t
+#define RETURN_FLOAT(x) return *((int32_t*)&x)
 
 
 extern Screen screen;
 extern std::list< BaseObject* > manualRenderBatch;
 
 // *** D3D ***
-void D3D_SetGameSpeed(long speed)
+void D3D_SetGameSpeed(int speed)
 {
     screen.gameSpeed = speed;
     screen.frameDelay = 1.f / speed;
@@ -27,7 +27,7 @@ D3DVideoObject* D3D_OpenVideo(char const* filename)
     return nullptr;
 }
 
-SpriteObject* D3D_OpenSprite(long spriteID)
+SpriteObject* D3D_OpenSprite(int spriteID)
 {
     SpriteObject* obj = SpriteObject::Open(spriteID);
 
@@ -39,7 +39,7 @@ SpriteObject* D3D_OpenSprite(long spriteID)
     return obj;
 }
 
-SpriteObject* D3D_OpenSpriteFile(char const* filename, long filtering)
+SpriteObject* D3D_OpenSpriteFile(char const* filename, int filtering)
 {
     char buffer[MAX_PATH];
     GetAGS()->GetPathToFileInCompiledFolder(filename, buffer);
@@ -54,7 +54,7 @@ SpriteObject* D3D_OpenSpriteFile(char const* filename, long filtering)
     return obj;
 }
 
-SpriteObject* D3D_OpenBackground(long frame)
+SpriteObject* D3D_OpenBackground(int frame)
 {
     SpriteObject* obj = SpriteObject::OpenBackground(frame);
 
@@ -69,15 +69,15 @@ SpriteObject* D3D_OpenBackground(long frame)
 
 // *** BaseObject ***
 void D3DObject_SetEnabled(BaseObject* obj, bool enabled) { obj->SetEnabled(enabled); }
-long D3DObject_GetEnabled(BaseObject* obj) { return obj->IsEnabled(); }
+int D3DObject_GetEnabled(BaseObject* obj) { return obj->IsEnabled(); }
 void D3DObject_SetVisible(BaseObject* obj, bool visible) { obj->SetVisible(visible); }
-long D3DObject_GetVisible(BaseObject* obj) { return obj->IsVisible(); }
-void D3DObject_SetX(BaseObject* obj, long x) { long y = obj->GetPosition().y; obj->SetPosition(Point(x, y)); }
-long D3DObject_GetX(BaseObject* obj) { return obj->GetPosition().x; }
-void D3DObject_SetY(BaseObject* obj, long y) { long x = obj->GetPosition().x; obj->SetPosition(Point(x, y)); }
-long D3DObject_GetY(BaseObject* obj) { return obj->GetPosition().y; }
-long D3DObject_GetWidth(BaseObject* obj) { return obj->GetWidth(); }
-long D3DObject_GetHeight(BaseObject* obj) { return obj->GetHeight(); }
+int D3DObject_GetVisible(BaseObject* obj) { return obj->IsVisible(); }
+void D3DObject_SetX(BaseObject* obj, int x) { int y = obj->GetPosition().y; obj->SetPosition(Point(x, y)); }
+int D3DObject_GetX(BaseObject* obj) { return obj->GetPosition().x; }
+void D3DObject_SetY(BaseObject* obj, int y) { int x = obj->GetPosition().x; obj->SetPosition(Point(x, y)); }
+int D3DObject_GetY(BaseObject* obj) { return obj->GetPosition().y; }
+int D3DObject_GetWidth(BaseObject* obj) { return obj->GetWidth(); }
+int D3DObject_GetHeight(BaseObject* obj) { return obj->GetHeight(); }
 
 void D3DObject_SetAnchorX(BaseObject* obj, SCRIPT_FLOAT(x)) {
     INIT_SCRIPT_FLOAT(x);
@@ -151,16 +151,16 @@ FLOAT_RETURN_TYPE D3DObject_GetAlpha(BaseObject* obj) {
 }
 
 void D3DObject_SetAutoUpdated(BaseObject* obj, bool autoUpdated) { obj->SetAutoUpdated(autoUpdated); }
-long D3DObject_GetAutoUpdated(BaseObject* obj) { return obj->IsAutoUpdated(); }
+int D3DObject_GetAutoUpdated(BaseObject* obj) { return obj->IsAutoUpdated(); }
 void D3DObject_SetAutoRendered(BaseObject* obj, bool autoRendered) { obj->SetAutoRendered(autoRendered); }
-long D3DObject_GetAutoRendered(BaseObject* obj) { return obj->IsAutoRendered(); }
-void D3DObject_SetRenderStage(BaseObject* obj, long stage) { obj->SetRenderStage((BaseObject::RenderStage)stage); }
-long D3DObject_GetRenderStage(BaseObject* obj) { return (long)obj->GetRenderStage(); }
-void D3DObject_SetRelativeTo(BaseObject* obj, long relative) { obj->SetRelativeTo((BaseObject::RelativeTo)relative); }
-long D3DObject_GetRelativeTo(BaseObject* obj) { return (long)obj->GetRelativeTo(); }
-void D3DObject_SetRoom(BaseObject* obj, long room) { obj->SetRoom(room); }
-long D3DObject_GetRoom(BaseObject* obj) { return obj->GetRoom(); }
-void D3DObject_SetPosition(BaseObject* obj, long x, long y) { obj->SetPosition(Point(x, y)); }
+int D3DObject_GetAutoRendered(BaseObject* obj) { return obj->IsAutoRendered(); }
+void D3DObject_SetRenderStage(BaseObject* obj, int stage) { obj->SetRenderStage((BaseObject::RenderStage)stage); }
+int D3DObject_GetRenderStage(BaseObject* obj) { return (int)obj->GetRenderStage(); }
+void D3DObject_SetRelativeTo(BaseObject* obj, int relative) { obj->SetRelativeTo((BaseObject::RelativeTo)relative); }
+int D3DObject_GetRelativeTo(BaseObject* obj) { return (int)obj->GetRelativeTo(); }
+void D3DObject_SetRoom(BaseObject* obj, int room) { obj->SetRoom(room); }
+int D3DObject_GetRoom(BaseObject* obj) { return obj->GetRoom(); }
+void D3DObject_SetPosition(BaseObject* obj, int x, int y) { obj->SetPosition(Point(x, y)); }
 
 void D3DObject_SetAnchor(BaseObject* obj, SCRIPT_FLOAT(x), SCRIPT_FLOAT(y)) {
     INIT_SCRIPT_FLOAT(x);
@@ -182,7 +182,7 @@ void D3DObject_Render(BaseObject* obj) { manualRenderBatch.push_back(obj); }
 
 // *** D3DVideoObject ***
 void D3DVideoObject_SetLooping(D3DVideoObject* obj, bool loop) { /* dummy */ }
-long D3DVideoObject_GetLooping(D3DVideoObject* obj) { return 0 /* dummy */; }
+int D3DVideoObject_GetLooping(D3DVideoObject* obj) { return 0 /* dummy */; }
 
 void D3DVideoObject_SetFPS(D3DVideoObject* obj, SCRIPT_FLOAT(fps)) {
     INIT_SCRIPT_FLOAT(fps);
@@ -193,9 +193,9 @@ FLOAT_RETURN_TYPE D3DVideoObject_GetFPS(D3DVideoObject* obj) {
     return 0;
 }
 
-long D3DVideoObject_NextFrame(D3DVideoObject* obj) { return 0; /* dummy */ }
+int D3DVideoObject_NextFrame(D3DVideoObject* obj) { return 0; /* dummy */ }
 void D3DVideoObject_Autoplay(D3DVideoObject* obj) { /* dummy */; }
-long D3DVideoObject_IsAutoplaying(D3DVideoObject* obj) { return 0; /* dummy */ }
+int D3DVideoObject_IsAutoplaying(D3DVideoObject* obj) { return 0; /* dummy */ }
 void D3DVideoObject_StopAutoplay(D3DVideoObject* obj) { /* dummy */ }
 
 
