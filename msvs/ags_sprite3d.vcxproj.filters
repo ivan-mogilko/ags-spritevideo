@@ -59,7 +59,6 @@
     <ClInclude Include="..\ags_sprite3d\Common.h" />
     <ClInclude Include="..\ags_sprite3d\RenderFactory.h" />
     <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
-    <ClInclude Include="..\ags_sprite3d\resource.h" />
     <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
     <ClInclude Include="..\ags_sprite3d\ogl\OGLFactory.h">
       <Filter>ogl</Filter>

@@ -61,7 +61,7 @@ void OGLFactory::SetScreenMatrixes(Screen* screen, float(*world)[16], float(*vie
     }
 }
 
-RenderObject* OGLFactory::CreateRenderObject()
+std::unique_ptr<RenderObject> OGLFactory::CreateRenderObject()
 {
-    return new OGLRenderObject();
+    return std::make_unique<OGLRenderObject>();
 }

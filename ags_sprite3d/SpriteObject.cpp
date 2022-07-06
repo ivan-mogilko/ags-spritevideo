@@ -7,7 +7,17 @@
 
 #include "SpriteObject.h"
 
-SpriteObject* SpriteObject::Open( long spriteID )
+SpriteObject::SpriteObject()
+{
+    DBG("SpriteObject created");
+}
+
+SpriteObject::~SpriteObject()
+{
+    DBG("SpriteObject destroyed");
+}
+
+SpriteObject* SpriteObject::Open( int spriteID )
 {
     SpriteObject* obj = new SpriteObject();
     obj->myType = TYPE_INTERNAL;
@@ -20,15 +30,11 @@ SpriteObject* SpriteObject::Open( char const* filename, Filtering filtering )
     SpriteObject* obj = new SpriteObject();
     obj->myType = TYPE_EXTERNAL;
     obj->myFiltering = filtering;
-
-    // Copy filename
-    obj->myFile = new char[ strlen( filename ) + 1 ];
-    strcpy( obj->myFile, filename );
-
+    obj->myFile = filename;
     return obj;
 }
 
-SpriteObject* SpriteObject::OpenBackground( long frame )
+SpriteObject* SpriteObject::OpenBackground( int frame )
 {
 	SpriteObject* obj = new SpriteObject();
 	obj->myType = TYPE_BACKGROUND;
@@ -41,27 +47,6 @@ SpriteObject* SpriteObject::Restore( char const* buffer, int size )
     SpriteObject* obj = new SpriteObject();
     obj->Unserialize( buffer, size );
     return obj;
-}
-
-SpriteObject::SpriteObject():
-    BaseObject(),
-    myType( TYPE_INTERNAL ),
-    mySpriteID( 0 ),
-    myData( NULL ),
-    myFile( NULL )
-{
-    DBG( "SpriteObject created" );
-}
-
-SpriteObject::~SpriteObject()
-{
-    DBG( "SpriteObject destroyed" );
-
-    if ( myFile )
-    {
-        delete[] myFile;
-        myFile = NULL;
-    }
 }
 
 int SpriteObject::GetWidth() const
@@ -101,7 +86,7 @@ int SpriteObject::Serialize( char* buffer, int bufsize )
     
     SERIALIZE( myType );
     SERIALIZE( mySpriteID );
-    SERIALIZE_S( myFile );
+    SERIALIZE_STR( myFile );
     int texw = myRender ? myRender->GetTexWidth() : 0;
     int texh = myRender ? myRender->GetTexHeight() : 0;
     int texa = myRender ? myRender->GetHasAlpha() : 0;
@@ -121,7 +106,7 @@ int SpriteObject::Unserialize( char const* buffer, int size )
 
     UNSERIALIZE( myType );
     UNSERIALIZE( mySpriteID );
-    UNSERIALIZE_S( myFile );
+    UNSERIALIZE_STR( myFile );
     int texw, texh, texa; // looks like redundant fields
     UNSERIALIZE( texw );
     UNSERIALIZE( texh );
@@ -148,11 +133,11 @@ void SpriteObject::CreateTexture()
         DBGF( "Creating texture from room background: %d", mySpriteID );
         myRender->CreateTexture(-1, mySpriteID, nullptr);
     }
-    else if ( myType == TYPE_EXTERNAL && myFile )
+    else if ( myType == TYPE_EXTERNAL && !myFile.empty() )
     {
         // Create from PNG data
-        DBGF( "Creating texture from file: %s", myFile );
-        myRender->CreateTexture(-1, -1, myFile);
+        DBGF( "Creating texture from file: %s", myFile.c_str() );
+        myRender->CreateTexture(-1, -1, myFile.c_str());
     }
 
     if (myRender)

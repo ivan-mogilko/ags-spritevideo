@@ -49,9 +49,9 @@ void D3D9Factory::SetScreenMatrixes(Screen* screen, float(*world)[16], float(*vi
     }
 }
 
-RenderObject* D3D9Factory::CreateRenderObject()
+std::unique_ptr<RenderObject> D3D9Factory::CreateRenderObject()
 {
-    return new D3D9RenderObject();
+    return std::make_unique<D3D9RenderObject>();
 }
 
 #endif // WINDOWS_VERSION

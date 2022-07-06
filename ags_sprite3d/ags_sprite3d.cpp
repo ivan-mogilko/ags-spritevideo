@@ -1,4 +1,5 @@
 #include <list>
+#include <memory>
 #include <string>
 #include "Common.h"
 #include "BaseObject.h"
@@ -26,7 +27,7 @@
 
 IAGSEngine* engine = nullptr;
 Screen screen;
-RenderFactory* factory = nullptr;
+std::unique_ptr<RenderFactory> factory;
 
 extern void RegisterScriptAPI();
 
@@ -45,22 +46,20 @@ RenderFactory* CreateFactory(const char* driverid)
 #if defined (WINDOWS_VERSION)
     if (stricmp(driverid, "d3d9") == 0)
     {
-        factory = new D3D9Factory();
-        return factory;
+        factory = std::make_unique<D3D9Factory>();
     }
     else
 #endif // WINDOWS_VERSION
     if (stricmp(driverid, "ogl") == 0)
     {
-        factory = new OGLFactory();
-        return factory;
+        factory = std::make_unique<OGLFactory>();
     }
-    return nullptr;
+    return factory.get();
 }
 
 RenderFactory* GetFactory()
 {
-    return factory;
+    return factory.get();
 }
 
 std::list< BaseObject* > manualRenderBatch;
@@ -118,8 +117,7 @@ void AGS_EngineShutdown()
     // Dispose any resources and objects
     DBG( "Shutting down" );
 
-    delete factory;
-    factory = nullptr;
+    factory.reset();
 
     CLOSE_DBG();
 }
@@ -172,10 +170,6 @@ void Render( BaseObject::RenderStage stage )
 
 int AGS_EngineOnEvent( int ev, int data )
 {
-    if ( engine->IsGamePaused() )
-    {
-    }
-
     if ( ev == AGSE_SAVEGAME )
     {
         Save( data );

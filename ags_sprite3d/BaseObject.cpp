@@ -53,28 +53,7 @@ void BaseObject::RenderAll( RenderStage stage )
     }
 }
 
-BaseObject::BaseObject():
-    myHasStarted( false ),
-    myIsEnabled( true ),
-    myIsVisible( true ),
-    myPosition( 0, 0 ),
-    myAnchor( 0, 0 ),
-    myRotation( 0.f ),
-    myScaling( 1.f, 1.f ),
-    myIsAutoUpdated( true ),
-    myIsAutoRendered( true ),
-    myRenderStage( STAGE_BACKGROUND ),
-    myRelativeTo( RELATIVE_ROOM ),
-    myFiltering( FILTER_LINEAR ),
-    myRoom( -1 ),
-	myTintR( 1.f ),
-	myTintG( 1.f ),
-	myTintB( 1.f ),
-	myAlpha( 1.f ),
-	myParent( NULL ),
-	myWidth( 0 ),
-	myHeight( 0 ),
-    myRender(nullptr)
+BaseObject::BaseObject()
 {
     DBG( "BaseObject created" );
     ourObjects.push_back( this );
@@ -100,8 +79,6 @@ BaseObject::~BaseObject()
             break;
         }
     }
-
-    delete myRender;
 
     DBG( "BaseObject destroyed" );
 }

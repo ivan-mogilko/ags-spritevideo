@@ -127,7 +127,6 @@
     <ClInclude Include="..\ags_sprite3d\ogl\OGLRenderObject.h" />
     <ClInclude Include="..\ags_sprite3d\RenderFactory.h" />
     <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
-    <ClInclude Include="..\ags_sprite3d\resource.h" />
     <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

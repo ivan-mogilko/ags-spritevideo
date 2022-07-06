@@ -175,7 +175,7 @@ void OGLRenderObject::Render(const Point &pos, const PointF &scaling, float rota
     //DBGF("---RENDER SCALE: %f,%f", screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
     SetMatrix(&scale, 0, 0, screenScaleX * myWidth * scaling.x, screenScaleY * myHeight * scaling.y);
     //DBGF("---RENDER ROTATION: %f at %f,%f", rotation, -anchorPos.x, anchorPos.y);
-    SetMatrix(&anchor, -anchorPos.x - 0.5, anchorPos.y + 0.5, 1, 1); // Mirror Y
+    SetMatrix(&anchor, -anchorPos.x - 0.5f, anchorPos.y + 0.5f, 1.f, 1.f); // Mirror Y
     SetMatrixRotation(&rot, rotation * RADS_PER_DEGREE);
 
     Matrix world;

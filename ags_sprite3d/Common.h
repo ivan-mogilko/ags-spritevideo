@@ -55,14 +55,14 @@ inline stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
         DBGF( "SERIALIZE( " #var " ): %f", static_cast<float>( var ) );\
         buffer = (char*)memcpy( buffer, &var, sizeof( var ) ) + sizeof( var );\
     }
-#define SERIALIZE_S( str )\
+#define SERIALIZE_STR( str )\
     {\
-        if ( !str ) { size_t n = 0; SERIALIZE( n ); DBG( "SERIALIZE_S( " #str " ): NULL" ); }\
+        if ( str.empty() ) { size_t n = 0; SERIALIZE( n ); DBGF( "SERIALIZE_STR( NULL )"); }\
         else {\
-            size_t len = strlen( str );\
+            size_t len = str.size();\
             SERIALIZE( len );\
-            DBGF( "SERIALIZE_S( " #str " ): %s", str );\
-            buffer = (char*)memcpy( buffer, str, len ) + len;\
+            DBGF( "SERIALIZE_STR( %s )", str.c_str() );\
+            buffer = (char*)memcpy( buffer, str.c_str(), len ) + len;\
         }\
     }
 
@@ -72,15 +72,14 @@ inline stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
         memcpy( &var, buffer, sizeof( var ) ); buffer += sizeof( var );\
         DBGF( "UNSERIALIZE( " #var " ): %f", static_cast<float>( var ) );\
     }
-#define UNSERIALIZE_S( str )\
+#define UNSERIALIZE_STR( str )\
     {\
         size_t n; UNSERIALIZE( n );\
-        if ( n == 0 ) { str = NULL; DBG( "UNSERIALIZE_S( " #str " ): NULL" ); }\
+        if ( n == 0 ) { str.clear(); DBG( "UNSERIALIZE_STR( NULL )" ); }\
         else {\
-            str = new char[n + 1];\
-            memcpy( str, buffer, n );\
-            str[n] = '\0';\
-            DBGF( "UNSERIALIZE_S( " #str " ): %s", str );\
+            str.resize(n);\
+            memcpy( &str[0], buffer, n );\
+            DBGF( "UNSERIALIZE_STR( %s )", str.c_str() );\
         }\
         buffer += n;\
     }
@@ -92,28 +91,21 @@ inline stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
 
 struct Screen
 {
-    int width;
-    int height;
-    int bpp;
+    int width = 0;
+    int height = 0;
+    int bpp = 0;
     Point viewport;
-    int gameSpeed;
-    float frameDelay;
+    int gameSpeed = 40;
+    float frameDelay = 1.f / 40;
 
     // Render stage transform matrixes
-    bool matrixValid;
+    bool matrixValid = false;
     Matrix globalWorld;
     Matrix globalView;
     Matrix globalProj;
 
-    Screen() :
-        width(0),
-        height(0),
-        bpp(0),
-        viewport(0, 0),
-        gameSpeed(40),
-        frameDelay(1.f / 40)
+    Screen()
     {
-        matrixValid = false;
         memset(&globalWorld, 0, sizeof(float[16]));
         memset(&globalView, 0, sizeof(float[16]));
         memset(&globalProj, 0, sizeof(float[16]));

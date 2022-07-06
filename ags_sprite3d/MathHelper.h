@@ -5,15 +5,17 @@ float const RADS_PER_DEGREE = 3.14159265f / 180.f;
 
 struct Point
 {
-    int x, y;
+    int x = 0, y = 0;
 
+    Point() = default;
     Point(int x, int y) : x(x), y(y) {}
 };
 
 struct PointF
 {
-    float x, y;
+    float x = 0.f, y = 0.f;
 
+    PointF() = default;
     PointF(float x, float y) : x(x), y(y) {}
 };
 
@@ -32,6 +34,8 @@ struct Matrix
         float m[4][4];
         float marr[16];
     };
+
+    Matrix() = default;
 };
 
 struct RGBA
@@ -44,6 +48,8 @@ struct RGBA
         };
         float rgba[4];
     };
+
+    RGBA() = default;
 };
 
 
