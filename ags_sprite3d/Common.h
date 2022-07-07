@@ -10,9 +10,11 @@
 
 #if defined (WINDOWS_VERSION)
 #ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN 1
+    #define WIN32_LEAN_AND_MEAN 1
 #endif
 #include <windows.h>
+#else
+#include <strings.h>
 #endif
 // Plugin API
 #define THIS_IS_THE_PLUGIN
@@ -31,7 +33,7 @@
 #endif
 
 #if !defined (WINDOWS_VERSION)
-inline stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
+inline int stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
 #endif
 
 #ifdef DEBUG
@@ -57,7 +59,7 @@ inline stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
     }
 #define SERIALIZE_STR( str )\
     {\
-        if ( str.empty() ) { size_t n = 0; SERIALIZE( n ); DBGF( "SERIALIZE_STR( NULL )"); }\
+        if ( str.empty() ) { size_t n = 0; SERIALIZE( n ); DBG( "SERIALIZE_STR( NULL )"); }\
         else {\
             size_t len = str.size();\
             SERIALIZE( len );\
