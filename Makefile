@@ -1,13 +1,19 @@
 UNAME := $(shell uname)
 
-INCDIR = ags_sprite3d ags_sprite3d/glad/include
-LIBDIR =
+LIBTHEORAPLAYER_DIR=/usr/local
+LIBTHEORAPLAYER_INCDIR=$(LIBTHEORAPLAYER_DIR)/include
+LIBTHEORAPLAYER_LIBDIR=$(LIBTHEORAPLAYER_DIR)/lib
+
+INCDIR = ags_sprite3d ags_sprite3d/glad/include $(LIBTHEORAPLAYER_INCDIR)
+LIBDIR = $(LIBTHEORAPLAYER_LIBDIR)
 
 CC ?= gcc
 CXX ?= g++
-CFLAGS := -fPIC -fvisibility=hidden -O2 -g \
+CFLAGS := -DVIDEO_PLAYBACK \
+	-fPIC -fvisibility=hidden -O2 -g \
 	$(CFLAGS)
-CXXFLAGS := -std=c++14 -fpermissive $(CXXFLAGS)
+CXXFLAGS := -std=c++14 -fpermissive \
+	$(CXXFLAGS)
 
 ifeq ($(UNAME), Darwin)
 TARGET = libags_sprite3d.dylib
@@ -20,10 +26,8 @@ endif
 CFLAGS   := $(addprefix -I,$(INCDIR)) $(CFLAGS)
 CXXFLAGS := $(CFLAGS) $(CXXFLAGS)
 
-LIBS =
-LDFLAGS  += -rdynamic -Wl,--as-needed $(addprefix -L,$(LIBDIR))
-
-
+LDFLAGS = $(addprefix -L,$(LIBDIR))
+LIBS = -ltheoraplayer -ltheora -logg -lvorbis
 
 OBJS := ags_sprite3d/ags_sprite3d.cpp \
 	ags_sprite3d/BaseObject.cpp \
@@ -32,6 +36,7 @@ OBJS := ags_sprite3d/ags_sprite3d.cpp \
 	ags_sprite3d/MathHelper.cpp \
 	ags_sprite3d/ScriptAPI.cpp \
 	ags_sprite3d/SpriteObject.cpp \
+	ags_sprite3d/VideoObject.cpp \
 	ags_sprite3d/ogl/OGLFactory.cpp \
 	ags_sprite3d/ogl/OGLHelper.cpp \
 	ags_sprite3d/ogl/OGLRenderObject.cpp \
