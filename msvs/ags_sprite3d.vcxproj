@@ -37,26 +37,28 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="theoraplayer.props" />
+    <Import Project="direct3d.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="theoraplayer.props" />
+    <Import Project="direct3d.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
-    <IncludePath>$(SolutionDir)\include;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
     <GenerateManifest>false</GenerateManifest>
-    <IncludePath>$(SolutionDir)\include;$(DXSDK_DIR)\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
-    <LibraryPath>$(DXSDK_DIR)\Lib\x86;$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
     <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
   </PropertyGroup>
