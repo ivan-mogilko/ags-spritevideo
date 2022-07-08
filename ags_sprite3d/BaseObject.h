@@ -1,10 +1,3 @@
-/**
- * @file BaseObject.h
- * @author Ahonen
- *
- * @brief Base class for Direct3D objects.
- */
-
 #ifndef SPRITE3D_BASEOBJECT_H
 #define SPRITE3D_BASEOBJECT_H
 

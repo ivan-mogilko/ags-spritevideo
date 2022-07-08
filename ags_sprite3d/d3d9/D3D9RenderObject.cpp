@@ -3,7 +3,7 @@
 #include "D3D9RenderObject.h"
 #include <d3dx9.h>
 #include "Common.h"
-#include "BaseObject.h" // FIXME, move enums to separate header?
+#include "BaseObject.h"
 #include "D3DHelper.h"
 #include "D3D9Factory.h"
 

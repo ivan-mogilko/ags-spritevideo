@@ -1,7 +1,7 @@
 #include "OGLRenderObject.h"
 #include <glad/glad.h>
 #include "Common.h"
-#include "BaseObject.h" // FIXME, move enums to separate header?
+#include "BaseObject.h"
 
 
 OGLCUSTOMVERTEX OGLRenderObject::defaultVertices[4]{};

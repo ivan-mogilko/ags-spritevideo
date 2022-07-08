@@ -1,10 +1,3 @@
-/**
- * @file D3DVideoObject.h
- * @author Ahonen
- *
- * @brief Video object (using libtheoraplayer).
- */
-
 #ifndef D3D_D3DVIDEOOBJECT_H
 #define D3D_D3DVIDEOOBJECT_H
 

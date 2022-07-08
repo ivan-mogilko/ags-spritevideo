@@ -1,10 +1,3 @@
-/**
- * @file SpriteObject.h
- * @author Ahonen
- *
- * @brief Sprite object.
- */
-
 #ifndef SPRITE3D_SPRITEOBJECT_H
 #define SPRITE3D_SPRITEOBJECT_H
 

@@ -1,10 +1,3 @@
-/**
- * @file VideoObject.cpp
- * @author Ahonen
- *
- * @brief Video object (using libtheoraplayer).
- */
-
 #if defined (VIDEO_PLAYBACK)
 
 #include "VideoObject.h"

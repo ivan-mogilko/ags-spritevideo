@@ -1,10 +1,3 @@
-/**
- * @file SpriteObject.cpp
- * @author Ahonen
- *
- * @brief Sprite object.
- */
-
 #include "SpriteObject.h"
 
 SpriteObject::SpriteObject()

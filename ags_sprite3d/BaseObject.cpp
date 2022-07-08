@@ -1,10 +1,3 @@
-/**
- * @file BaseObject.cpp
- * @author Ahonen
- *
- * @brief Base class for Direct3D objects.
- */
-
 #include "BaseObject.h"
 
 std::list< BaseObject* > BaseObject::ourObjects;

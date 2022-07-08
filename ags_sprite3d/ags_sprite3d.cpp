@@ -4,13 +4,7 @@
 #include "Common.h"
 #include "BaseObject.h"
 
-// TODO: Capsien tarkastus täsmällisten virheilmoitusten saamiseksi
-// TODO: "Destroy on room change", "reload on room load"
-// TODO: Kahden potenssit tekstuurit!
-// TODO: Parenttaaminen (local vs global rotation)
-// TODO: Quadin muuntelu -> deformaatiot (Calin)
-// TODO: Maskaus multiteksturoinnilla
-
+// AJA's Direct3D plugin:
 // Change list (1.1):
 // - Added D3D.OpenBackground( int frame )
 // - Tinting and transparency

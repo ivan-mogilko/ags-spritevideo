@@ -1,10 +1,3 @@
-/**
- * @file Common.h
- * @author Ahonen
- *
- * @brief Common stuff. Includes, debug, etc.
- */
-
 #ifndef SPRITE3D_COMMON_H
 #define SPRITE3D_COMMON_H
 
