@@ -4,8 +4,13 @@
 #include "Common.h"
 #include "BaseObject.h"
 
+// Sprite3D plugin:
+// v0.9:
+// - OpenGL render support
+// - Linux build support
+
 // AJA's Direct3D plugin:
-// Change list (1.1):
+// v1.1:
 // - Added D3D.OpenBackground( int frame )
 // - Tinting and transparency
 // - Limited parenting: position, rotation, scaling, tint, alpha. Rotating a child sprite doesn't work as local rotation, it adds to the global rotation.
