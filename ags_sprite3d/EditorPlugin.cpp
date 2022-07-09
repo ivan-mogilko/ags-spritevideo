@@ -131,10 +131,10 @@ void AGS_EditorProperties(HWND parent)
     // User has chosen to view the Properties of the plugin
     // We could load up an options dialog or something here instead
     MessageBox(parent,
-        L"Direct3D Plugin © 2012 Aki Ahonen\n\n"
+        L"Sprite3D Plugin © 2022 Ivan Mogilko\n\n"
+        L"Based on Direct3D Plugin © 2012 Aki Ahonen\n\n"
         L"See ags_d3d.htm for more information.",
         L"About", MB_OK | MB_ICONINFORMATION);
-    //MessageBoxA( parent, ourScriptHeader, "About", MB_OK | MB_ICONINFORMATION );
 }
 
 int AGS_EditorSaveGame(char *buffer, int bufsize)

@@ -13,7 +13,7 @@ Features:
 
 ## Building
 
-The video support is theoretically optional, and may be excluded by not defining VIDEO_PLAYBACK compiler option.
+The video support is theoretically optional, and may be excluded during compilation by not defining VIDEO_PLAYBACK option.
 
 For video requires [TheoraPlayer library](https://www.cateia.com/libtheoraplayer/wiki/index.php/Main_Page) of v1.2 precisely (the latter version have a different library API). Their official source code may be found in this [github repository](https://github.com/AprilAndFriends/theoraplayer), but I may recommend using my custom branch which contains small building adjustments for better compatibility with this project: https://github.com/ivan-mogilko/theoraplayer/tree/1.2--for-agsvideo-plugin .
 
@@ -29,11 +29,13 @@ In order to direct Studio to necessary libraries and their headers setup followi
 * `THEORAPLAYER_INCLUDE` - point to "theoraplayer/include" directory inside the theoraplayer's repository.
 * `THEORAPLAYER_LIB` and `THEORAPLAYER_DEBUG_LIB` - point to "bin/Release/Win32" and "bin/Debug/Win32" respectively in theoraplayer's repository.
 
+There are two pairs of build configs: Release/Debug for a full build, and Release_NoVideo/Debug_NoVideo for a no-video build respectively.
+
 ### On Linux
 
 For Video support clone and build TheoraPlayer library; install the headers from "theoraplayer/include" and built static library files (`theoraplayer.a`, `theora.a`, `ogg.a`, `vorbis.a`), or copy these to your custom user location. The plugin's Makefile is currently written to expect these in `/usr/local`.
 
-Then `make`.
+Then `make` for a full build, or `make NO_VIDEO=1` for a no-video build.
 
 ## Credits
 
