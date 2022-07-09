@@ -52,8 +52,6 @@ OBJS := ags_sprite3d/ags_sprite3d.cpp \
 	ags_sprite3d/ogl/OGLRenderObject.cpp \
 	ags_sprite3d/glad/src/glad.c
 
-DEPFILES = $(OBJS:.o=.d)
-
 
 .PHONY: all printflags rebuild clean
 
@@ -82,4 +80,4 @@ rebuild: clean all
 
 clean:
 	@echo "Cleaning..."
-	@rm -f $(TARGET) $(OBJS)
+	@rm -f $(TARGET)
