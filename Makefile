@@ -1,33 +1,43 @@
 UNAME := $(shell uname)
 
-LIBTHEORAPLAYER_DIR=/usr/local
-LIBTHEORAPLAYER_INCDIR=$(LIBTHEORAPLAYER_DIR)/include
-LIBTHEORAPLAYER_LIBDIR=$(LIBTHEORAPLAYER_DIR)/lib
+# let user override this when running make
+NO_VIDEO = 0
+
+LIBTHEORAPLAYER_DIR = /usr/local
+LIBTHEORAPLAYER_INCDIR = $(LIBTHEORAPLAYER_DIR)/include
+LIBTHEORAPLAYER_LIBDIR = $(LIBTHEORAPLAYER_DIR)/lib
 
 INCDIR = ags_sprite3d ags_sprite3d/glad/include $(LIBTHEORAPLAYER_INCDIR)
-LIBDIR = $(LIBTHEORAPLAYER_LIBDIR)
+LIBDIR = 
+LIBS = 
 
 CC ?= gcc
 CXX ?= g++
-CFLAGS := -DVIDEO_PLAYBACK \
-	-fPIC -fvisibility=hidden -O2 -g \
+CFLAGS := -fPIC -fvisibility=hidden -O2 -g \
 	$(CFLAGS)
 CXXFLAGS := -std=c++14 -fpermissive \
 	$(CXXFLAGS)
 
 ifeq ($(UNAME), Darwin)
-TARGET = libags_sprite3d.dylib
-CFLAGS += -DMAC_VERSION
+	TARGET = libags_sprite3d.dylib
+	CFLAGS += -DMAC_VERSION
 else
-TARGET = libags_sprite3d.so
-CFLAGS += -DLINUX_VERSION
+	TARGET = libags_sprite3d.so
+	CFLAGS += -DLINUX_VERSION
+endif
+
+ifeq ($(NO_VIDEO), 0)
+	CFLAGS += -DVIDEO_PLAYBACK
+	LIBDIR += $(LIBTHEORAPLAYER_LIBDIR)
+	LIBS += -ltheoraplayer -ltheora -logg -lvorbis
+else
+	# don't include video support
 endif
 
 CFLAGS   := $(addprefix -I,$(INCDIR)) $(CFLAGS)
 CXXFLAGS := $(CFLAGS) $(CXXFLAGS)
-
 LDFLAGS = $(addprefix -L,$(LIBDIR))
-LIBS = -ltheoraplayer -ltheora -logg -lvorbis
+
 
 OBJS := ags_sprite3d/ags_sprite3d.cpp \
 	ags_sprite3d/BaseObject.cpp \
@@ -45,9 +55,7 @@ OBJS := ags_sprite3d/ags_sprite3d.cpp \
 DEPFILES = $(OBJS:.o=.d)
 
 
-
-
-.PHONY: printflags clean rebuild
+.PHONY: all printflags rebuild clean
 
 all: printflags $(TARGET)
 
@@ -64,6 +72,7 @@ $(TARGET): $(OBJS)
 	@$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 printflags:
+	@echo "NO_VIDEO =" $(NO_VIDEO) "\n"
 	@echo "CFLAGS =" $(CFLAGS) "\n"
 	@echo "CXXFLAGS =" $(CXXFLAGS) "\n"
 	@echo "LDFLAGS =" $(LDFLAGS) "\n"
