@@ -3,6 +3,7 @@
 #include <string>
 #include "Common.h"
 #include "BaseObject.h"
+#include "VideoObject.h"
 
 // Sprite3D plugin:
 // v0.9:
@@ -116,6 +117,7 @@ void AGS_EngineShutdown()
     // Dispose any resources and objects
     DBG( "Shutting down" );
 
+    VideoObject::CleanUp();
     factory.reset();
 
     CLOSE_DBG();
