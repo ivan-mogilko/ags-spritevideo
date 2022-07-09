@@ -58,6 +58,16 @@ const char *ourScriptHeader =
 "   eD3D_RelativeToScreen = 1\r\n"
 "};\r\n\r\n"
 
+// *** D3D_Sprite ***
+"managed struct D3D_Sprite\r\n"
+"{\r\n"
+
+IMPORT_D3DOBJECT_BASE
+
+// SpriteObject
+"};\r\n\r\n"
+
+#if defined (VIDEO_PLAYBACK)
 // *** D3D_Video ***
 "managed struct D3D_Video\r\n"
 "{\r\n"
@@ -73,21 +83,15 @@ IMPORT_D3DOBJECT_BASE
 "   import bool IsAutoplaying();\r\n"
 "   import void StopAutoplay();\r\n"
 "};\r\n\r\n"
-
-// *** D3D_Sprite ***
-"managed struct D3D_Sprite\r\n"
-"{\r\n"
-
-IMPORT_D3DOBJECT_BASE
-
-// SpriteObject
-"};\r\n\r\n"
+#endif // VIDEO_PLAYBACK
 
 // *** D3D ****
 "struct D3D\r\n"
 "{\r\n"
 "   import static void SetLoopsPerSecond( int loops );\r\n"
+#if defined (VIDEO_PLAYBACK)
 "   import static D3D_Video* OpenVideo( String filename );\r\n"
+#endif
 "   import static D3D_Sprite* OpenSprite( int graphic );\r\n"
 "   import static D3D_Sprite* OpenSpriteFile( String filename, D3D_Filtering filtering );\r\n"
 "	import static D3D_Sprite* OpenBackground( int frame );\r\n"

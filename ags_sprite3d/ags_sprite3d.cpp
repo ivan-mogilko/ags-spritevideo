@@ -117,7 +117,9 @@ void AGS_EngineShutdown()
     // Dispose any resources and objects
     DBG( "Shutting down" );
 
+#if defined (VIDEO_PLAYBACK)
     VideoObject::CleanUp();
+#endif
     factory.reset();
 
     CLOSE_DBG();

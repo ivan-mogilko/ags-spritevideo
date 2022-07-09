@@ -64,10 +64,9 @@ SpriteObject* D3D_OpenBackground(int frame)
     return obj;
 }
 
-class VideoObject;
+#if defined (VIDEO_PLAYBACK)
 VideoObject* D3D_OpenVideo(char const* filename)
 {
-#if defined (VIDEO_PLAYBACK)
     char buffer[MAX_PATH];
     IAGSEngine* engine = GetAGS();
     engine->GetPathToFileInCompiledFolder(filename, buffer);
@@ -80,10 +79,8 @@ VideoObject* D3D_OpenVideo(char const* filename)
     }
 
     return obj;
-#else
-    return nullptr;
-#endif
 }
+#endif
 
 
 // *** BaseObject ***
@@ -219,23 +216,6 @@ void D3DVideoObject_Autoplay(VideoObject* obj) { obj->Autoplay(); }
 int D3DVideoObject_IsAutoplaying(VideoObject* obj) { return obj->IsAutoplaying(); }
 void D3DVideoObject_StopAutoplay(VideoObject* obj) { obj->StopAutoplay(); }
 
-#else
-
-void D3DVideoObject_SetLooping(VideoObject* obj, bool loop) { /* do nothing */ }
-int D3DVideoObject_GetLooping(VideoObject* obj) { return 0; }
-
-void D3DVideoObject_SetFPS(VideoObject* obj, SCRIPT_FLOAT(fps)) {
-    /* do nothing */
-}
-FLOAT_RETURN_TYPE D3DVideoObject_GetFPS(VideoObject* obj) {
-    return 0;
-}
-
-int D3DVideoObject_NextFrame(VideoObject* obj) { return 0; }
-void D3DVideoObject_Autoplay(VideoObject* obj) { /* do nothing */ }
-int D3DVideoObject_IsAutoplaying(VideoObject* obj) { return 0; }
-void D3DVideoObject_StopAutoplay(VideoObject* obj) { /* do nothing */ }
-
 #endif
 
 
@@ -314,10 +294,16 @@ void RegisterScriptAPI()
 
     // D3D
     engine->RegisterScriptFunction("D3D::SetLoopsPerSecond", D3D_SetGameSpeed);
-    engine->RegisterScriptFunction("D3D::OpenVideo", D3D_OpenVideo);
     engine->RegisterScriptFunction("D3D::OpenSprite", D3D_OpenSprite);
     engine->RegisterScriptFunction("D3D::OpenSpriteFile", D3D_OpenSpriteFile);
     engine->RegisterScriptFunction("D3D::OpenBackground", D3D_OpenBackground);
+
+    // D3DSprite
+    REG_D3DOBJECT_BASE("D3D_Sprite");
+
+#if defined (VIDEO_PLAYBACK)
+    // D3D
+    engine->RegisterScriptFunction("D3D::OpenVideo", D3D_OpenVideo);
 
     // D3DVideo
     REG_D3DOBJECT_BASE("D3D_Video");
@@ -330,9 +316,7 @@ void RegisterScriptAPI()
     REG("D3D_Video::Autoplay^0", D3DVideoObject_Autoplay);
     REG("D3D_Video::IsAutoplaying^0", D3DVideoObject_IsAutoplaying);
     REG("D3D_Video::StopAutoplay^0", D3DVideoObject_StopAutoplay);
-
-    // D3DSprite
-    REG_D3DOBJECT_BASE("D3D_Sprite");
+#endif // VIDEO_PLAYBACK
 
     REG("testCall", testCall);
 }
