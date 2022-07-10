@@ -9,7 +9,7 @@ LIBTHEORAPLAYER_LIBDIR = $(LIBTHEORAPLAYER_DIR)/lib
 
 INCDIR = ags_sprite3d ags_sprite3d/glad/include $(LIBTHEORAPLAYER_INCDIR)
 LIBDIR = 
-LIBS = 
+LIBS = -lpng
 
 CC ?= gcc
 CXX ?= g++
@@ -43,6 +43,7 @@ OBJS := ags_sprite3d/ags_sprite3d.cpp \
 	ags_sprite3d/BaseObject.cpp \
 	ags_sprite3d/Common.cpp \
 	ags_sprite3d/EditorPlugin.cpp \
+	ags_sprite3d/ImageHelper.cpp \
 	ags_sprite3d/MathHelper.cpp \
 	ags_sprite3d/ScriptAPI.cpp \
 	ags_sprite3d/SpriteObject.cpp \

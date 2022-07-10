@@ -1,6 +1,7 @@
 #include <list>
 #include "Common.h"
 #include "SpriteObject.h"
+#include "StringHelper.h"
 #include "VideoObject.h"
 
 // AGS:n float-tyypin muunnokset
