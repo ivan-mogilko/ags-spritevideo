@@ -1,11 +1,13 @@
 #if defined (WINDOWS_VERSION)
 
 #include "D3D9RenderObject.h"
+#include <vector>
 #include <d3dx9.h>
 #include "Common.h"
 #include "BaseObject.h"
 #include "D3DHelper.h"
 #include "D3D9Factory.h"
+#include "ImageHelper.h"
 
 
 D3D9RenderObject::~D3D9RenderObject()
@@ -57,40 +59,21 @@ void D3D9RenderObject::CreateTexture(int sprite_id, int bkg_num, const char *fil
     }
     else if (file)
     {
-        D3DXIMAGE_INFO info;
-
-        // TODO: Tutki paddingia POT:ksi http://subversion.assembla.com/svn/AvP/trunk/xbox/src/d3_func.cpp
-        if (FAILED(D3DXCreateTextureFromFileExA(GetD3D(),
-            file,
-            D3DX_DEFAULT_NONPOW2,
-            D3DX_DEFAULT_NONPOW2,
-            1,
-            0,
-            D3DFMT_UNKNOWN,
-            D3DPOOL_MANAGED,
-            D3DX_DEFAULT,
-            D3DX_DEFAULT,
-            0,
-            &info,
-            NULL,
-            &myTexture)))
+        ImageInfo info;
+        std::vector<unsigned char> data;
+        if (LoadImage(file, data, info))
         {
-            DBG("Texture creation failed");
-        }
-        else
-        {
-            DBG("OK");
-
-            // Image size and alpha
             myWidth = info.Width;
             myHeight = info.Height;
-            myHasAlpha = info.Format == D3DFMT_A8R8G8B8;
+            myTexWidth = myWidth;
+            myTexHeight = myHeight;
+            myHasAlpha = info.HasAlpha;
+            myTexture = ::CreateTexture(&data[0], info.Width, info.Height, info.HasAlpha);
+        }
 
-            // Texture size
-            D3DSURFACE_DESC desc;
-            myTexture->GetLevelDesc(0, &desc);
-            myTexWidth = desc.Width;
-            myTexHeight = desc.Height;
+        if (!myTexture)
+        {
+            DBGF("Could not create texture from file %s", file);
         }
     }
 }

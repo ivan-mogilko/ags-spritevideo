@@ -3,6 +3,7 @@
 #include <string>
 #include "Common.h"
 #include "BaseObject.h"
+#include "StringHelper.h"
 #include "VideoObject.h"
 
 // Sprite3D plugin:

@@ -20,16 +20,8 @@ unsigned CreateTexture(unsigned char const* data, int width, int height, bool al
 
 bool SetTextureData(unsigned texture, unsigned char const* data, int width, int height)
 {
-    int bpp = 4; // TODO: get from elsewhere?
-    std::vector<unsigned char> input(width * height * bpp);
-    int pitch = width * bpp;
-    for (int y = 0; y < height; ++y)
-    {
-        memcpy(&input[0] + pitch * y, data + pitch * y, pitch);
-    }
-
     glBindTexture(GL_TEXTURE_2D, texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, &input[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_BGRA, GL_UNSIGNED_BYTE, data);
     glBindTexture(GL_TEXTURE_2D, 0);
     return true;
 }

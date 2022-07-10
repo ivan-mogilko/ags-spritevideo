@@ -1,7 +1,9 @@
 #include "OGLRenderObject.h"
+#include <vector>
 #include <glad/glad.h>
 #include "Common.h"
 #include "BaseObject.h"
+#include "ImageHelper.h"
 
 
 OGLCUSTOMVERTEX OGLRenderObject::defaultVertices[4]{};
@@ -139,7 +141,22 @@ void OGLRenderObject::CreateTexture(int sprite_id, int bkg_num, const char *file
     }
     else if (file)
     {
-        DBG("Texture creation from file is not supported by OGL factory");
+        ImageInfo info;
+        std::vector<unsigned char> data;
+        if (LoadImage(file, data, info))
+        {
+            myWidth = info.Width;
+            myHeight = info.Height;
+            myTexWidth = myWidth;
+            myTexHeight = myHeight;
+            myHasAlpha = info.HasAlpha;
+            myTexture = ::CreateTexture(&data[0], info.Width, info.Height, info.HasAlpha);
+        }
+
+        if (!myTexture)
+        {
+            DBGF("Could not create texture from file %s", file);
+        }
     }
 }
 

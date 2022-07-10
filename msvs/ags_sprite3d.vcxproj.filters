@@ -41,6 +41,7 @@
     <ClCompile Include="..\ags_sprite3d\EditorPlugin.cpp" />
     <ClCompile Include="..\ags_sprite3d\ScriptAPI.cpp" />
     <ClCompile Include="..\ags_sprite3d\VideoObject.cpp" />
+    <ClCompile Include="..\ags_sprite3d\ImageHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h">
@@ -72,5 +73,8 @@
     </ClInclude>
     <ClInclude Include="..\ags_sprite3d\MathHelper.h" />
     <ClInclude Include="..\ags_sprite3d\VideoObject.h" />
+    <ClInclude Include="..\ags_sprite3d\resource.h" />
+    <ClInclude Include="..\ags_sprite3d\StringHelper.h" />
+    <ClInclude Include="..\ags_sprite3d\ImageHelper.h" />
   </ItemGroup>
 </Project>
