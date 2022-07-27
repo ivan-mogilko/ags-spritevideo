@@ -26,13 +26,12 @@ varying vec2 v_TexCoord;
 void main() {
   v_TexCoord = a_TexCoord;
   gl_Position = uMVPMatrix * vec4(a_Position.xy, 0.0, 1.0);
-  // gl_Position = vec4(a_Position.xy, 0.0, 1.0);
 }
 
 )EOS";
 
 
-static const auto transparency_fragment_shader_src = ""
+static const auto default_fragment_shader_src = ""
 #if AGS_OPENGL_ES2
 "#version 100 \n"
 "precision mediump float; \n"
@@ -41,25 +40,24 @@ static const auto transparency_fragment_shader_src = ""
 #endif
 R"EOS(
 uniform sampler2D textID;
-uniform float alpha;
+uniform vec4 rgba;
 
 varying vec2 v_TexCoord;
 
-void main()
-{
+void main() {
   vec4 src_col = texture2D(textID, v_TexCoord);
-  gl_FragColor = vec4(src_col.xyz, src_col.w * alpha);
-  // gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+  gl_FragColor = vec4(src_col.x * rgba.x, src_col.y * rgba.y,
+                      src_col.z * rgba.z, src_col.w * rgba.w);
 }
 )EOS";
 
 
 bool CreateDefaultShader(ShaderProgram &prg)
 {
-    if (!CreateShaderProgram(prg, "Default", default_vertex_shader_src, transparency_fragment_shader_src)) return false;
+    if (!CreateShaderProgram(prg, "Default", default_vertex_shader_src, default_fragment_shader_src)) return false;
     prg.MVPMatrix = glGetUniformLocation(prg.Program, "uMVPMatrix");
     prg.TextureId = glGetUniformLocation(prg.Program, "textID");
-    prg.Alpha = glGetUniformLocation(prg.Program, "alpha");
+    prg.Color = glGetUniformLocation(prg.Program, "rgba");
     return true;
 }
 
@@ -239,7 +237,7 @@ void OGLRenderObject::Render(const Point &pos, const PointF &scaling, float rota
     const ShaderProgram &program = defaultProgram;
     glUseProgram(program.Program);
     glUniform1i(program.TextureId, 0);
-    glUniform1f(program.Alpha, rgba.a);
+    glUniform4f(program.Color, rgba.r, rgba.g, rgba.b, rgba.a);
     glUniformMatrix4fv(program.MVPMatrix, 1, GL_FALSE, world.marr);
 
     glActiveTexture(GL_TEXTURE0);

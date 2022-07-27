@@ -22,7 +22,7 @@ struct ShaderProgram
 
     GLuint MVPMatrix = 0;
     GLuint TextureId = 0;
-    GLuint Alpha = 0;
+    GLuint Color = 0;
 };
 
 unsigned CreateTexture(unsigned char const* data, int width, int height, bool alpha = false);
