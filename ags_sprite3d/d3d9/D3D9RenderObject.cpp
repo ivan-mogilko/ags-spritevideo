@@ -186,13 +186,13 @@ void D3D9RenderObject::Render(const Point &pos, const PointF &scaling, float rot
     DWORD oldFVF;
     device->GetFVF(&oldFVF);
 
-    if (filter == BaseObject::FILTER_LINEAR) // FIXME declare elsewhere
+    if (filter == BaseObject::FILTER_LINEAR)
     {
         // Linear texture filtering
         device->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_LINEAR);
         device->SetSamplerState(0, D3DSAMP_MAGFILTER, D3DTEXF_LINEAR);
     }
-    else if (filter == BaseObject::FILTER_NEAREST) // FIXME declare elsewhere
+    else if (filter == BaseObject::FILTER_NEAREST)
     {
         // Nearest neighbor filtering
         device->SetSamplerState(0, D3DSAMP_MINFILTER, D3DTEXF_POINT);

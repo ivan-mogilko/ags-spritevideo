@@ -245,13 +245,13 @@ void OGLRenderObject::Render(const Point &pos, const PointF &scaling, float rota
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, myTexture);
 
-    if (filter == BaseObject::FILTER_LINEAR) // FIXME declare elsewhere
+    if (filter == BaseObject::FILTER_LINEAR)
     {
         // Linear texture filtering
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     }
-    else if (filter == BaseObject::FILTER_NEAREST) // FIXME declare elsewhere
+    else if (filter == BaseObject::FILTER_NEAREST)
     {
         // Nearest neighbor filtering
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);

@@ -10,6 +10,7 @@
 class BaseObject
 {
 public:
+    // TODO: declare filtering elsewhere, as a texture render option?
     enum Filtering
     {
         FILTER_NEAREST      = 0,
