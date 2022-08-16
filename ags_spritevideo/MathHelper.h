@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_MATHHELPER_H
-#define SPRITE3D_MATHHELPER_H
+#ifndef SPRITEVIDEO_MATHHELPER_H
+#define SPRITEVIDEO_MATHHELPER_H
 
 float const RADS_PER_DEGREE = 3.14159265f / 180.f;
 
@@ -60,4 +60,4 @@ void SetMatrixRotation(Matrix* matrix, float radians);
 void MatrixMulD3D(Matrix* result, const Matrix* ma, const Matrix* mb);
 void MatrixMulOGL(Matrix* result, const Matrix* ma, const Matrix* mb);
 
-#endif // SPRITE3D_MATHHELPER_H
+#endif // SPRITEVIDEO_MATHHELPER_H

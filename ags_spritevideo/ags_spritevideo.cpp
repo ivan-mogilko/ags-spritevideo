@@ -6,7 +6,7 @@
 #include "StringHelper.h"
 #include "VideoObject.h"
 
-// Sprite3D plugin:
+// SpriteVideo plugin:
 // v0.9:
 // - OpenGL render support
 // - Linux build support

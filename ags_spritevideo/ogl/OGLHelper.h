@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_OGLHELPER_H
-#define SPRITE3D_OGLHELPER_H
+#ifndef SPRITEVIDEO_OGLHELPER_H
+#define SPRITEVIDEO_OGLHELPER_H
 
 #include <glad/glad.h>
 
@@ -32,4 +32,4 @@ bool SetTextureData(unsigned texture, unsigned char const* const* data, int widt
 bool CreateShaderProgram(ShaderProgram &prg, const char *name, const char *vertex_shader_src, const char *fragment_shader_src);
 void DeleteShaderProgram(ShaderProgram &prg);
 
-#endif // SPRITE3D_OGLHELPER_H
+#endif // SPRITEVIDEO_OGLHELPER_H

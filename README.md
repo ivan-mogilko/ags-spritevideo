@@ -1,13 +1,13 @@
-# ags_sprite3d
+# ags_spritevideo
 
-**ags_sprite3d** is a runtime plugin for the [Adventure Game Studio](https://github.com/adventuregamestudio/ags) engine.
+**ags_spritevideo** is a runtime plugin for the [Adventure Game Studio](https://github.com/adventuregamestudio/ags) engine. It's meant for freely displaying sprites on screen without actual AGS objects, and playing non-blocking videos, including multiple simultaneous videos.
 
 This plugin is based on the older ["Direct3D"](https://bitbucket.org/AJA/ags-direct3d-plugin/) plugin by Aki Ahonen (aka AJA).
 
 Features:
-* Create textures from the game sprites and display them on screen using 3D transformations from the supported list.
+* Create textures from the game sprites and display them on screen using certain transformations from the supported list.
 * Play Theora video files in a non-blocking manner on a texture.
-* Works with Direct3D and OpenGL renderers (where the engine can run these).
+* Hardware accelerated: works with Direct3D and OpenGL renderers (where the engine can run these).
 * Builds on Windows and Linux (potentially - OSX and Android, but more work is required to configure the project for these).
 
 

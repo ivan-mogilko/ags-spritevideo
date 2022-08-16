@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ags_D3D</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
-    <ProjectName>ags_sprite3d</ProjectName>
+    <ProjectName>ags_spritevideo</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -120,7 +120,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;VIDEO_PLAYBACK;THEORAVIDEO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_sprite3d;..\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,7 +137,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_sprite3d;..\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,7 +156,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;VIDEO_PLAYBACK;THEORAVIDEO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_sprite3d;..\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -179,7 +179,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_sprite3d;..\ags_sprite3d\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -193,42 +193,42 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\ags_sprite3d\ags_sprite3d.cpp" />
-    <ClCompile Include="..\ags_sprite3d\BaseObject.cpp" />
-    <ClCompile Include="..\ags_sprite3d\Common.cpp" />
-    <ClCompile Include="..\ags_sprite3d\d3d9\D3D9Factory.cpp" />
-    <ClCompile Include="..\ags_sprite3d\d3d9\D3D9RenderObject.cpp" />
-    <ClCompile Include="..\ags_sprite3d\d3d9\D3DHelper.cpp" />
-    <ClCompile Include="..\ags_sprite3d\EditorPlugin.cpp" />
-    <ClCompile Include="..\ags_sprite3d\glad\src\glad.c" />
-    <ClCompile Include="..\ags_sprite3d\ImageHelper.cpp" />
-    <ClCompile Include="..\ags_sprite3d\MathHelper.cpp" />
-    <ClCompile Include="..\ags_sprite3d\ogl\OGLFactory.cpp" />
-    <ClCompile Include="..\ags_sprite3d\ogl\OGLHelper.cpp" />
-    <ClCompile Include="..\ags_sprite3d\ogl\OGLRenderObject.cpp" />
-    <ClCompile Include="..\ags_sprite3d\ScriptAPI.cpp" />
-    <ClCompile Include="..\ags_sprite3d\SpriteObject.cpp" />
-    <ClCompile Include="..\ags_sprite3d\VideoObject.cpp" />
+    <ClCompile Include="..\ags_spritevideo\ags_spritevideo.cpp" />
+    <ClCompile Include="..\ags_spritevideo\BaseObject.cpp" />
+    <ClCompile Include="..\ags_spritevideo\Common.cpp" />
+    <ClCompile Include="..\ags_spritevideo\d3d9\D3D9Factory.cpp" />
+    <ClCompile Include="..\ags_spritevideo\d3d9\D3D9RenderObject.cpp" />
+    <ClCompile Include="..\ags_spritevideo\d3d9\D3DHelper.cpp" />
+    <ClCompile Include="..\ags_spritevideo\EditorPlugin.cpp" />
+    <ClCompile Include="..\ags_spritevideo\glad\src\glad.c" />
+    <ClCompile Include="..\ags_spritevideo\ImageHelper.cpp" />
+    <ClCompile Include="..\ags_spritevideo\MathHelper.cpp" />
+    <ClCompile Include="..\ags_spritevideo\ogl\OGLFactory.cpp" />
+    <ClCompile Include="..\ags_spritevideo\ogl\OGLHelper.cpp" />
+    <ClCompile Include="..\ags_spritevideo\ogl\OGLRenderObject.cpp" />
+    <ClCompile Include="..\ags_spritevideo\ScriptAPI.cpp" />
+    <ClCompile Include="..\ags_spritevideo\SpriteObject.cpp" />
+    <ClCompile Include="..\ags_spritevideo\VideoObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ags_sprite3d\agsplugin.h" />
-    <ClInclude Include="..\ags_sprite3d\BaseObject.h" />
-    <ClInclude Include="..\ags_sprite3d\Common.h" />
-    <ClInclude Include="..\ags_sprite3d\d3d9\D3D9Factory.h" />
-    <ClInclude Include="..\ags_sprite3d\d3d9\D3D9RenderObject.h" />
-    <ClInclude Include="..\ags_sprite3d\d3d9\D3DHelper.h" />
-    <ClInclude Include="..\ags_sprite3d\glad\include\glad\glad.h" />
-    <ClInclude Include="..\ags_sprite3d\ImageHelper.h" />
-    <ClInclude Include="..\ags_sprite3d\MathHelper.h" />
-    <ClInclude Include="..\ags_sprite3d\ogl\OGLFactory.h" />
-    <ClInclude Include="..\ags_sprite3d\ogl\OGLHelper.h" />
-    <ClInclude Include="..\ags_sprite3d\ogl\OGLRenderObject.h" />
-    <ClInclude Include="..\ags_sprite3d\RenderFactory.h" />
-    <ClInclude Include="..\ags_sprite3d\RenderObject.h" />
-    <ClInclude Include="..\ags_sprite3d\resource.h" />
-    <ClInclude Include="..\ags_sprite3d\SpriteObject.h" />
-    <ClInclude Include="..\ags_sprite3d\StringHelper.h" />
-    <ClInclude Include="..\ags_sprite3d\VideoObject.h" />
+    <ClInclude Include="..\ags_spritevideo\agsplugin.h" />
+    <ClInclude Include="..\ags_spritevideo\BaseObject.h" />
+    <ClInclude Include="..\ags_spritevideo\Common.h" />
+    <ClInclude Include="..\ags_spritevideo\d3d9\D3D9Factory.h" />
+    <ClInclude Include="..\ags_spritevideo\d3d9\D3D9RenderObject.h" />
+    <ClInclude Include="..\ags_spritevideo\d3d9\D3DHelper.h" />
+    <ClInclude Include="..\ags_spritevideo\glad\include\glad\glad.h" />
+    <ClInclude Include="..\ags_spritevideo\ImageHelper.h" />
+    <ClInclude Include="..\ags_spritevideo\MathHelper.h" />
+    <ClInclude Include="..\ags_spritevideo\ogl\OGLFactory.h" />
+    <ClInclude Include="..\ags_spritevideo\ogl\OGLHelper.h" />
+    <ClInclude Include="..\ags_spritevideo\ogl\OGLRenderObject.h" />
+    <ClInclude Include="..\ags_spritevideo\RenderFactory.h" />
+    <ClInclude Include="..\ags_spritevideo\RenderObject.h" />
+    <ClInclude Include="..\ags_spritevideo\resource.h" />
+    <ClInclude Include="..\ags_spritevideo\SpriteObject.h" />
+    <ClInclude Include="..\ags_spritevideo\StringHelper.h" />
+    <ClInclude Include="..\ags_spritevideo\VideoObject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

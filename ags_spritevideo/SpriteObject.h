@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_SPRITEOBJECT_H
-#define SPRITE3D_SPRITEOBJECT_H
+#ifndef SPRITEVIDEO_SPRITEOBJECT_H
+#define SPRITEVIDEO_SPRITEOBJECT_H
 
 #include <string>
 #include "BaseObject.h"
@@ -51,4 +51,4 @@ public:
     virtual void Unserialize( int key, char const* buffer, int size );
 };
 
-#endif // SPRITE3D_SPRITEOBJECT_H
+#endif // SPRITEVIDEO_SPRITEOBJECT_H

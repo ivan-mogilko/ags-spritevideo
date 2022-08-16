@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_STRINGHELPER_H
-#define SPRITE3D_STRINGHELPER_H
+#ifndef SPRITEVIDEO_STRINGHELPER_H
+#define SPRITEVIDEO_STRINGHELPER_H
 
 #include <cstring>
 #if !defined (WINDOWS_VERSION)
@@ -16,4 +16,4 @@ inline int stricmp(const char* a, const char* b) { return strcasecmp(a, b); }
 
 inline const char* GetExt(const char* filename) { return strrchr(filename, '.'); }
 
-#endif // SPRITE3D_STRINGHELPER_H
+#endif // SPRITEVIDEO_STRINGHELPER_H

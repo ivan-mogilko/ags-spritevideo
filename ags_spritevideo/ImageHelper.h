@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_IMAGEHELPER_H
-#define SPRITE3D_IMAGEHELPER_H
+#ifndef SPRITEVIDEO_IMAGEHELPER_H
+#define SPRITEVIDEO_IMAGEHELPER_H
 
 #include <vector>
 
@@ -14,4 +14,4 @@ struct ImageInfo
 bool LoadImage(const char* file, std::vector<unsigned char> &data, ImageInfo &info);
 
 
-#endif // SPRITE3D_IMAGEHELPER_H
+#endif // SPRITEVIDEO_IMAGEHELPER_H

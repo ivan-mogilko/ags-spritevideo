@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_COMMON_H
-#define SPRITE3D_COMMON_H
+#ifndef SPRITEVIDEO_COMMON_H
+#define SPRITEVIDEO_COMMON_H
 
 #if defined (WINDOWS_VERSION)
 // TODO: reduce number of inclusions of windows.h
@@ -114,4 +114,4 @@ Screen const* GetScreen();
 RenderFactory* CreateFactory(const char* driverid);
 RenderFactory* GetFactory();
 
-#endif // SPRITE3D_COMMON_H
+#endif // SPRITEVIDEO_COMMON_H

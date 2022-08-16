@@ -1,15 +1,17 @@
-#ifndef SPRITE3D_OGLRENDEROBJECT_H
-#define SPRITE3D_OGLRENDEROBJECT_H
+#ifndef SPRITEVIDEO_D3D9RENDEROBJECT_H
+#define SPRITEVIDEO_D3D9RENDEROBJECT_H
 
-#include "RenderObject.h"
+#if defined (WINDOWS_VERSION)
+
+#include <d3d9.h>
 #include "MathHelper.h"
-#include "OGLHelper.h"
+#include "RenderObject.h"
 
-class OGLRenderObject : public RenderObject
+class D3D9RenderObject : public RenderObject
 {
 public:
-    OGLRenderObject() = default;
-    ~OGLRenderObject() override;
+    D3D9RenderObject() = default;
+    ~D3D9RenderObject() override;
 
     void CreateTexture(int sprite_id, int bkg_num, const char *file) override;
     void CreateTexture(const unsigned char* data, int width, int height, int bpp) override;
@@ -20,18 +22,15 @@ public:
     int GetTexHeight() override { return myTexHeight; }
     bool GetHasAlpha() override { return myHasAlpha; }
 
-    static bool CreateStaticData();
-
 private:
-    unsigned myTexture = 0u;
+    IDirect3DTexture9* myTexture = nullptr;
     int myWidth = 0;
     int myHeight = 0;
     int myTexWidth = 0;
     int myTexHeight = 0;
     bool myHasAlpha = false;
-
-    static OGLCUSTOMVERTEX defaultVertices[4];
-    static ShaderProgram defaultProgram;
 };
 
-#endif // SPRITE3D_OGLRENDEROBJECT_H
+#endif // WINDOWS_VERSION
+
+#endif // SPRITEVIDEO_D3D9RENDEROBJECT_H

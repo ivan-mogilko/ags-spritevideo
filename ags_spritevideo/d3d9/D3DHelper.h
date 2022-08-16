@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_D3DHELPER_H
-#define SPRITE3D_D3DHELPER_H
+#ifndef SPRITEVIDEO_D3DHELPER_H
+#define SPRITEVIDEO_D3DHELPER_H
 
 #if defined (WINDOWS_VERSION)
 
@@ -33,4 +33,4 @@ bool SetTextureData( IDirect3DTexture9* texture, unsigned char const* const* dat
 
 #endif // WINDOWS_VERSION
 
-#endif // SPRITE3D_D3DHELPER_H
+#endif // SPRITEVIDEO_D3DHELPER_H

@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_BASEOBJECT_H
-#define SPRITE3D_BASEOBJECT_H
+#ifndef SPRITEVIDEO_BASEOBJECT_H
+#define SPRITEVIDEO_BASEOBJECT_H
 
 #include <list>
 #include <memory>
@@ -116,4 +116,4 @@ protected:
     static std::list< BaseObject* > ourStartQueue;
 };
 
-#endif // SPRITE3D_BASEOBJECT_H
+#endif // SPRITEVIDEO_BASEOBJECT_H

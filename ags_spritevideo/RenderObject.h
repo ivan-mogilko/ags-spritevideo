@@ -1,5 +1,5 @@
-#ifndef SPRITE3D_RENDEROBJECT_H
-#define SPRITE3D_RENDEROBJECT_H
+#ifndef SPRITEVIDEO_RENDEROBJECT_H
+#define SPRITEVIDEO_RENDEROBJECT_H
 
 #include "MathHelper.h"
 
@@ -17,4 +17,4 @@ public:
     virtual bool GetHasAlpha() = 0;
 };
 
-#endif // SPRITE3D_RENDEROBJECT_H
+#endif // SPRITEVIDEO_RENDEROBJECT_H

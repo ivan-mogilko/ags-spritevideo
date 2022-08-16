@@ -1,9 +1,12 @@
-#ifndef SPRITE3D_OGLFACTORY_H
-#define SPRITE3D_OGLFACTORY_H
+#ifndef SPRITEVIDEO_D3D9FACTORY_H
+#define SPRITEVIDEO_D3D9FACTORY_H
 
+#if defined (WINDOWS_VERSION)
+
+#include <d3d9.h>
 #include "RenderFactory.h"
 
-class OGLFactory : public RenderFactory
+class D3D9Factory : public RenderFactory
 {
 public:
     void InitGfxDevice(void* data) override;
@@ -12,4 +15,8 @@ public:
     std::unique_ptr<RenderObject> CreateRenderObject() override;
 };
 
-#endif // SPRITE3D_OGLFACTORY_H
+IDirect3DDevice9* GetD3D();
+
+#endif // #if defined (WINDOWS_VERSION)
+
+#endif // SPRITEVIDEO_D3D9FACTORY_H
