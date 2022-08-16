@@ -22,7 +22,7 @@ For video requires [TheoraPlayer library](https://www.cateia.com/libtheoraplayer
 
 ### On Windows
 
-On Windows use MSVS solutions found in ["msvs" dir](https://github.com/ivan-mogilko/ags-sprite3d/tree/master/msvs).
+On Windows use MSVS solutions found in ["msvs" dir](https://github.com/ivan-mogilko/ags-spritevideo/tree/master/msvs).
 
 For Direct3D renderer support you need a legacy DirectX SDK, which may be downloaded here: https://www.microsoft.com/en-us/download/details.aspx?id=6812
 
