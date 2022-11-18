@@ -102,7 +102,7 @@ IMPORT_D3DOBJECT_BASE
 LPCSTR AGS_GetPluginName()
 {
     // Return the plugin description
-    return "Direct3D Plugin";
+    return "SpriteVideo Plugin";
 }
 
 int AGS_EditorStartup(IAGSEditor *lpEditor)
