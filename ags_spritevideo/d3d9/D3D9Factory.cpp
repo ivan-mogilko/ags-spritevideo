@@ -23,7 +23,8 @@ void D3D9Factory::InitGfxDevice(void* data)
 bool D3D9Factory::InitGfxMode(Screen* screen, void* data)
 {
     D3DPRESENT_PARAMETERS* params = (D3DPRESENT_PARAMETERS*)data;
-    if (params->BackBufferFormat != D3DFMT_X8R8G8B8)
+    if (params->BackBufferFormat != D3DFMT_X8R8G8B8 &&
+        params->BackBufferFormat != D3DFMT_A8R8G8B8)
     {
         GetAGS()->AbortGame("32bit colour mode required.");
         return false;
