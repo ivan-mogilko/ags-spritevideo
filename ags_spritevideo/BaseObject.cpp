@@ -46,6 +46,14 @@ void BaseObject::RenderAll( RenderStage stage )
     }
 }
 
+void BaseObject::PostRestoreAll()
+{
+    for ( auto i = ourObjects.begin(); i != ourObjects.end(); ++i )
+    {
+        (*i)->PostUnserialize();
+    }
+}
+
 BaseObject::BaseObject()
 {
     DBG( "BaseObject created" );
@@ -191,6 +199,10 @@ float BaseObject::GetAlpha() const
 void BaseObject::SetParent( BaseObject* parent )
 {
 	myParent = parent;
+    if (myParent)
+        myParentKey = GetAGS()->GetManagedObjectKeyByAddress((const char*)myParent);
+    else
+        myParentKey = 0;
 }
 
 BaseObject* BaseObject::GetParent() const
@@ -283,8 +295,7 @@ int BaseObject::Serialize( char* buffer, int bufsize )
 	SERIALIZE( myTintB );
 	SERIALIZE( myAlpha );
 
-	int parentKey = GetAGS()->GetManagedObjectKeyByAddress( (char*)myParent );
-	SERIALIZE( parentKey );
+	SERIALIZE( myParentKey );
 	
 	SERIALIZE( myWidth );
 	SERIALIZE( myHeight );
@@ -317,14 +328,18 @@ int BaseObject::Unserialize( char const* buffer, int size )
 	UNSERIALIZE( myTintB );
 	UNSERIALIZE( myAlpha );
 
-	int parentKey;
-	UNSERIALIZE( parentKey );
-	myParent = (BaseObject*)GetAGS()->GetManagedObjectAddressByKey( parentKey );
+	UNSERIALIZE( myParentKey );
 	
 	UNSERIALIZE( myWidth );
 	UNSERIALIZE( myHeight );
 
     return buffer - bufStart;
+}
+
+void BaseObject::PostUnserialize()
+{
+    if (myParentKey > 0)
+        myParent = (BaseObject*)GetAGS()->GetManagedObjectAddressByKey( myParentKey );
 }
 
 void BaseObject::RenderSelf()

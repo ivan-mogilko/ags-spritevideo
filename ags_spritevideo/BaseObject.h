@@ -33,6 +33,7 @@ public:
 
     static void UpdateAll();
     static void RenderAll( RenderStage stage );
+    static void PostRestoreAll();
 
     BaseObject();
     virtual ~BaseObject();
@@ -80,6 +81,8 @@ public:
     virtual void Render() = 0;
     virtual int Serialize( char* buffer, int bufsize );
     virtual int Unserialize( char const* buffer, int size );
+    // Resolve the object after the plugin unserialization is complete
+    virtual void PostUnserialize();
 
 protected:
 	void HandleParenting( Point* outPosition, float* outRotation, PointF* outScaling, PointF* outAnchor,
@@ -106,6 +109,7 @@ protected:
 	float myTintB = 1.f;
 	float myAlpha = 1.f;
     BaseObject* myParent = nullptr;
+    int myParentKey = 0; // the handle of the Parent object
 
 	int myWidth = 0;
 	int myHeight = 0;

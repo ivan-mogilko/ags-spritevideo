@@ -88,6 +88,7 @@ void AGS_EngineStartup( IAGSEngine *lpEngine )
 
     engine->RequestEventHook( AGSE_SAVEGAME );
     engine->RequestEventHook( AGSE_RESTOREGAME );
+    engine->RequestEventHook( AGSE_POSTRESTOREGAME );
     engine->RequestEventHook( AGSE_PRERENDER );
     engine->RequestEventHook( AGSE_PRESCREENDRAW );
     engine->RequestEventHook( AGSE_PREGUIDRAW );
@@ -144,6 +145,11 @@ void Restore( int handle )
     DBGF( "RESTORE gameSpeed: %d", screen.gameSpeed );
 }
 
+void PostRestore()
+{
+    BaseObject::PostRestoreAll();
+}
+
 void Render( BaseObject::RenderStage stage )
 {
     engine->GetScreenDimensions(&screen.width, &screen.height, &screen.bpp);
@@ -181,6 +187,10 @@ int AGS_EngineOnEvent( int ev, int data )
     else if ( ev == AGSE_RESTOREGAME )
     {
         Restore( data );
+    }
+    else if ( ev == AGSE_POSTRESTOREGAME )
+    {
+        PostRestore();
     }
     else if ( ev == AGSE_PRERENDER )
     {
