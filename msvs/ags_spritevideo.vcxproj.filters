@@ -10,6 +10,24 @@
     <Filter Include="glad">
       <UniqueIdentifier>{9e62af41-107e-405c-b516-7a9f4efa9010}</UniqueIdentifier>
     </Filter>
+    <Filter Include="theoraplayer">
+      <UniqueIdentifier>{cdea6b63-1616-41a6-a36c-3d42fc333fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="theoraplayer\YUV">
+      <UniqueIdentifier>{b17a6d98-3627-4844-9a2a-9e5ef7076e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="theoraplayer\Theora">
+      <UniqueIdentifier>{ae5f94ed-71fb-44b7-86f1-05c7e5e34c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="theoraplayer\YUV\C">
+      <UniqueIdentifier>{b68e7de1-8e23-4867-b693-5a69f457be32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="theoraplayer\YUV\libyuv">
+      <UniqueIdentifier>{45fe68fa-4527-403b-b424-7739e0654f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="theoraplayer\YUV\libyuv\src">
+      <UniqueIdentifier>{3148510c-3e12-48ce-9d36-e66b9b8fcb07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ags_spritevideo\d3d9\D3D9Factory.cpp">
@@ -42,6 +60,189 @@
     <ClCompile Include="..\ags_spritevideo\ScriptAPI.cpp" />
     <ClCompile Include="..\ags_spritevideo\VideoObject.cpp" />
     <ClCompile Include="..\ags_spritevideo\ImageHelper.cpp" />
+    <ClCompile Include="..\theoraplayer\src\TheoraAsync.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraAudioInterface.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraAudioPacketQueue.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraDataSource.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraException.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraFrameQueue.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraTimer.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraUtil.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraVideoClip.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraVideoFrame.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraVideoManager.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\TheoraWorkerThread.cpp">
+      <Filter>theoraplayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\yuv_util.c">
+      <Filter>theoraplayer\YUV</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\C\yuv420_grey_c.c">
+      <Filter>theoraplayer\YUV\C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\C\yuv420_rgb_c.c">
+      <Filter>theoraplayer\YUV\C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\C\yuv420_yuv_c.c">
+      <Filter>theoraplayer\YUV\C</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\yuv_libyuv.c">
+      <Filter>theoraplayer\YUV\libyuv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_common.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_gcc.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_neon.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_neon64.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_posix.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_win.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_argb.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_from.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_from_argb.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_jpeg.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_to_argb.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_to_i420.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\cpu_id.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\mjpeg_decoder.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\mjpeg_validate.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\planar_functions.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_argb.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_mips.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_neon.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_neon64.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_any.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_common.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_gcc.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_mips.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_neon.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_neon64.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_posix.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_win.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_any.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_argb.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_argb_neon.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_common.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_gcc.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_mips.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_neon.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_neon64.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_posix.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_win.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\video_common.cc">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\theoraplayer\src\Theora\TheoraVideoClip_Theora.cpp">
+      <Filter>theoraplayer\Theora</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ags_spritevideo\d3d9\D3D9Factory.h">
@@ -76,5 +277,13 @@
     <ClInclude Include="..\ags_spritevideo\resource.h" />
     <ClInclude Include="..\ags_spritevideo\StringHelper.h" />
     <ClInclude Include="..\ags_spritevideo\ImageHelper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\theoraplayer\src\YUV\libyuv\src\row_x86.asm">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </None>
+    <None Include="..\theoraplayer\src\YUV\libyuv\src\x86inc.asm">
+      <Filter>theoraplayer\YUV\libyuv\src</Filter>
+    </None>
   </ItemGroup>
 </Project>
