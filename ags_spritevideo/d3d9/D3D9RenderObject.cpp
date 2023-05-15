@@ -2,7 +2,7 @@
 
 #include "D3D9RenderObject.h"
 #include <vector>
-#include <d3dx9.h>
+#include <d3d9.h>
 #include "Common.h"
 #include "BaseObject.h"
 #include "D3DHelper.h"

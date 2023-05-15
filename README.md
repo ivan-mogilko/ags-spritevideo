@@ -24,15 +24,12 @@ For video requires [TheoraPlayer library](https://www.cateia.com/libtheoraplayer
 
 On Windows use MSVS solutions found in ["msvs" dir](https://github.com/ivan-mogilko/ags-spritevideo/tree/master/msvs).
 
-For Direct3D renderer support you need a legacy DirectX SDK, which may be downloaded here: https://www.microsoft.com/en-us/download/details.aspx?id=6812
-
 For png load support you need to get libpng and zlib, either as prebuilt libs, or get their sources and build yourself.
 
 For Video support clone and build TheoraPlayer library.
 
 In order to direct Studio to necessary libraries and their headers setup following enviroment variables in your system by [creating user macros in the Property Pages](https://docs.microsoft.com/en-us/cpp/build/working-with-project-properties?view=msvc-160#user-defined-macros):
 
-* `DXSDK_DIR` - point to the DirectX SDK.
 * `THEORAPLAYER_INCLUDE` - point to "theoraplayer/include" directory inside the theoraplayer's repository.
 * `THEORAPLAYER_LIB` and `THEORAPLAYER_DEBUG_LIB` - point to "bin/Release/Win32" and "bin/Debug/Win32" respectively in theoraplayer's repository.
 * `LIBPNG_INCLUDE` - point to where `png.h` of libpng is located.

@@ -1,7 +1,7 @@
 #if defined (WINDOWS_VERSION)
 
 #include "D3DHelper.h"
-#include <d3dx9.h>
+#include <d3d9.h>
 #include "Common.h"
 #include "D3D9Factory.h"
 
@@ -26,9 +26,9 @@ IDirect3DTexture9* CreateTexture(unsigned char const* data, int width, int heigh
     }
 
     // Create texture
-    int result = D3DXCreateTexture(GetD3D(), width, height, 1,
+    int result = GetD3D()->CreateTexture(width, height, 1,
         D3DUSAGE_DYNAMIC, format,
-        D3DPOOL_DEFAULT, &texture);
+        D3DPOOL_DEFAULT, &texture, NULL);
 
     if (result != D3D_OK)
     {
@@ -94,9 +94,9 @@ IDirect3DTexture9* CreateTexture(unsigned char const* const* data, int width, in
     }
 
     // Create texture
-    int result = D3DXCreateTexture(GetD3D(), width, height, 1,
+    int result = GetD3D()->CreateTexture(width, height, 1,
         D3DUSAGE_DYNAMIC, format,
-        D3DPOOL_DEFAULT, &texture);
+        D3DPOOL_DEFAULT, &texture, NULL);
 
     if (result != D3D_OK)
     {
