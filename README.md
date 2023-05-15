@@ -18,20 +18,24 @@ You may install ready libs so long as they are available for your system, or bui
 
 The video playback support is theoretically optional, and may be excluded during compilation by not defining VIDEO_PLAYBACK option.
 
-For video requires [TheoraPlayer library](https://www.cateia.com/libtheoraplayer/wiki/index.php/Main_Page) of v1.2 precisely (the latter version have a different library API). Their official source code may be found in this [github repository](https://github.com/AprilAndFriends/theoraplayer), but I may recommend using my custom branch which contains small building adjustments for better compatibility with this project: https://github.com/ivan-mogilko/theoraplayer/tree/1.2--for-agsvideo-plugin .
+For video requires **libogg**, **libtheora** and **libvorbis** libraries installed on your system. Plugin uses [TheoraPlayer library](https://www.cateia.com/libtheoraplayer/wiki/index.php/Main_Page), but it is now embedded in the plugin directly (a minimal necessary portion of it) in order to make building easier. Plugin is using v1.2 as the later versions have a different library API. For the reference, their official source code may be found in this [github repository](https://github.com/AprilAndFriends/theoraplayer).
 
 ### On Windows
 
 On Windows use MSVS solutions found in ["msvs" dir](https://github.com/ivan-mogilko/ags-spritevideo/tree/master/msvs).
 
-For png load support you need to get libpng and zlib, either as prebuilt libs, or get their sources and build yourself.
+For png load support you need to get `libpng` and `zlib`, either as prebuilt libs, or get their sources and build yourself.
 
-For Video support clone and build TheoraPlayer library.
+For Video support clone and build `libogg`, `libtheora` and `libvorbis` libraries ([download here](https://www.xiph.org/downloads/)).
 
 In order to direct Studio to necessary libraries and their headers setup following enviroment variables in your system by [creating user macros in the Property Pages](https://docs.microsoft.com/en-us/cpp/build/working-with-project-properties?view=msvc-160#user-defined-macros):
 
-* `THEORAPLAYER_INCLUDE` - point to "theoraplayer/include" directory inside the theoraplayer's repository.
-* `THEORAPLAYER_LIB` and `THEORAPLAYER_DEBUG_LIB` - point to "bin/Release/Win32" and "bin/Debug/Win32" respectively in theoraplayer's repository.
+* `LIBOGG_INCLUDE` - point to "include" directory inside the libogg's files.
+* `LIBOGG_LIB` - point to where the `libogg_static.lib` is located.
+* `LIBTHEORA_INCLUDE` - point to "include" directory inside the libtheora's files.
+* `LIBTHEORA_LIB` - point to where the `libtheora_static.lib` is located.
+* `LIBVORBIS_INCLUDE` - point to "include" directory inside the libvorbis's files.
+* `LIBVORBIS_LIB` - point to where the `libvorbis_static.lib` is located.
 * `LIBPNG_INCLUDE` - point to where `png.h` of libpng is located.
 * `LIBPNG_LIB` - point to where `libpng16.lib` is located.
 * `ZLIB_LIB` - point to where `zlib.lib` is located.
@@ -40,9 +44,9 @@ There are two pairs of build configs: Release/Debug for a full build, and Releas
 
 ### On Linux
 
-For Video support clone and build TheoraPlayer library; install the headers from "theoraplayer/include" and built static library files (`theoraplayer.a`, `theora.a`, `ogg.a`, `vorbis.a`), or copy these to your custom user location. The plugin's Makefile is currently written to expect these in `/usr/local`.
+Install `libpng-dev` and `zlib-dev` using your system's package manager; or get, build and install ones using suitable source repositories.
 
-Install libpng-dev and zlib-dev using your system's package manager; or get, build and install ones using suitable source repositories.
+For Video support install `libogg-dev`, `libtheora-dev` and `libvorbis-dev`, or get and build them yourself. The plugin requires `libogg.so`, `libtheora.so`, `libtheoradec.so` and `libvorbis.so` to function properly.
 
 Then `make` for a full build, or `make NO_VIDEO=1` for a no-video build.
 
