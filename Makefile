@@ -53,6 +53,8 @@ OBJS := ags_spritevideo/ags_spritevideo.cpp \
 	ags_spritevideo/ogl/OGLRenderObject.cpp \
 	ags_spritevideo/glad/src/glad.c
 
+OBJS := $(OBJS:.cpp=.o)
+OBJS := $(OBJS:.c=.o)
 
 .PHONY: all printflags rebuild clean
 

@@ -1,6 +1,7 @@
 *.dll
 *.so
 *.a
+*.o
 *.VC.db
 *.VC.VC.opendb
 *.vcxproj.user
