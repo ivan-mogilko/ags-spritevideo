@@ -26,7 +26,12 @@
     extern FILE* debug;
     #define DBG( x ) { fprintf( debug, "%s\n", x ); fflush( debug ); }
     #define DBGF( x, ... ) { fprintf( debug, x"\n", __VA_ARGS__ ); fflush( debug ); }
-    #define OPEN_DBG( filename ) { debug = fopen( filename, "w" ); }
+    #define OPEN_DBG( filename ) \
+    { \
+        debug = fopen( filename, "w" ); \
+        if (!debug) \
+            debug = stdout; \
+    }
     #define CLOSE_DBG() { fclose( debug ); debug = NULL; }
 #else
     #define DBG( x, ... )

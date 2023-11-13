@@ -153,7 +153,7 @@ void PostRestore()
 void Render( BaseObject::RenderStage stage )
 {
     engine->GetScreenDimensions(&screen.width, &screen.height, &screen.bpp);
-    DBGF( "RENDER screen %dx%d", screen.width, screen.height );
+    //DBGF( "RENDER screen %dx%d", screen.width, screen.height );
     // Engine interface >= 25 provides transform matrixes
     if (engine->version >= 25)
     {
