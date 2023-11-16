@@ -57,25 +57,25 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libpng.props" />
+    <Import Project="zlib.props" />
     <Import Project="libogg.props" />
     <Import Project="libtheora.props" />
     <Import Project="libvorbis.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libpng.props" />
+    <Import Project="zlib.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libpng.props" />
+    <Import Project="zlib.props" />
     <Import Project="libogg.props" />
     <Import Project="libtheora.props" />
     <Import Project="libvorbis.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="libpng.props" />
+    <Import Project="zlib.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -120,12 +120,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;VIDEO_PLAYBACK;THEORAVIDEO_LIB;__THEORA;_YUV_LIBYUV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\theoraplayer\include\;$(SolutionDir)..\theoraplayer\include\theoraplayer;$(SolutionDir)..\theoraplayer\src\Theora;$(SolutionDir)..\theoraplayer\src\YUV;$(SolutionDir)..\theoraplayer\src\YUV\libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\libpng\;$(SolutionDir)..\theoraplayer\include\;$(SolutionDir)..\theoraplayer\include\theoraplayer;$(SolutionDir)..\theoraplayer\src\Theora;$(SolutionDir)..\theoraplayer\src\YUV;$(SolutionDir)..\theoraplayer\src\YUV\libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;libpng16.lib;zlib.lib;libogg_static.lib;libvorbis_static.lib;libtheora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;zlib.lib;libogg_static.lib;libvorbis_static.lib;libtheora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -137,12 +137,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\libpng\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;libpng16.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -156,14 +156,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;VIDEO_PLAYBACK;THEORAVIDEO_LIB;__THEORA;_YUV_LIBYUV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\theoraplayer\include\;$(SolutionDir)..\theoraplayer\include\theoraplayer;$(SolutionDir)..\theoraplayer\src\Theora;$(SolutionDir)..\theoraplayer\src\YUV;$(SolutionDir)..\theoraplayer\src\YUV\libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\libpng\;$(SolutionDir)..\theoraplayer\include\;$(SolutionDir)..\theoraplayer\include\theoraplayer;$(SolutionDir)..\theoraplayer\src\Theora;$(SolutionDir)..\theoraplayer\src\YUV;$(SolutionDir)..\theoraplayer\src\YUV\libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;libpng16.lib;zlib.lib;libogg_static.lib;libvorbis_static.lib;libtheora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;zlib.lib;libogg_static.lib;libvorbis_static.lib;libtheora_static.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Version>
       </Version>
@@ -179,14 +179,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\libpng\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;libpng16.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Version>
       </Version>
@@ -209,6 +209,21 @@
     <ClCompile Include="..\ags_spritevideo\ScriptAPI.cpp" />
     <ClCompile Include="..\ags_spritevideo\SpriteObject.cpp" />
     <ClCompile Include="..\ags_spritevideo\VideoObject.cpp" />
+    <ClCompile Include="..\libs\libpng\png.c" />
+    <ClCompile Include="..\libs\libpng\pngerror.c" />
+    <ClCompile Include="..\libs\libpng\pngget.c" />
+    <ClCompile Include="..\libs\libpng\pngmem.c" />
+    <ClCompile Include="..\libs\libpng\pngpread.c" />
+    <ClCompile Include="..\libs\libpng\pngread.c" />
+    <ClCompile Include="..\libs\libpng\pngrio.c" />
+    <ClCompile Include="..\libs\libpng\pngrtran.c" />
+    <ClCompile Include="..\libs\libpng\pngrutil.c" />
+    <ClCompile Include="..\libs\libpng\pngset.c" />
+    <ClCompile Include="..\libs\libpng\pngtrans.c" />
+    <ClCompile Include="..\libs\libpng\pngwio.c" />
+    <ClCompile Include="..\libs\libpng\pngwrite.c" />
+    <ClCompile Include="..\libs\libpng\pngwtran.c" />
+    <ClCompile Include="..\libs\libpng\pngwutil.c" />
     <ClCompile Include="..\theoraplayer\src\TheoraAsync.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>

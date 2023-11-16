@@ -28,6 +28,12 @@
     <Filter Include="theoraplayer\YUV\libyuv\src">
       <UniqueIdentifier>{3148510c-3e12-48ce-9d36-e66b9b8fcb07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs">
+      <UniqueIdentifier>{38551fa8-51d4-4001-a32f-0d3d6f577f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\libpng">
+      <UniqueIdentifier>{b7f5c814-8eb4-49c4-bd29-ad3bcadb8fa0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ags_spritevideo\d3d9\D3D9Factory.cpp">
@@ -242,6 +248,51 @@
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\Theora\TheoraVideoClip_Theora.cpp">
       <Filter>theoraplayer\Theora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\png.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngerror.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngget.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngmem.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngpread.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngread.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngrio.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngrtran.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngrutil.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngset.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngtrans.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngwio.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngwrite.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngwtran.c">
+      <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libpng\pngwutil.c">
+      <Filter>libs\libpng</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
