@@ -5,6 +5,11 @@
 #include "BaseObject.h"
 #include "ImageHelper.h"
 
+// TODO: move to a shared header
+#if OPENGL_ES2
+    #define GL_CLAMP GL_CLAMP_TO_EDGE
+#endif
+
 
 OGLCUSTOMVERTEX OGLRenderObject::defaultVertices[4]{};
 ShaderProgram OGLRenderObject::defaultProgram;

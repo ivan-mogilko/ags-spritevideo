@@ -1,4 +1,7 @@
 #include "OGLFactory.h"
+#if OPENGL_ES2
+    #include <EGL/egl.h>
+#endif
 #include <glad/glad.h>
 #include "Common.h"
 #include "OGLRenderObject.h"
@@ -11,20 +14,29 @@ void OGLFactory::InitGfxDevice(void* data)
     if (glInitialized)
         return; // already initialized
 
+#if OPENGL_ES2
+    if (!gladLoadGLES2Loader((GLADloadproc)eglGetProcAddress))
+    {
+        GetAGS()->AbortGame("Failed to load GLES2.");
+        return;
+    }
+    if (!GLAD_GL_ES_VERSION_2_0)
+    {
+        GetAGS()->AbortGame("Plugin requires OpenGLES 2.0 or higher.");
+        return;
+    }
+#else
     if (!gladLoadGL())
     {
         GetAGS()->AbortGame("Failed to load GL.");
         return;
     }
-#if OPENGL_ES2
-    if (!GLAD_GL_ES_VERSION_2_0)
-#else
     if (!GLAD_GL_VERSION_2_0)
-#endif
     {
         GetAGS()->AbortGame("Plugin requires OpenGL 2.0 or higher.");
         return;
     }
+#endif
 
     if (!OGLRenderObject::CreateStaticData())
     {
