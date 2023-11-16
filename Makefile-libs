@@ -25,15 +25,15 @@ OBJS_LIBPNG = \
 	$(LIBPNG_DIR)/pngwrite.c \
 	$(LIBPNG_DIR)/pngwtran.c \
 	$(LIBPNG_DIR)/pngwutil.c \
-	#$(LIBPNG_DIR)/arm/arm_init.c \
-	#$(LIBPNG_DIR)/arm/filter_neon_intrinsics.c \
-	#$(LIBPNG_DIR)/arm/palette_neon_intrinsics.c \
-	#$(LIBPNG_DIR)/intel/filter_sse2_intrinsics.c \
-	#$(LIBPNG_DIR)/intel/intel_init.c \
-	#$(LIBPNG_DIR)/mips/filter_msa_intrinsics.c \
-	#$(LIBPNG_DIR)/mips/mips_init.c \
-	#$(LIBPNG_DIR)/powerpc/filter_vsx_intrinsics.c \
-	#$(LIBPNG_DIR)/powerpc/powerpc_init.c
+	$(LIBPNG_DIR)/arm/arm_init.c \
+	$(LIBPNG_DIR)/arm/filter_neon_intrinsics.c \
+	$(LIBPNG_DIR)/arm/palette_neon_intrinsics.c \
+	$(LIBPNG_DIR)/intel/filter_sse2_intrinsics.c \
+	$(LIBPNG_DIR)/intel/intel_init.c \
+	$(LIBPNG_DIR)/mips/filter_msa_intrinsics.c \
+	$(LIBPNG_DIR)/mips/mips_init.c \
+	$(LIBPNG_DIR)/powerpc/filter_vsx_intrinsics.c \
+	$(LIBPNG_DIR)/powerpc/powerpc_init.c
 
 OBJS_ZLIB = \
 	$(ZLIB_DIR)/adler32.c \

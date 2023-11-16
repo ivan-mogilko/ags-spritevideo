@@ -1,9 +1,21 @@
 
+# define LOCAL_PATH for non-Android builds
+ifdef TARGET_ARCH_ABI
+else
+	LOCAL_PATH = ./
+endif
+
 AGSSPRITEVIDEO_DIR = ags_spritevideo
 AGSSPRITEVIDEO_INCDIR = $(AGSSPRITEVIDEO_DIR)
 
-GLAD_DIR = ags_spritevideo/glad
-GLAD_INCDIR = $(GLAD_DIR)/include
+# Select GLAD variant
+ifeq ($(OPENGL_ES), 0)
+	GLAD_DIR = ags_spritevideo/glad
+	GLAD_INCDIR = $(GLAD_DIR)/include
+else
+	GLAD_DIR = ags_spritevideo/glad-gles2
+	GLAD_INCDIR = $(GLAD_DIR)/include
+endif
 
 LIBTHEORAPLAYER_DIR = theoraplayer
 LIBTHEORAPLAYER_INCDIR = $(LIBTHEORAPLAYER_DIR)/include
@@ -80,7 +92,6 @@ OBJS_THEORAPLAYER = \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale.cc \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_any.cc \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_argb.cc \
-	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_argb_neon.cc \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_common.cc \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_gcc.cc \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_mips.cc \
@@ -89,13 +100,22 @@ OBJS_THEORAPLAYER = \
 	$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/video_common.cc
 	#$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/compare_posix.cc \
 	#$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/row_posix.cc \
+	#$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_argb_neon.cc \
 	#$(LIBTHEORAPLAYER_DIR)/src/YUV/libyuv/src/scale_posix.cc
+
+# Android-specific includes and objs
+ifdef TARGET_ARCH_ABI
+	LIBTHEORAPLAYER_INTERN_INCDIR += \
+		$(LIBTHEORAPLAYER_DIR)/src/YUV/android
+	OBJS_THEORAPLAYER += \
+		$(LIBTHEORAPLAYER_DIR)/src/YUV/android/cpu-features.c
+endif
 
 
 # Sources: local libs
 ifeq ($(LOCAL_LIB_SRC), 0)
 else
-	include Makefile-libs
+	include $(LOCAL_PATH)/Makefile-libs
 endif
 
 

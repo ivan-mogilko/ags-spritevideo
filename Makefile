@@ -3,6 +3,7 @@ UNAME := $(shell uname)
 # let user override this when running make
 NO_VIDEO = 0
 LOCAL_LIB_SRC = 0
+OPENGL_ES = 0
 
 include Makefile-common
 
