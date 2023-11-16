@@ -13,42 +13,37 @@ Features:
 
 ## Building
 
-Requires [libpng](http://www.libpng.org/pub/png/) (and consequently - [zlib](http://zlib.net/)) for loading PNG images from files, as AGS engine, sadly, did not support that at the time of writing.
-You may install ready libs so long as they are available for your system, or build from sources. For example, this plugin was tested with libpng v1.6, found here: https://github.com/glennrp/libpng
+**ags_spritevideo** plugin requires following libraries:
+- **libpng** and **zlib** for loading PNG images from files (as AGS engine, sadly, did not support that at the time of writing);
+- **libogg**, **libtheora** and **libvorbis** for playing theora videos.
 
-The video playback support is theoretically optional, and may be excluded during compilation by not defining VIDEO_PLAYBACK option.
+This repository contains partial but sufficient sources for all of these libs. Having them here is primarily necessary for building Android version. Also I found that not every version of **libpng** contains necessary definitions (this plugin requires "simplified png API"). These lib sources may be linked regardless of the platform you're compiling on. When compiling with Makefile you may choose to use libs installed on your system instead (see Linux section below).
 
-For video requires **libogg**, **libtheora** and **libvorbis** libraries installed on your system. Plugin uses [TheoraPlayer library](https://www.cateia.com/libtheoraplayer/wiki/index.php/Main_Page), but it is now embedded in the plugin directly (a minimal necessary portion of it) in order to make building easier. Plugin is using v1.2 as the later versions have a different library API. For the reference, their official source code may be found in this [github repository](https://github.com/AprilAndFriends/theoraplayer).
+The video playback support is theoretically optional, and may be excluded during compilation by not defining `VIDEO_PLAYBACK` compilation flag.
+
+For video playback plugin uses [TheoraPlayer library](https://www.cateia.com/libtheoraplayer/wiki/index.php/Main_Page), but it is now embedded in the plugin directly (a minimal necessary portion of it) in order to make building easier. Plugin is using v1.2 as the later versions have a different library API. For the reference, their official source code may be found in this [github repository](https://github.com/AprilAndFriends/theoraplayer).
 
 ### On Windows
 
 On Windows use MSVS solutions found in ["msvs" dir](https://github.com/ivan-mogilko/ags-spritevideo/tree/master/msvs).
 
-For png load support you need to get `libpng` and `zlib`, either as prebuilt libs, or get their sources and build yourself.
-
-For Video support clone and build `libogg`, `libtheora` and `libvorbis` libraries ([download here](https://www.xiph.org/downloads/)).
-
-In order to direct Studio to necessary libraries and their headers setup following enviroment variables in your system by [creating user macros in the Property Pages](https://docs.microsoft.com/en-us/cpp/build/working-with-project-properties?view=msvc-160#user-defined-macros):
-
-* `LIBOGG_INCLUDE` - point to "include" directory inside the libogg's files.
-* `LIBOGG_LIB` - point to where the `libogg_static.lib` is located.
-* `LIBTHEORA_INCLUDE` - point to "include" directory inside the libtheora's files.
-* `LIBTHEORA_LIB` - point to where the `libtheora_static.lib` is located.
-* `LIBVORBIS_INCLUDE` - point to "include" directory inside the libvorbis's files.
-* `LIBVORBIS_LIB` - point to where the `libvorbis_static.lib` is located.
-* `LIBPNG_INCLUDE` - point to where `png.h` of libpng is located.
-* `LIBPNG_LIB` - point to where `libpng16.lib` is located.
-* `ZLIB_LIB` - point to where `zlib.lib` is located.
-
 There are two pairs of build configs: Release/Debug for a full build, and Release\_NoVideo/Debug\_NoVideo for a no-video build respectively.
 
 ### On Linux
+
+Makefile is provided in this repository's root. Makefile supports two options that may be set externally when running make:
+- LOCAL_LIB_SRC = [0, 1] - whether to link system libs (0) or local lib sources (1); using system libs is default.
+- NO_VIDEO = [0, 1] - whether to build with video playback support (0) or without one (1); video support is default.
+
+If you're going to link to the system libs, then you have to make sure you have everything installed.
 
 Install `libpng-dev` and `zlib-dev` using your system's package manager; or get, build and install ones using suitable source repositories.
 
 For Video support install `libogg-dev`, `libtheora-dev` and `libvorbis-dev`, or get and build them yourself. The plugin requires `libogg.so`, `libtheora.so`, `libtheoradec.so` and `libvorbis.so` to function properly.
 
-Then `make` for a full build, or `make NO_VIDEO=1` for a no-video build.
+Then run
+
+    make [LOCAL_LIB_SRC=1] [NO_VIDEO=1]
 
 ## Credits
 

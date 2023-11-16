@@ -43,6 +43,9 @@
     <Filter Include="libs\libvorbis">
       <UniqueIdentifier>{feec3fd6-d0b6-4cd2-be1b-e39b3be69106}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs\zlib">
+      <UniqueIdentifier>{813c7afb-ebaa-4712-a179-bb885e5e1212}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ags_spritevideo\d3d9\D3D9Factory.cpp">
@@ -413,6 +416,30 @@
     </ClCompile>
     <ClCompile Include="..\libs\libogg\framing.c">
       <Filter>libs\libogg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\inflate.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\adler32.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\crc32.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\zutil.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\inffast.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\inftrees.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\deflate.c">
+      <Filter>libs\zlib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\zlib\trees.c">
+      <Filter>libs\zlib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,7 @@
 LIBPNG_DIR = libs/libpng
 LIBPNG_INCDIR = $(LIBPNG_DIR)
+ZLIB_DIR = libs/zlib
+ZLIB_INCDIR = $(ZLIB_DIR)
 LIBTHEORA_DIR = libs/libtheora
 LIBTHEORA_INCDIR = $(LIBTHEORA_DIR)
 LIBOGG_DIR = libs/libogg
@@ -32,6 +34,16 @@ OBJS_LIBPNG = \
 	#$(LIBPNG_DIR)/mips/mips_init.c \
 	#$(LIBPNG_DIR)/powerpc/filter_vsx_intrinsics.c \
 	#$(LIBPNG_DIR)/powerpc/powerpc_init.c
+
+OBJS_ZLIB = \
+	$(ZLIB_DIR)/adler32.c \
+	$(ZLIB_DIR)/crc32.c \
+	$(ZLIB_DIR)/deflate.c \
+	$(ZLIB_DIR)/inffast.c \
+	$(ZLIB_DIR)/inflate.c \
+	$(ZLIB_DIR)/inftrees.c \
+	$(ZLIB_DIR)/trees.c \
+	$(ZLIB_DIR)/zutil.c
 
 OBJS_LIBOGG = \
 	$(LIBOGG_DIR)/bitwise.c \
