@@ -40,7 +40,7 @@ private:
     VideoObject();
     void UpdateTexture();
 
-    static std::unique_ptr<TheoraVideoManager> VideoObject::videoManager;
+    static std::unique_ptr<TheoraVideoManager> videoManager;
 
     TheoraVideoClip* myClip = nullptr; // created & destroyed via an interface
     bool myIsAutoplaying = false;

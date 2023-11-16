@@ -1,3 +1,4 @@
+#include <inttypes.h>
 #include <list>
 #include "Common.h"
 #include "SpriteObject.h"
@@ -222,6 +223,8 @@ void D3DVideoObject_StopAutoplay(VideoObject* obj) { obj->StopAutoplay(); }
 
 void dummy(BaseObject* obj) {}
 
+#define REG( name, func ) { engine->RegisterScriptFunction( name, reinterpret_cast<void*>(func) ); }
+
 #define REG_D3DOBJECT_BASE( cname ) \
     REG( cname "::set_isEnabled", D3DObject_SetEnabled );\
     REG( cname "::get_isEnabled", D3DObject_GetEnabled );\
@@ -269,8 +272,6 @@ void dummy(BaseObject* obj) {}
     REG( cname "::Update^0", D3DObject_Update );\
     REG( cname "::Render^0", D3DObject_Render )
 
-#define REG( name, func ) { engine->RegisterScriptFunction( name, func ); }
-
 
 void testCall()
 {
@@ -278,11 +279,11 @@ void testCall()
 
     void(*func)(const char*, ...) = (void(*)(const char*, ...))engine->GetScriptFunctionAddress("Display");
 
-    DBGF("%x", (int)engine->GetScriptFunctionAddress("Character::Say^0"));
-    func("%d", (int)engine->GetScriptFunctionAddress("Character::Say^3"));
+    DBGF("%" PRIxPTR "", (intptr_t)engine->GetScriptFunctionAddress("Character::Say^0"));
+    func("%" PRIxPTR "", (intptr_t)engine->GetScriptFunctionAddress("Character::Say^3"));
 
-    DBGF("%x", (int)engine->GetScriptFunctionAddress("Character::LockView^1"));
-    func("%d", (int)engine->GetScriptFunctionAddress("Character::LockView^1"));
+    DBGF("%" PRIxPTR "", (intptr_t)engine->GetScriptFunctionAddress("Character::LockView^1"));
+    func("%" PRIxPTR "", (intptr_t)engine->GetScriptFunctionAddress("Character::LockView^1"));
 }
 
 
@@ -294,17 +295,17 @@ void RegisterScriptAPI()
     engine->AddManagedObjectReader(spriteObjManager.GetType(), &spriteObjManager);
 
     // D3D
-    engine->RegisterScriptFunction("D3D::SetLoopsPerSecond", D3D_SetGameSpeed);
-    engine->RegisterScriptFunction("D3D::OpenSprite", D3D_OpenSprite);
-    engine->RegisterScriptFunction("D3D::OpenSpriteFile", D3D_OpenSpriteFile);
-    engine->RegisterScriptFunction("D3D::OpenBackground", D3D_OpenBackground);
+    REG("D3D::SetLoopsPerSecond", D3D_SetGameSpeed);
+    REG("D3D::OpenSprite", D3D_OpenSprite);
+    REG("D3D::OpenSpriteFile", D3D_OpenSpriteFile);
+    REG("D3D::OpenBackground", D3D_OpenBackground);
 
     // D3DSprite
     REG_D3DOBJECT_BASE("D3D_Sprite");
 
 #if defined (VIDEO_PLAYBACK)
     // D3D
-    engine->RegisterScriptFunction("D3D::OpenVideo", D3D_OpenVideo);
+    REG("D3D::OpenVideo", D3D_OpenVideo);
 
     // D3DVideo
     REG_D3DOBJECT_BASE("D3D_Video");

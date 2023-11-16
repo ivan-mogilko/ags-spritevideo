@@ -9,6 +9,8 @@ struct Screen;
 class RenderFactory
 {
 public:
+    virtual ~RenderFactory() = default;
+
     virtual void InitGfxDevice(void* data) = 0;
     virtual bool InitGfxMode(Screen* screen, void* data) = 0;
     virtual void SetScreenMatrixes(Screen* screen, float(*world)[16], float(*view)[16], float(*proj)[16]) = 0;
