@@ -1,0 +1,77 @@
+LIBPNG_DIR = libs/libpng
+LIBPNG_INCDIR = $(LIBPNG_DIR)
+LIBTHEORA_DIR = libs/libtheora
+LIBTHEORA_INCDIR = $(LIBTHEORA_DIR)
+LIBOGG_DIR = libs/libogg
+LIBOGG_INCDIR = $(LIBOGG_DIR)
+LIBVORBIS_DIR = libs/libvorbis
+LIBVORBIS_INCDIR = $(LIBVORBIS_DIR)
+
+OBJS_LIBPNG = \
+	$(LIBPNG_DIR)/png.c \
+	$(LIBPNG_DIR)/pngerror.c \
+	$(LIBPNG_DIR)/pngget.c \
+	$(LIBPNG_DIR)/pngmem.c \
+	$(LIBPNG_DIR)/pngpread.c \
+	$(LIBPNG_DIR)/pngread.c \
+	$(LIBPNG_DIR)/pngrio.c \
+	$(LIBPNG_DIR)/pngrtran.c \
+	$(LIBPNG_DIR)/pngrutil.c \
+	$(LIBPNG_DIR)/pngset.c \
+	$(LIBPNG_DIR)/pngtrans.c \
+	$(LIBPNG_DIR)/pngwio.c \
+	$(LIBPNG_DIR)/pngwrite.c \
+	$(LIBPNG_DIR)/pngwtran.c \
+	$(LIBPNG_DIR)/pngwutil.c \
+	#$(LIBPNG_DIR)/arm/arm_init.c \
+	#$(LIBPNG_DIR)/arm/filter_neon_intrinsics.c \
+	#$(LIBPNG_DIR)/arm/palette_neon_intrinsics.c \
+	#$(LIBPNG_DIR)/intel/filter_sse2_intrinsics.c \
+	#$(LIBPNG_DIR)/intel/intel_init.c \
+	#$(LIBPNG_DIR)/mips/filter_msa_intrinsics.c \
+	#$(LIBPNG_DIR)/mips/mips_init.c \
+	#$(LIBPNG_DIR)/powerpc/filter_vsx_intrinsics.c \
+	#$(LIBPNG_DIR)/powerpc/powerpc_init.c
+
+OBJS_LIBOGG = \
+	$(LIBOGG_DIR)/bitwise.c \
+	$(LIBOGG_DIR)/framing.c
+
+OBJS_LIBTHEORA = \
+	$(LIBTHEORA_DIR)/cpu.c \
+	$(LIBTHEORA_DIR)/apiwrapper.c \
+	$(LIBTHEORA_DIR)/bitpack.c \
+	$(LIBTHEORA_DIR)/decapiwrapper.c \
+	$(LIBTHEORA_DIR)/decinfo.c \
+	$(LIBTHEORA_DIR)/decode.c \
+	$(LIBTHEORA_DIR)/dequant.c \
+	$(LIBTHEORA_DIR)/fragment.c \
+	$(LIBTHEORA_DIR)/huffdec.c \
+	$(LIBTHEORA_DIR)/idct.c \
+	$(LIBTHEORA_DIR)/info.c \
+	$(LIBTHEORA_DIR)/internal.c \
+	$(LIBTHEORA_DIR)/quant.c \
+	$(LIBTHEORA_DIR)/state.c
+
+OBJS_LIBVORBIS = \
+	$(LIBVORBIS_DIR)/analysis.c \
+	$(LIBVORBIS_DIR)/bitrate.c \
+	$(LIBVORBIS_DIR)/block.c \
+	$(LIBVORBIS_DIR)/codebook.c \
+	$(LIBVORBIS_DIR)/envelope.c \
+	$(LIBVORBIS_DIR)/floor0.c \
+	$(LIBVORBIS_DIR)/floor1.c \
+	$(LIBVORBIS_DIR)/info.c \
+	$(LIBVORBIS_DIR)/lookup.c \
+	$(LIBVORBIS_DIR)/lpc.c \
+	$(LIBVORBIS_DIR)/lsp.c \
+	$(LIBVORBIS_DIR)/mapping0.c \
+	$(LIBVORBIS_DIR)/mdct.c \
+	$(LIBVORBIS_DIR)/psy.c \
+	$(LIBVORBIS_DIR)/registry.c \
+	$(LIBVORBIS_DIR)/res0.c \
+	$(LIBVORBIS_DIR)/sharedbook.c \
+	$(LIBVORBIS_DIR)/smallft.c \
+	$(LIBVORBIS_DIR)/synthesis.c \
+	$(LIBVORBIS_DIR)/vorbisenc.c \
+	$(LIBVORBIS_DIR)/window.c
