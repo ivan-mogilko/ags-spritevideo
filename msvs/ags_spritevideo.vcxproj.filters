@@ -34,6 +34,15 @@
     <Filter Include="libs\libpng">
       <UniqueIdentifier>{b7f5c814-8eb4-49c4-bd29-ad3bcadb8fa0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libs\libogg">
+      <UniqueIdentifier>{4cf14f4e-0cef-4c9d-93c5-15581e9630ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\libtheora">
+      <UniqueIdentifier>{48e4cc39-2aa2-4d40-a189-ac37fab25bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libs\libvorbis">
+      <UniqueIdentifier>{feec3fd6-d0b6-4cd2-be1b-e39b3be69106}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\ags_spritevideo\d3d9\D3D9Factory.cpp">
@@ -293,6 +302,117 @@
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngwutil.c">
       <Filter>libs\libpng</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\apiwrapper.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\bitpack.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\cpu.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\decapiwrapper.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\decinfo.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\decode.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\dequant.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\fragment.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\huffdec.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\idct.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\info.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\internal.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\quant.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libtheora\state.c">
+      <Filter>libs\libtheora</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\analysis.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\bitrate.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\block.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\codebook.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\envelope.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\floor0.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\floor1.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\info.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\lookup.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\lpc.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\lsp.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\mapping0.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\mdct.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\psy.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\registry.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\res0.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\sharedbook.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\smallft.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\synthesis.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\vorbisenc.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libvorbis\window.c">
+      <Filter>libs\libvorbis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libogg\bitwise.c">
+      <Filter>libs\libogg</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\libogg\framing.c">
+      <Filter>libs\libogg</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
