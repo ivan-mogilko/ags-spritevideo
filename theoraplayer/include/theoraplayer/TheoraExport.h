@@ -9,7 +9,7 @@ the terms of the BSD license: http://opensource.org/licenses/BSD-3-Clause
 #ifndef _theoraVideoExport_h
 #define _theoraVideoExport_h
 
-	#ifdef _LIB
+	#ifdef THEORAVIDEO_LIB
 		#define TheoraPlayerExport
 		#define TheoraPlayerFnExport
 	#else
