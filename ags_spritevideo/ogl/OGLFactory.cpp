@@ -16,7 +16,7 @@ void OGLFactory::InitGfxDevice(void* data)
         GetAGS()->AbortGame("Failed to load GL.");
         return;
     }
-#if AGS_OPENGL_ES2
+#if OPENGL_ES2
     if (!GLAD_GL_ES_VERSION_2_0)
 #else
     if (!GLAD_GL_VERSION_2_0)

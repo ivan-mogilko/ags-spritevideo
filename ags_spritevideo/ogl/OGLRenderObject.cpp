@@ -10,7 +10,7 @@ OGLCUSTOMVERTEX OGLRenderObject::defaultVertices[4]{};
 ShaderProgram OGLRenderObject::defaultProgram;
 
 static const auto default_vertex_shader_src = ""
-#if AGS_OPENGL_ES2
+#if OPENGL_ES2
 "#version 100 \n"
 #else
 "#version 120 \n"
@@ -32,7 +32,7 @@ void main() {
 
 
 static const auto default_fragment_shader_src = ""
-#if AGS_OPENGL_ES2
+#if OPENGL_ES2
 "#version 100 \n"
 "precision mediump float; \n"
 #else
