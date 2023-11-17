@@ -5,10 +5,13 @@
 This plugin is based on the older ["Direct3D"](https://bitbucket.org/AJA/ags-direct3d-plugin/) plugin by Aki Ahonen (aka AJA).
 
 Features:
-* Create textures from the game sprites and display them on screen using certain transformations from the supported list.
+* Create textures from the game sprites or loaded from PNG files, and display them on screen using certain transformations from the supported list.
 * Play Theora video files in a non-blocking manner on a texture.
 * Hardware accelerated: works with Direct3D and OpenGL renderers (where the engine can run these).
-* Builds on Windows and Linux (potentially - OSX and Android, but more work is required to configure the project for these).
+* Builds for Windows, Linux and Android (potentially - OSX, but not tested, and more work may be required to configure the project for that).
+
+Plugin's functionality may depend on the engine version. Prior to AGS 3.6.1 plugin can only load videos and PNG files from standalone files on disk.
+Starting with AGS 3.6.1 (3.6.1.12 to be precise) plugin will be using new engine API for streaming asset data, and be able to load assets from wherever engine is able to load them. This is specifically important for Android, as games are normally distributed as APKs there, making it impossible to preplace any asset directly on disk.
 
 
 ## Building
@@ -44,6 +47,14 @@ For Video support install `libogg-dev`, `libtheora-dev` and `libvorbis-dev`, or 
 Then run
 
     make [LOCAL_LIB_SRC=1] [NO_VIDEO=1]
+
+### For Android
+
+This may be done on Windows or Linux alike. In order to build this plugin for Android you need to install NDK. Usually the easiest way is to install full Android Studio.
+
+Android's makefile is located in "android/jni" directory. Open that directory and execute "ndk-build" ("ndk-build.cmd" on Windows) from command line. You may either execute using an absolute path to "ndk-build", or add its location to the PATH system variable.
+
+If everything goes well, NDK will build "libags_spritevideo.so" files for each of the target architecture and place them inside "android/libs".
 
 ## Credits
 
