@@ -5,14 +5,53 @@
 #include "StringHelper.h"
 
 
-static bool LoadPNG(const char* file, std::vector<unsigned char> &data, ImageInfo &info)
+// Load image data into the memory, using engine's capabilities
+static bool LoadImageData(const char *filename, std::vector<uint8_t> &data)
+{
+    if (GetAGS()->version < 28)
+    {
+        // Only reading directly from files on disk supported
+        char buf[1024];
+        if (GetAGS()->version < 27)
+            GetAGS()->GetPathToFileInCompiledFolder(filename, buf);
+        else
+            GetAGS()->ResolveFilePath(filename, buf, sizeof(buf));
+        FILE *f = fopen(buf, "rb");
+        if (f)
+        {
+            // TODO: get stdio compat functions from AGS
+            fseek(f, 0, SEEK_END);
+            long off = ftell(f);
+            fseek(f, 0, SEEK_SET);
+            data.resize(off);
+            fread(&data[0], 1, off, f);
+            fclose(f);
+            return true;
+        }
+    }
+    else
+    {
+        // Support utilizing engine to read from anywhere
+        IAGSStream *is = GetAGS()->OpenFileStream(filename, AGSSTREAM_FILE_OPEN, AGSSTREAM_MODE_READ);
+        if (is)
+        {
+            data.resize(is->GetLength());
+            is->Read(&data[0], data.size());
+            is->Close();
+            return true;
+        }
+    }
+    return false;
+}
+
+static bool LoadPNG(const std::vector<uint8_t> &raw_bytes, std::vector<uint8_t> &data, ImageInfo &info)
 {
     // http://www.libpng.org/pub/png/libpng-manual.txt
     // see V. Simplified API
     png_image im;
     memset(&im, 0, sizeof(im));
     im.version = PNG_IMAGE_VERSION;
-    if (png_image_begin_read_from_file(&im, file) == 0)
+    if (png_image_begin_read_from_memory(&im, &raw_bytes[0], raw_bytes.size()) == 0)
         return false;
     im.format = PNG_FORMAT_BGRA;
     const int bpp = PNG_IMAGE_SAMPLE_SIZE(im.format);
@@ -27,7 +66,7 @@ static bool LoadPNG(const char* file, std::vector<unsigned char> &data, ImageInf
     return true;
 }
 
-bool LoadImage(const char* file, std::vector<unsigned char> &data, ImageInfo &info)
+bool LoadImage(const char* file, std::vector<uint8_t> &data, ImageInfo &info)
 {
     const char* ext = GetExt(file);
     if (!ext)
@@ -35,10 +74,15 @@ bool LoadImage(const char* file, std::vector<unsigned char> &data, ImageInfo &in
     else
         ext++;
 
-    if (stricmp(ext, "png") == 0)
+    if (stricmp(ext, "png") != 0)
     {
-        return LoadPNG(file, data, info);
+        DBGF("Image format not supported: %s", file);
+        return false; // not supported
     }
-    DBGF("Image format not supported: %s", file);
-    return false; // not supported
+
+    std::vector<uint8_t> raw_bytes;
+    if (LoadImageData(file, raw_bytes))
+        return LoadPNG(raw_bytes, data, info);
+    else
+        return false;
 }

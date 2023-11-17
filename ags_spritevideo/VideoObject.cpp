@@ -1,6 +1,7 @@
 #if defined (VIDEO_PLAYBACK)
 
 #include "VideoObject.h"
+#include "AGSDataSource.h"
 
 // Static variables
 std::unique_ptr<TheoraVideoManager> VideoObject::videoManager;
@@ -18,20 +19,48 @@ void VideoObject::CleanUp()
     videoManager.reset();
 }
 
+TheoraDataSource *VideoObject::CreateDataSource( char const* filename )
+{
+    if (GetAGS()->version < 28)
+    {
+        // Only reading directly from files on disk supported
+        char buf[1024];
+        if (GetAGS()->version < 27)
+            GetAGS()->GetPathToFileInCompiledFolder(filename, buf);
+        else
+            GetAGS()->ResolveFilePath(filename, buf, sizeof(buf));
+        return new TheoraFileDataSource(buf);
+    }
+    else
+    {
+        // Support utilizing engine to read from anywhere
+        IAGSStream *is = GetAGS()->OpenFileStream(filename, AGSSTREAM_FILE_OPEN, AGSSTREAM_MODE_READ);
+        if (is)
+            return new AGSDataSource(filename, is);
+    }
+    return nullptr;
+}
+
 VideoObject* VideoObject::Open( char const* filename )
 {
     VideoObject* obj = new VideoObject();
 	try
 	{
-		obj->myClip = videoManager->createVideoClip( filename, TH_BGRX );
+        IAGSStream *is = GetAGS()->OpenFileStream(filename, AGSSTREAM_FILE_OPEN, AGSSTREAM_MODE_READ);
+        if (is)
+        {
+            // TheoraVideoClip will own our data source
+            AGSDataSource *dataSource = new AGSDataSource(filename, is);
+            obj->myClip = videoManager->createVideoClip( dataSource, TH_BGRX );
+        }
 	}
 	catch (...)
 	{
-		DBGF("File could not be opened: %s", filename);;
 	}
 
     if ( !obj->myClip )
     {
+        DBGF("Video file could not be opened: %s", filename);
         delete obj;
         return nullptr;
     }
@@ -216,7 +245,13 @@ int VideoObject::Unserialize( char const* buffer, int size )
     UNSERIALIZE( dummy );
 
     // Load video
-    myClip = videoManager->createVideoClip( filename, TH_BGRA );
+    IAGSStream *is = GetAGS()->OpenFileStream(filename.c_str(), AGSSTREAM_FILE_OPEN, AGSSTREAM_MODE_READ);
+    if (is)
+    {
+        // TheoraVideoClip will own our data source
+        AGSDataSource *dataSource = new AGSDataSource(filename, is);
+        myClip = videoManager->createVideoClip( dataSource, TH_BGRX );
+    }
 
     if ( !myClip )
     {
@@ -258,7 +293,7 @@ void VideoObject::UpdateTexture()
 
 
 
-int VideoObject_Manager::Dispose( char const* address, bool force )
+int VideoObject_Manager::Dispose( void* address, bool force )
 {
     delete (VideoObject*)address;
     return 1;
@@ -269,7 +304,7 @@ char const* VideoObject_Manager::GetType()
     return "VideoObject";
 }
 
-int VideoObject_Manager::Serialize( char const* address, char* buffer, int bufsize )
+int VideoObject_Manager::Serialize( void* address, char* buffer, int bufsize )
 {
     return ((VideoObject*)address)->Serialize( buffer, bufsize );
 }

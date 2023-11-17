@@ -200,7 +200,7 @@ void BaseObject::SetParent( BaseObject* parent )
 {
 	myParent = parent;
     if (myParent)
-        myParentKey = GetAGS()->GetManagedObjectKeyByAddress((const char*)myParent);
+        myParentKey = GetAGS()->GetManagedObjectKeyByAddress(myParent);
     else
         myParentKey = 0;
 }

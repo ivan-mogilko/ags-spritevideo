@@ -45,9 +45,9 @@ class SpriteObject_Manager : public IAGSScriptManagedObject,
                              public IAGSManagedObjectReader
 {
 public:
-    virtual int Dispose( char const* address, bool force );
+    virtual int Dispose( void* address, bool force );
     virtual char const* GetType();
-    virtual int Serialize( char const* address, char* buffer, int bufsize );
+    virtual int Serialize( void* address, char* buffer, int bufsize );
     virtual void Unserialize( int key, char const* buffer, int size );
 };
 

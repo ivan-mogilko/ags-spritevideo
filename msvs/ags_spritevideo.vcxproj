@@ -183,6 +183,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\ags_spritevideo\AGSDataSource.cpp" />
     <ClCompile Include="..\ags_spritevideo\ags_spritevideo.cpp" />
     <ClCompile Include="..\ags_spritevideo\BaseObject.cpp" />
     <ClCompile Include="..\ags_spritevideo\Common.cpp" />
@@ -1044,7 +1045,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ags_spritevideo\AGSDataSource.h" />
     <ClInclude Include="..\ags_spritevideo\agsplugin.h" />
+    <ClInclude Include="..\ags_spritevideo\agsplugin_evts.h" />
     <ClInclude Include="..\ags_spritevideo\BaseObject.h" />
     <ClInclude Include="..\ags_spritevideo\Common.h" />
     <ClInclude Include="..\ags_spritevideo\d3d9\D3D9Factory.h" />

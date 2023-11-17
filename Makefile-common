@@ -37,6 +37,7 @@ OBJS_AGSSPRITEVIDEO = \
 	$(AGSSPRITEVIDEO_DIR)/ScriptAPI.cpp \
 	$(AGSSPRITEVIDEO_DIR)/SpriteObject.cpp \
 	$(AGSSPRITEVIDEO_DIR)/VideoObject.cpp \
+	$(AGSSPRITEVIDEO_DIR)/AGSDataSource.cpp \
 	$(AGSSPRITEVIDEO_DIR)/ogl/OGLFactory.cpp \
 	$(AGSSPRITEVIDEO_DIR)/ogl/OGLHelper.cpp \
 	$(AGSSPRITEVIDEO_DIR)/ogl/OGLRenderObject.cpp \

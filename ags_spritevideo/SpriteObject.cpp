@@ -143,7 +143,7 @@ void SpriteObject::CreateTexture()
 
 
 
-int SpriteObject_Manager::Dispose( char const* address, bool force )
+int SpriteObject_Manager::Dispose( void* address, bool force )
 {
     delete (SpriteObject*)address;
     return 1;
@@ -154,7 +154,7 @@ char const* SpriteObject_Manager::GetType()
     return "SpriteObject";
 }
 
-int SpriteObject_Manager::Serialize( char const* address, char* buffer, int bufsize )
+int SpriteObject_Manager::Serialize( void* address, char* buffer, int bufsize )
 {
     return ((SpriteObject*)address)->Serialize( buffer, bufsize );
 }

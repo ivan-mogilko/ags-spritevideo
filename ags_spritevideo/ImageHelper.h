@@ -11,7 +11,7 @@ struct ImageInfo
     bool HasAlpha = false;
 };
 
-bool LoadImage(const char* file, std::vector<unsigned char> &data, ImageInfo &info);
+bool LoadImage(const char* file, std::vector<uint8_t> &data, ImageInfo &info);
 
 
 #endif // SPRITEVIDEO_IMAGEHELPER_H

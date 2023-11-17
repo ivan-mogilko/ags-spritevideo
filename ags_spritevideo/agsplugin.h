@@ -2,24 +2,27 @@
 //
 // Adventure Game Studio (AGS)
 //
-// Copyright (C) 1999-2011 Chris Jones and 2011-20xx others
+// Copyright (C) 1999-2011 Chris Jones and 2011-2023 various contributors
 // The full list of copyright holders can be found in the Copyright.txt
 // file, which is part of this source code distribution.
 //
 // The AGS source code is provided under the Artistic License 2.0.
 // A copy of this license can be found in the file License.txt and at
-// http://www.opensource.org/licenses/artistic-license-2.0.php
+// https://opensource.org/license/artistic-2-0/
 //
 //=============================================================================
 //
-// AGS Plugin interface header file
+// AGS Plugin interface header file.
 //
-// #define THIS_IS_THE_PLUGIN beforehand if including from the plugin
+// #define THIS_IS_THE_PLUGIN beforehand if including from the plugin.
 //
 //=============================================================================
-
 #ifndef _AGS_PLUGIN_H
 #define _AGS_PLUGIN_H
+
+#include <stddef.h> // for size_t
+#include <stdint.h>
+#include "agsplugin_evts.h"
 
 // If the plugin isn't using DDraw, don't require the headers
 #ifndef DIRECTDRAW_VERSION
@@ -37,12 +40,12 @@ typedef void *LPDIRECTINPUTDEVICE;
 
 // If the user isn't using Allegro or WinGDI, define the BITMAP into something
 #if !defined(ALLEGRO_H) && !defined(_WINGDI_) && !defined(BITMAP_DEFINED)
-typedef char BITMAP;
+typedef void BITMAP;
 #endif
 
 // If not using windows.h, define HWND
 #if !defined(_WINDOWS_)
-typedef int HWND;
+typedef void *HWND;
 #endif
 
 // This file is distributed as part of the Plugin API docs, so
@@ -58,7 +61,7 @@ typedef int HWND;
 #endif
 
 #ifndef int32
-#define int32 int
+typedef int int32;
 #endif
 
 #define AGSIFUNC(type) virtual type __stdcall
@@ -199,55 +202,6 @@ struct AGSMouseCursor {
   char  flags;          // MCF_flags above
 };
 
-// The editor-to-plugin interface
-class IAGSEditor {
-public:
-  int32 version;
-  int32 pluginId;   // used internally, do not touch this
-
-public:
-  // get the HWND of the main editor frame
-  AGSIFUNC(HWND) GetEditorHandle ();
-  // get the HWND of the current active window
-  AGSIFUNC(HWND) GetWindowHandle ();
-  // add some script to the default header
-  AGSIFUNC(void) RegisterScriptHeader (const char *header);
-  // de-register a script header (pass same pointer as when added)
-  AGSIFUNC(void) UnregisterScriptHeader (const char *header);
-
-};
-
-
-// Below are interface 3 and later
-#define AGSE_KEYPRESS        1
-#define AGSE_MOUSECLICK      2
-#define AGSE_POSTSCREENDRAW  4
-// Below are interface 4 and later
-#define AGSE_PRESCREENDRAW   8
-// Below are interface 5 and later
-#define AGSE_SAVEGAME        0x10
-#define AGSE_RESTOREGAME     0x20
-// Below are interface 6 and later
-#define AGSE_PREGUIDRAW      0x40
-#define AGSE_LEAVEROOM       0x80
-#define AGSE_ENTERROOM       0x100
-#define AGSE_TRANSITIONIN    0x200
-#define AGSE_TRANSITIONOUT   0x400
-// Below are interface 12 and later
-#define AGSE_FINALSCREENDRAW 0x800
-#define AGSE_TRANSLATETEXT  0x1000
-// Below are interface 13 and later
-#define AGSE_SCRIPTDEBUG    0x2000
-#define AGSE_AUDIODECODE    0x4000 // obsolete, no longer supported
-// Below are interface 18 and later
-#define AGSE_SPRITELOAD     0x8000
-// Below are interface 21 and later
-#define AGSE_PRERENDER     0x10000
-// Below are interface 24 and later
-#define AGSE_PRESAVEGAME     0x20000
-#define AGSE_POSTRESTOREGAME 0x40000
-#define AGSE_TOOHIGH         0x80000
-
 // GetFontType font types
 #define FNT_INVALID 0
 #define FNT_SCI     1
@@ -267,12 +221,12 @@ public:
   // when a ref count reaches 0, this is called with the address
   // of the object. Return 1 to remove the object from memory, 0 to
   // leave it
-  virtual int Dispose(const char *address, bool force) = 0;
+  virtual int Dispose(void *address, bool force) = 0;
   // return the type name of the object
   virtual const char *GetType() = 0;
   // serialize the object into BUFFER (which is BUFSIZE bytes)
   // return number of bytes used
-  virtual int Serialize(const char *address, char *buffer, int bufsize) = 0;
+  virtual int Serialize(void *address, char *buffer, int bufsize) = 0;
 protected:
   IAGSScriptManagedObject() {};
   ~IAGSScriptManagedObject() {};
@@ -297,24 +251,104 @@ public:
   virtual void AdjustYCoordinateForFont(int *ycoord, int fontNumber) = 0;
   virtual void EnsureTextValidForFont(char *text, int fontNumber) = 0;
 protected:
-  IAGSFontRenderer() {};
-  ~IAGSFontRenderer() {};
+  IAGSFontRenderer() = default;
+  ~IAGSFontRenderer() = default;
 };
 
+class IAGSFontRenderer2 : public IAGSFontRenderer {
+  virtual int GetVersion() = 0;
+  virtual const char *GetRendererName() = 0;
+  virtual const char *GetFontName(int fontNumber) = 0;
+  virtual int GetFontHeight(int fontNumber) = 0;
+  virtual int GetLineSpacing(int fontNumber) = 0;
+protected:
+  IAGSFontRenderer2() = default;
+  ~IAGSFontRenderer2() = default;
+};
 
 struct AGSRenderMatrixes {
-  float   WorldMatrix[16];
-  float   ViewMatrix[16];
-  float   ProjMatrix[16];
+  float WorldMatrix[16];
+  float ViewMatrix[16];
+  float ProjMatrix[16];
 };
 
 // Render stage description
 struct AGSRenderStageDesc {
-  // Which version of plugin the struct corresponds to;
-  // this field must be filled by plugin before passing the struct into engine!
-  int     Version;
+  // Which version of the plugin interface the struct corresponds to;
+  // this field must be filled by a plugin before passing the struct into the engine!
+  int Version;
   // Stage's matrixes, for 3D rendering: Projection, World and View
   AGSRenderMatrixes Matrixes;
+};
+
+// Game info
+struct AGSGameInfo {
+  // Which version of the plugin interface the struct corresponds to;
+  // this field must be filled by a plugin before passing the struct into the engine!
+  int Version;
+  // Game title (human-readable text)
+  char GameName[50];
+  // Game's GUID
+  char Guid[40];
+  // Random key identifying the game (deprecated)
+  int UniqueId;
+};
+
+// File open modes
+// Opens existing file, fails otherwise
+#define AGSSTREAM_FILE_OPEN         0
+// Opens existing file, creates one if it did not exist
+#define AGSSTREAM_FILE_CREATE       1
+// Always creates a new file, completely overwrites any existing one
+#define AGSSTREAM_FILE_CREATEALWAYS 2
+
+// Stream work modes
+// Read-only
+#define AGSSTREAM_MODE_READ  0x1
+// Write-only
+#define AGSSTREAM_MODE_WRITE 0x2
+// Support both read and write
+#define AGSSTREAM_MODE_READWRITE (AGSSTREAM_MODE_READ | AGSSTREAM_MODE_WRITE)
+
+// Stream seek origins
+// Seek from the beginning of a stream (towards positive offset)
+#define AGSSTREAM_SEEK_SET 0
+// Seek from the current position (towards positive or negative offset)
+#define AGSSTREAM_SEEK_CUR 1
+// Seek from the end of a stream (towards negative offset)
+#define AGSSTREAM_SEEK_END 2
+
+class IAGSStream {
+public:
+  // Flushes and closes the stream, deallocates the stream object.
+  // After calling this the IAGSStream pointer becomes INVALID.
+  virtual void   Close() = 0;
+  // Returns an optional stream's source description.
+  // This may be a file path, or a resource name, or anything of that kind.
+  virtual const char *GetPath() = 0;
+  // Reads number of bytes into the provided buffer
+  virtual size_t Read(void *buffer, size_t len) = 0;
+  // Writes number of bytes from the provided buffer
+  virtual size_t Write(void *buffer, size_t len) = 0;
+  // Returns the total stream's length in bytes
+  virtual int64_t GetLength() = 0;
+  // Returns stream's position
+  virtual int64_t GetPosition() = 0;
+  // Tells whether the stream's position is at its end
+  virtual bool   EOS() = 0;
+  // Seeks to offset from the origin defined by AGSSTREAM_SEEK_* constants:
+  //  * AGSSTREAM_SEEK_SET - seek from the beginning;
+  //  * AGSSTREAM_SEEK_CUR - seek from the current position;
+  //  * AGSSTREAM_SEEK_END - seek from the end (pass negative offset)
+  // Returns new position in stream, or -1 on error.
+  virtual int64_t Seek(int64_t offset, int origin) = 0;
+  // Flushes stream, forcing it to write any buffered data to the
+  // underlying device. Note that the effect may depend on implementation.
+  virtual void   Flush() = 0;
+
+protected:
+  IAGSStream() = default;
+  ~IAGSStream() = default;
 };
 
 
@@ -376,9 +410,9 @@ public:
 
   // *** BELOW ARE INTERFACE VERSION 5 AND ABOVE ONLY
   // similar to fwrite - buffer, size, filehandle
-  AGSIFUNC(int)  FWrite (void *, int32, int32);
+  AGSIFUNC(int)  FWrite (void *out_buf, int32 len, int32 fhandle);
   // similar to fread - buffer, size, filehandle
-  AGSIFUNC(int)  FRead (void *, int32, int32);
+  AGSIFUNC(int)  FRead (void *in_buf, int32 len, int32 fhandle);
   // print text, wrapping as usual
   AGSIFUNC(void) DrawTextWrapped (int32 x, int32 y, int32 width, int32 font, int32 color, const char *text);
   // set the current active 'screen'
@@ -501,17 +535,17 @@ public:
   // run the specified script function whenever script engine is available
   AGSIFUNC(void)   QueueGameScriptFunction(const char *name, int32 globalScript, int32 numArgs, long arg1 = 0, long arg2 = 0);
   // register a new dynamic managed script object
-  AGSIFUNC(int)    RegisterManagedObject(const void *object, IAGSScriptManagedObject *callback);
+  AGSIFUNC(int)    RegisterManagedObject(void *object, IAGSScriptManagedObject *callback);
   // add an object reader for the specified object type
   AGSIFUNC(void)   AddManagedObjectReader(const char *typeName, IAGSManagedObjectReader *reader);
   // register an un-serialized managed script object
-  AGSIFUNC(void)   RegisterUnserializedObject(int key, const void *object, IAGSScriptManagedObject *callback);
+  AGSIFUNC(void)   RegisterUnserializedObject(int key, void *object, IAGSScriptManagedObject *callback);
 
   // *** BELOW ARE INTERFACE VERSION 16 AND ABOVE ONLY
   // get the address of a managed object based on its key
   AGSIFUNC(void*)  GetManagedObjectAddressByKey(int key);
   // get managed object's key from its address
-  AGSIFUNC(int)    GetManagedObjectKeyByAddress(const char *address);
+  AGSIFUNC(int)    GetManagedObjectKeyByAddress(void *address);
 
   // *** BELOW ARE INTERFACE VERSION 17 AND ABOVE ONLY
   // create a new script string
@@ -519,9 +553,9 @@ public:
 
   // *** BELOW ARE INTERFACE VERSION 18 AND ABOVE ONLY
   // increment reference count
-  AGSIFUNC(int)    IncrementManagedObjectRefCount(const char *address);
+  AGSIFUNC(int)    IncrementManagedObjectRefCount(void *address);
   // decrement reference count
-  AGSIFUNC(int)    DecrementManagedObjectRefCount(const char *address);
+  AGSIFUNC(int)    DecrementManagedObjectRefCount(void *address);
   // set mouse position
   AGSIFUNC(void)   SetMousePosition(int32 x, int32 y);
   // simulate the mouse being clicked
@@ -558,10 +592,57 @@ public:
   AGSIFUNC(IAGSFontRenderer*) ReplaceFontRenderer(int fontNumber, IAGSFontRenderer* newRenderer);
 
   // *** BELOW ARE INTERFACE VERSION 25 AND ABOVE ONLY
-  // fills the provided AGSRenderStageDesc struct with current render stage's description;
-  // please note that plugin MUST fill the struct's Version field itself!
+  // fills the provided AGSRenderStageDesc struct with current render stage description;
+  // please note that plugin MUST fill the struct's Version field before passing it into the function!
   AGSIFUNC(void)  GetRenderStageDesc(AGSRenderStageDesc* desc);
+
+  // *** BELOW ARE INTERFACE VERSION 26 AND ABOVE ONLY
+  // fills the provided AGSGameInfo struct
+  // please note that plugin MUST fill the struct's Version field before passing it into the function!
+  AGSIFUNC(void)  GetGameInfo(AGSGameInfo* ginfo);
+  // install a replacement renderer (extended interface) for the specified font number
+  AGSIFUNC(IAGSFontRenderer*) ReplaceFontRenderer2(int fontNumber, IAGSFontRenderer2* newRenderer);
+  // notify the engine that certain custom font has been updated
+  AGSIFUNC(void)  NotifyFontUpdated(int fontNumber);
+
+  // *** BELOW ARE INTERFACE VERSION 27 AND ABOVE ONLY
+  // Resolve a script path to a system filepath, same way as script command File.Open does.
+  // Caller should provide an output buffer and its length in bytes.
+  // Passing NULL instead of a buffer pointer will make function calculate and return
+  // length necessary to store a resulting path (in bytes).
+  AGSIFUNC(size_t) ResolveFilePath(const char *script_path, char *buf, size_t buf_len);
+
+  // *** BELOW ARE INTERFACE VERSION 28 AND ABOVE ONLY
+  // Opens a data stream, resolving a script path.
+  // File mode should contain one of the AGSSTREAM_FILE_* values,
+  // work mode should contain flag set of the AGSSTREAM_MODE_* values.
+  // Returns IAGSStream object, or null on failure.
+  // IAGSStream must be disposed by calling its Close() function.
+  AGSIFUNC(IAGSStream*) OpenFileStream(const char *script_path, int file_mode, int work_mode);
+  // Returns IAGSStream object identified by the given stream handle.
+  // This lets to retrieve IAGSStream object from a handle received in a event callback.
+  // Returns null if handle is invalid.
+  AGSIFUNC(IAGSStream*) GetFileStreamByHandle(int32 fhandle);
 };
+
+
+// The editor-to-plugin interface
+class IAGSEditor {
+public:
+  int32 version;
+  int32 pluginId;   // used internally, do not touch this
+
+public:
+  // get the HWND of the main editor frame
+  AGSIFUNC(HWND) GetEditorHandle ();
+  // get the HWND of the current active window
+  AGSIFUNC(HWND) GetWindowHandle ();
+  // add some script to the default header
+  AGSIFUNC(void) RegisterScriptHeader (const char *header);
+  // de-register a script header (pass same pointer as when added)
+  AGSIFUNC(void) UnregisterScriptHeader (const char *header);
+};
+
 
 #ifdef THIS_IS_THE_PLUGIN
 
@@ -589,4 +670,4 @@ DLLEXPORT int    AGS_PluginV2();
 
 #endif // THIS_IS_THE_PLUGIN
 
-#endif
+#endif // _AGS_PLUGIN_H

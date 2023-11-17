@@ -41,10 +41,7 @@ SpriteObject* D3D_OpenSprite(int spriteID)
 
 SpriteObject* D3D_OpenSpriteFile(char const* filename, int filtering)
 {
-    char buffer[MAX_PATH];
-    GetAGS()->GetPathToFileInCompiledFolder(filename, buffer);
-
-    SpriteObject* obj = SpriteObject::Open(buffer, (BaseObject::Filtering)filtering);
+    SpriteObject* obj = SpriteObject::Open(filename, (BaseObject::Filtering)filtering);
 
     if (obj)
     {
@@ -69,15 +66,11 @@ SpriteObject* D3D_OpenBackground(int frame)
 #if defined (VIDEO_PLAYBACK)
 VideoObject* D3D_OpenVideo(char const* filename)
 {
-    char buffer[MAX_PATH];
-    IAGSEngine* engine = GetAGS();
-    engine->GetPathToFileInCompiledFolder(filename, buffer);
-
-    VideoObject* obj = VideoObject::Open(buffer);
+    VideoObject* obj = VideoObject::Open(filename);
 
     if (obj)
     {
-        engine->RegisterManagedObject(obj, &videoObjManager);
+        GetAGS()->RegisterManagedObject(obj, &videoObjManager);
     }
 
     return obj;

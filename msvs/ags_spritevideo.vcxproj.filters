@@ -441,6 +441,7 @@
     <ClCompile Include="..\libs\zlib\trees.c">
       <Filter>libs\zlib</Filter>
     </ClCompile>
+    <ClCompile Include="..\ags_spritevideo\AGSDataSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\ags_spritevideo\d3d9\D3D9Factory.h">
@@ -475,6 +476,8 @@
     <ClInclude Include="..\ags_spritevideo\resource.h" />
     <ClInclude Include="..\ags_spritevideo\StringHelper.h" />
     <ClInclude Include="..\ags_spritevideo\ImageHelper.h" />
+    <ClInclude Include="..\ags_spritevideo\agsplugin_evts.h" />
+    <ClInclude Include="..\ags_spritevideo\AGSDataSource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\theoraplayer\src\YUV\libyuv\src\row_x86.asm">
