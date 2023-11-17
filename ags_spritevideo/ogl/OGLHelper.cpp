@@ -46,12 +46,21 @@ unsigned CreateTexture(unsigned char const* const* data, int width, int height, 
 
 bool SetTextureData(unsigned texture, unsigned char const* const* data, int width, int height)
 {
+    // For simplicity we assume that the input data is BGRA:
+    // that's consistent with AGS internal bitmap format.
+    // In the future it will be preferred to get input format as an argument,
+    // and write generic pixel format conversion function for both Direct3D and OpenGL modes.
     int bpp = 4; // TODO: get from elsewhere?
     std::vector<unsigned char> input( width * height * bpp );
     int pitch = width * bpp;
     for (int y = 0; y < height; ++y)
     {
-        memcpy(&input[0] + pitch * y, data[y], pitch);
+        const uint32_t *src_ptr = reinterpret_cast<const uint32_t*>(data[y]);
+        uint32_t *dst_ptr = reinterpret_cast<uint32_t*>(&input[0] + pitch * y);
+        for (int x = 0; x < width; ++x, ++dst_ptr, ++src_ptr)
+            *dst_ptr = (((*src_ptr) & 0xFF) << 16) | ((*src_ptr) & 0xFF00) | (((*src_ptr) & 0xFF0000) >> 16)
+            | ((*src_ptr) & 0xFF000000);
+        //memcpy(&input[0] + pitch * y, data[y], pitch);
     }
     
     glBindTexture(GL_TEXTURE_2D, texture);

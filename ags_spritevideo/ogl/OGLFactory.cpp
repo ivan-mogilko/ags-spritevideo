@@ -77,3 +77,8 @@ std::unique_ptr<RenderObject> OGLFactory::CreateRenderObject()
 {
     return std::make_unique<OGLRenderObject>();
 }
+
+bool OGLFactory::IsRGBA()
+{
+    return true;
+}

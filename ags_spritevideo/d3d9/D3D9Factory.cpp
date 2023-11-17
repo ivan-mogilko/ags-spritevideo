@@ -55,4 +55,9 @@ std::unique_ptr<RenderObject> D3D9Factory::CreateRenderObject()
     return std::make_unique<D3D9RenderObject>();
 }
 
+bool D3D9Factory::IsRGBA()
+{
+    return false;
+}
+
 #endif // WINDOWS_VERSION

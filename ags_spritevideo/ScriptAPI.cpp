@@ -66,7 +66,7 @@ SpriteObject* D3D_OpenBackground(int frame)
 #if defined (VIDEO_PLAYBACK)
 VideoObject* D3D_OpenVideo(char const* filename)
 {
-    VideoObject* obj = VideoObject::Open(filename);
+    VideoObject* obj = VideoObject::Open(filename, GetFactory()->IsRGBA());
 
     if (obj)
     {

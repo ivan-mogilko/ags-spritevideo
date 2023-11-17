@@ -13,6 +13,7 @@ public:
     bool InitGfxMode(Screen* screen, void* data) override;
     void SetScreenMatrixes(Screen* screen, float(*world)[16], float(*view)[16], float(*proj)[16]) override;
     std::unique_ptr<RenderObject> CreateRenderObject() override;
+    bool IsRGBA() override;
 };
 
 IDirect3DDevice9* GetD3D();

@@ -44,7 +44,8 @@ static bool LoadImageData(const char *filename, std::vector<uint8_t> &data)
     return false;
 }
 
-static bool LoadPNG(const std::vector<uint8_t> &raw_bytes, std::vector<uint8_t> &data, ImageInfo &info)
+static bool LoadPNG(const std::vector<uint8_t> &raw_bytes, std::vector<uint8_t> &data,
+    ImageInfo &info, bool rgba)
 {
     // http://www.libpng.org/pub/png/libpng-manual.txt
     // see V. Simplified API
@@ -53,7 +54,7 @@ static bool LoadPNG(const std::vector<uint8_t> &raw_bytes, std::vector<uint8_t> 
     im.version = PNG_IMAGE_VERSION;
     if (png_image_begin_read_from_memory(&im, &raw_bytes[0], raw_bytes.size()) == 0)
         return false;
-    im.format = PNG_FORMAT_BGRA;
+    im.format = rgba ? PNG_FORMAT_RGBA : PNG_FORMAT_BGRA;
     const int bpp = PNG_IMAGE_SAMPLE_SIZE(im.format);
     int stride = im.width * bpp;
     data.resize(stride * im.height);
@@ -66,7 +67,7 @@ static bool LoadPNG(const std::vector<uint8_t> &raw_bytes, std::vector<uint8_t> 
     return true;
 }
 
-bool LoadImage(const char* file, std::vector<uint8_t> &data, ImageInfo &info)
+bool LoadImage(const char* file, std::vector<uint8_t> &data, ImageInfo &info, bool rgba)
 {
     const char* ext = GetExt(file);
     if (!ext)
@@ -82,7 +83,7 @@ bool LoadImage(const char* file, std::vector<uint8_t> &data, ImageInfo &info)
 
     std::vector<uint8_t> raw_bytes;
     if (LoadImageData(file, raw_bytes))
-        return LoadPNG(raw_bytes, data, info);
+        return LoadPNG(raw_bytes, data, info, rgba);
     else
         return false;
 }

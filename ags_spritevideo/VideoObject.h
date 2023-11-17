@@ -14,8 +14,10 @@ public:
     static void Initialize();
     static void CleanUp();
 
-    static VideoObject* Open( char const* filename );
-    static VideoObject* Restore( char const* buffer, int size );
+    // rgba is a simple flag that tells whether the destination should be
+    // RGBA or BGRA format; TODO: make proper constants for this
+    static VideoObject* Open( char const* filename, bool rgba );
+    static VideoObject* Restore( char const* buffer, int size, bool rgba );
 
     virtual ~VideoObject();
     
@@ -37,13 +39,14 @@ public:
     virtual int Unserialize( char const* buffer, int size );
 
 private:
-    VideoObject();
+    VideoObject(bool rgba);
 
     TheoraDataSource *CreateDataSource(char const* filename);
     void UpdateTexture();
 
     static std::unique_ptr<TheoraVideoManager> videoManager;
 
+    bool _rgba = false; // a hint for the desired pixel format
     TheoraVideoClip* myClip = nullptr; // created & destroyed via an interface
     bool myIsAutoplaying = false;
 };

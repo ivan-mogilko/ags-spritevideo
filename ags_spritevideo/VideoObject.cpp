@@ -41,9 +41,9 @@ TheoraDataSource *VideoObject::CreateDataSource( char const* filename )
     return nullptr;
 }
 
-VideoObject* VideoObject::Open( char const* filename )
+VideoObject* VideoObject::Open( char const* filename, bool rgba )
 {
-    VideoObject* obj = new VideoObject();
+    VideoObject* obj = new VideoObject(rgba);
 	try
 	{
         IAGSStream *is = GetAGS()->OpenFileStream(filename, AGSSTREAM_FILE_OPEN, AGSSTREAM_MODE_READ);
@@ -51,7 +51,7 @@ VideoObject* VideoObject::Open( char const* filename )
         {
             // TheoraVideoClip will own our data source
             AGSDataSource *dataSource = new AGSDataSource(filename, is);
-            obj->myClip = videoManager->createVideoClip( dataSource, TH_BGRX );
+            obj->myClip = videoManager->createVideoClip( dataSource, rgba ? TH_RGBX : TH_BGRX );
         }
 	}
 	catch (...)
@@ -77,15 +77,16 @@ VideoObject* VideoObject::Open( char const* filename )
     return obj;
 }
 
-VideoObject* VideoObject::Restore( char const* buffer, int size )
+VideoObject* VideoObject::Restore( char const* buffer, int size, bool rgba )
 {
-    VideoObject* obj = new VideoObject();
+    VideoObject* obj = new VideoObject(rgba);
     obj->Unserialize( buffer, size );
     return obj;
 }
 
-VideoObject::VideoObject():
-    BaseObject()
+VideoObject::VideoObject(bool rgba)
+    : BaseObject()
+    , _rgba(rgba)
 {
     if ( !videoManager )
     {
@@ -250,7 +251,7 @@ int VideoObject::Unserialize( char const* buffer, int size )
     {
         // TheoraVideoClip will own our data source
         AGSDataSource *dataSource = new AGSDataSource(filename, is);
-        myClip = videoManager->createVideoClip( dataSource, TH_BGRX );
+        myClip = videoManager->createVideoClip( dataSource, _rgba ? TH_RGBX : TH_BGRX );
     }
 
     if ( !myClip )
@@ -311,7 +312,7 @@ int VideoObject_Manager::Serialize( void* address, char* buffer, int bufsize )
 
 void VideoObject_Manager::Unserialize( int key, char const* buffer, int size )
 {
-    VideoObject* obj = VideoObject::Restore( buffer, size );
+    VideoObject* obj = VideoObject::Restore( buffer, size, GetFactory()->IsRGBA() );
 
     if ( obj )
     {

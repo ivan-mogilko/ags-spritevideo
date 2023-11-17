@@ -146,7 +146,7 @@ void OGLRenderObject::CreateTexture(int sprite_id, int bkg_num, const char *file
     {
         ImageInfo info;
         std::vector<unsigned char> data;
-        if (LoadImage(file, data, info))
+        if (LoadImage(file, data, info, /*rgba*/ true))
         {
             myWidth = info.Width;
             myHeight = info.Height;

@@ -61,7 +61,7 @@ void D3D9RenderObject::CreateTexture(int sprite_id, int bkg_num, const char *fil
     {
         ImageInfo info;
         std::vector<unsigned char> data;
-        if (LoadImage(file, data, info))
+        if (LoadImage(file, data, info, /*rgba*/ false))
         {
             myWidth = info.Width;
             myHeight = info.Height;
