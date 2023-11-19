@@ -1,6 +1,7 @@
 #ifndef SPRITEVIDEO_IMAGEHELPER_H
 #define SPRITEVIDEO_IMAGEHELPER_H
 
+#include <stdint.h>
 #include <vector>
 
 struct ImageInfo
