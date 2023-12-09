@@ -351,6 +351,60 @@ protected:
   ~IAGSStream() = default;
 };
 
+#define AGS_AUDIOPLAY_FLD_VOLUME        0x0001
+
+#define AGS_AUDIOFRAME_FLD_DATA         0x0001
+#define AGS_AUDIOFRAME_FLD_TIMESTAMP    0x0002
+
+// use sdl2 format for test, but maybe switch to our own custom values just in case?
+#define AGS_AUDIOFORMAT_F32             0x8120
+
+struct AGSAudioFormat
+{
+  // Set which fields are valid, see AGS_AUDIOFORMAT_FLD_* flags
+  uint32_t Fields;
+  int Format; // s16, s32, f16, f32, etc
+  int Channels;
+  int Freq;
+};
+
+struct AGSAudioPlayConfig
+{
+  // Set which fields are valid, see AGS_AUDIOPLAY_FLD_* flags
+  uint32_t Fields;
+  float Volume;
+};
+
+struct AGSAudioFrame
+{
+  // Set which fields are valid, see AGS_AUDIOFRAME_FLD_* flags
+  uint32_t Fields;
+  void *Data;
+  size_t DataSize;
+  int64_t Timestamp;
+};
+
+// Something that plays the sound data
+class IAGSAudioPlayer {
+public:
+  // Tells which version of the plugin API this object corresponds to;
+  // this lets users know which of the following methods are valid to use.
+  virtual int    GetVersion() = 0;
+  virtual void   SetConfig(AGSAudioPlayConfig *config) = 0;
+  // Flushes and closes the AudioPlayer.
+  // After calling this the IAGSAudioPlayer pointer becomes INVALID.
+  virtual void   Close() = 0;
+  virtual void   Pause() = 0;
+  virtual void   Resume() = 0;
+  // *copies* data on call, does not hold the frame (??? need different rule?)
+  // returns amount of data copied, or 0 if data cannot be accepted at the moment.
+  virtual size_t PutData(AGSAudioFrame *frame) = 0;
+
+protected:
+  IAGSAudioPlayer() = default;
+  ~IAGSAudioPlayer() = default;
+};
+
 
 // The plugin-to-engine interface
 class IAGSEngine {
@@ -623,6 +677,11 @@ public:
   // This lets to retrieve IAGSStream object from a handle received in a event callback.
   // Returns null if handle is invalid.
   AGSIFUNC(IAGSStream*) GetFileStreamByHandle(int32 fhandle);
+
+  // *** BELOW ARE INTERFACE VERSION 29 AND ABOVE ONLY
+  // open audio player, telling the format of the sound data that will be SENT into this player by user.
+  // optionally pass AGSAudioPlayConfig setting playback parameters (these may be reset later).
+  AGSIFUNC(IAGSAudioPlayer*) OpenAudioPlayer(AGSAudioFormat *in_format, AGSAudioPlayConfig *config);
 };
 
 

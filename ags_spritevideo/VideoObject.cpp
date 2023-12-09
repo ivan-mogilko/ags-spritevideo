@@ -2,15 +2,81 @@
 
 #include "VideoObject.h"
 #include "AGSDataSource.h"
+#include <TheoraAudioInterface.h>
+
+class MyAudioIface : public TheoraAudioInterface
+{
+public:
+    MyAudioIface(TheoraVideoClip* owner, int nChannels, int freq)
+        : TheoraAudioInterface(owner, nChannels, freq)
+    {
+        AGSAudioFormat fmt;
+        fmt.Format = AGS_AUDIOFORMAT_F32;
+        fmt.Channels = nChannels;
+        fmt.Freq = freq;
+        AGSAudioPlayConfig cfg;
+        _player = GetAGS()->OpenAudioPlayer(&fmt, &cfg);
+    }
+
+    ~MyAudioIface()
+    {
+        if (_player)
+            _player->Close();
+    }
+
+    bool IsOpen() const { return _player != nullptr; }
+
+    virtual void insertData(float* data, int nSamples) override
+    {
+        if (_player)
+        {
+            AGSAudioFrame frame;
+            frame.Fields = AGS_AUDIOFRAME_FLD_DATA;
+            frame.Data = data;
+            frame.DataSize = nSamples * sizeof(float); // nSamples already includes chan count
+            frame.Timestamp = -1;
+            _player->PutData(&frame);
+        }
+    }
+
+private:
+    IAGSAudioPlayer *_player;
+};
+
+class MyAudioIfaceFactory : public TheoraAudioInterfaceFactory
+{
+public:
+	//! VideoManager calls this when creating a new TheoraVideoClip object
+    TheoraAudioInterface* createInstance(TheoraVideoClip* owner, int nChannels, int freq) override
+    {
+        if (GetAGS()->version >= 29)
+        {
+            auto *iface = new MyAudioIface(owner, nChannels, freq);
+            if (iface && iface->IsOpen())
+            {
+                return iface;
+            }
+            else if (iface)
+            {
+                delete iface;
+            }
+        }
+        return nullptr;
+    }
+};
+
 
 // Static variables
 std::unique_ptr<TheoraVideoManager> VideoObject::videoManager;
+std::unique_ptr<MyAudioIfaceFactory> audioIfaceFactory;
 
 
 void VideoObject::Initialize()
 {
     DBG( "Initializing VideoObject" );
     videoManager.reset(new TheoraVideoManager());
+    audioIfaceFactory.reset(new MyAudioIfaceFactory());
+    videoManager->setAudioInterfaceFactory(audioIfaceFactory.get());
 }
 
 void VideoObject::CleanUp()
@@ -191,6 +257,7 @@ void VideoObject::Update()
     {
         // Autoplay video
         myClip->update( GetScreen()->frameDelay );
+        myClip->decodedAudioCheck();
     }
 
     // Change texture if frame has changed
@@ -279,7 +346,6 @@ void VideoObject::UpdateTexture()
     if ( !myClip ) return;
 
     TheoraVideoFrame* frame = myClip->getNextFrame();
-
     if ( frame )
     {
         // New frame, let's update the texture
