@@ -39,7 +39,7 @@ static bool LoadImageData(const char *filename, std::vector<uint8_t> &data)
             data.resize(is->GetLength());
             size_t read_num = is->Read(&data[0], data.size());
             data.resize(read_num);
-            is->Close();
+            is->Dispose();
             return true;
         }
     }

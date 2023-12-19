@@ -5,7 +5,7 @@
 
 AGSDataSource::~AGSDataSource()
 {
-    _is->Close();
+    _is->Dispose();
 }
 
 int AGSDataSource::read(void* output, int nBytes)
