@@ -23,11 +23,14 @@ static bool LoadImageData(const char *filename, std::vector<uint8_t> &data)
             fseek(f, 0, SEEK_END);
             long off = ftell(f);
             fseek(f, 0, SEEK_SET);
-            data.resize(off);
-            size_t read_num = fread(&data[0], 1, off, f);
-            data.resize(read_num);
+            if (off > 0)
+            {
+                data.resize(off);
+                size_t read_num = fread(&data[0], 1, off, f);
+                data.resize(read_num);
+            }
             fclose(f);
-            return true;
+            return data.size() > 0;
         }
     }
     else
@@ -37,10 +40,13 @@ static bool LoadImageData(const char *filename, std::vector<uint8_t> &data)
         if (is)
         {
             data.resize(is->GetLength());
-            size_t read_num = is->Read(&data[0], data.size());
-            data.resize(read_num);
+            if (data.size() > 0)
+            {
+                size_t read_num = is->Read(&data[0], data.size());
+                data.resize(read_num);
+            }
             is->Dispose();
-            return true;
+            return data.size() > 0;
         }
     }
     return false;
