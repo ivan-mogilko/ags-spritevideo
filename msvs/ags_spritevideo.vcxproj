@@ -5,17 +5,33 @@
       <Configuration>Debug_NoVideo</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_NoVideo|x64">
+      <Configuration>Debug_NoVideo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release_NoVideo|Win32">
       <Configuration>Release_NoVideo</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_NoVideo|x64">
+      <Configuration>Release_NoVideo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -32,13 +48,32 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -52,57 +87,127 @@
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
     <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
-    <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
     <GenerateManifest>false</GenerateManifest>
     <IncludePath>$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
-    <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir).build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
     <GenerateManifest>false</GenerateManifest>
     <IncludePath>$(IncludePath)</IncludePath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
-    <IntDir>$(SolutionDir).temp\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <TargetName>$(ProjectName)</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir).build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir).temp\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;Z_SOLO;VIDEO_PLAYBACK;THEORAVIDEO_LIB;__THEORA;_YUV_LIBYUV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\zlib\;$(SolutionDir)..\libs\libpng\;$(SolutionDir)..\libs\libogg\;$(SolutionDir)..\libs\libvorbis\;$(SolutionDir)..\libs\libtheora\;$(SolutionDir)..\theoraplayer\include\;$(SolutionDir)..\theoraplayer\include\theoraplayer;$(SolutionDir)..\theoraplayer\src\Theora;$(SolutionDir)..\theoraplayer\src\YUV;$(SolutionDir)..\theoraplayer\src\YUV\libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -136,7 +241,47 @@
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;Z_SOLO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\zlib\;$(SolutionDir)..\libs\libpng\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;Z_SOLO;VIDEO_PLAYBACK;THEORAVIDEO_LIB;__THEORA;_YUV_LIBYUV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\zlib\;$(SolutionDir)..\libs\libpng\;$(SolutionDir)..\libs\libogg\;$(SolutionDir)..\libs\libvorbis\;$(SolutionDir)..\libs\libtheora\;$(SolutionDir)..\theoraplayer\include\;$(SolutionDir)..\theoraplayer\include\theoraplayer;$(SolutionDir)..\theoraplayer\src\Theora;$(SolutionDir)..\theoraplayer\src\YUV;$(SolutionDir)..\theoraplayer\src\YUV\libyuv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Version>
+      </Version>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
@@ -182,6 +327,29 @@
       </Version>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_VERSION;AGS_D3D_EXPORTS;Z_SOLO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>..\ags_spritevideo;..\ags_spritevideo\glad\include;$(SolutionDir)..\libs\zlib\;$(SolutionDir)..\libs\libpng\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Version>
+      </Version>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\ags_spritevideo\AGSDataSource.cpp" />
     <ClCompile Include="..\ags_spritevideo\ags_spritevideo.cpp" />
@@ -202,597 +370,1087 @@
     <ClCompile Include="..\ags_spritevideo\VideoObject.cpp" />
     <ClCompile Include="..\libs\libogg\bitwise.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libogg/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libogg/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libogg/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libogg/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libogg\framing.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libogg/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libogg/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libogg/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libogg/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libogg/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libogg/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libogg/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\png.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngerror.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngget.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngmem.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngpread.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngread.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngrio.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngrtran.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngrutil.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngset.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngtrans.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngwio.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngwrite.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngwtran.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libpng\pngwutil.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libpng/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libpng/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libpng/</ObjectFileName>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\apiwrapper.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\bitpack.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\cpu.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\decapiwrapper.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\decinfo.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\decode.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\dequant.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\fragment.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\huffdec.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\idct.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\info.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\internal.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\quant.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libtheora\state.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libtheora/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libtheora/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\analysis.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\bitrate.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\block.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\codebook.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\envelope.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\floor0.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\floor1.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\info.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\lookup.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\lpc.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\lsp.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\mapping0.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\mdct.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\psy.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\registry.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\res0.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\sharedbook.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\smallft.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\synthesis.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\vorbisenc.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\libvorbis\window.c">
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</AssemblerListingLocation>
+      <AssemblerListingLocation Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</AssemblerListingLocation>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">$(IntDir)/libvorbis/</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">$(IntDir)/libvorbis/</ObjectFileName>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\libs\zlib\adler32.c" />
     <ClCompile Include="..\libs\zlib\crc32.c" />
@@ -804,244 +1462,364 @@
     <ClCompile Include="..\libs\zlib\zutil.c" />
     <ClCompile Include="..\theoraplayer\src\TheoraAsync.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraAudioInterface.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraAudioPacketQueue.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraDataSource.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraException.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraFrameQueue.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraTimer.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraUtil.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraVideoClip.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraVideoFrame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraVideoManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\TheoraWorkerThread.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\Theora\TheoraVideoClip_Theora.cpp" />
     <ClCompile Include="..\theoraplayer\src\YUV\C\yuv420_grey_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\C\yuv420_rgb_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\C\yuv420_yuv_c.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_common.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_gcc.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_neon.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_neon64.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_posix.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\compare_win.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_argb.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_from.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_from_argb.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_jpeg.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_to_argb.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\convert_to_i420.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\cpu_id.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\mjpeg_decoder.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\mjpeg_validate.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\planar_functions.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_argb.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_mips.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_neon.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\rotate_neon64.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_any.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_common.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_gcc.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_mips.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_neon.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_neon64.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_posix.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\row_win.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_any.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_argb.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_argb_neon.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_common.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_gcc.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_mips.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_neon.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_neon64.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_posix.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\scale_win.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\src\video_common.cc">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\libyuv\yuv_libyuv.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\theoraplayer\src\YUV\yuv_util.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1069,11 +1847,15 @@
   <ItemGroup>
     <None Include="..\theoraplayer\src\YUV\libyuv\src\row_x86.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </None>
     <None Include="..\theoraplayer\src\YUV\libyuv\src\x86inc.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_NoVideo|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_NoVideo|x64'">true</ExcludedFromBuild>
     </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

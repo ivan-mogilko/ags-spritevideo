@@ -7,18 +7,30 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ags_spritevideo", "ags_spri
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug_NoVideo|x64 = Debug_NoVideo|x64
 		Debug_NoVideo|x86 = Debug_NoVideo|x86
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release_NoVideo|x64 = Release_NoVideo|x64
 		Release_NoVideo|x86 = Release_NoVideo|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug_NoVideo|x64.ActiveCfg = Debug_NoVideo|x64
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug_NoVideo|x64.Build.0 = Debug_NoVideo|x64
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug_NoVideo|x86.ActiveCfg = Debug_NoVideo|Win32
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug_NoVideo|x86.Build.0 = Debug_NoVideo|Win32
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug|x64.ActiveCfg = Debug|x64
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug|x64.Build.0 = Debug|x64
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug|x86.ActiveCfg = Debug|Win32
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Debug|x86.Build.0 = Debug|Win32
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release_NoVideo|x64.ActiveCfg = Release_NoVideo|x64
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release_NoVideo|x64.Build.0 = Release_NoVideo|x64
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release_NoVideo|x86.ActiveCfg = Release_NoVideo|Win32
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release_NoVideo|x86.Build.0 = Release_NoVideo|Win32
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release|x64.ActiveCfg = Release|x64
+		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release|x64.Build.0 = Release|x64
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release|x86.ActiveCfg = Release|Win32
 		{D5729534-E9DD-432C-8067-FAB5F8B9347F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
