@@ -178,7 +178,7 @@ void Render( BaseObject::RenderStage stage )
     }
 }
 
-int AGS_EngineOnEvent( int ev, int data )
+intptr_t AGS_EngineOnEvent( int ev, intptr_t data )
 {
     if ( ev == AGSE_SAVEGAME )
     {
@@ -216,7 +216,6 @@ int AGS_EngineOnEvent( int ev, int data )
             engine->RoomToViewport( &screen.viewport.x, &screen.viewport.y );
         }
 
-        // FIXME: won't work on 64-bit systems!!! use extended engine API?
         GetFactory()->InitGfxDevice(reinterpret_cast<void*>(data));
 
         Render( BaseObject::STAGE_BACKGROUND );
